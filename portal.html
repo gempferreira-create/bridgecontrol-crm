@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orçamento — BridgeControl</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:#f5f4f0;color:#2a2a2a;min-height:100vh}
+  .top-bar{background:#2C3E50;color:#fff;padding:14px 32px;display:flex;align-items:center;justify-content:space-between}
+  .top-bar h1{font-size:18px;font-weight:600;letter-spacing:.5px}
+  .top-bar span{font-size:12px;opacity:.7}
+  .container{max-width:900px;margin:32px auto;padding:0 16px}
+  .card{background:#fff;border-radius:10px;padding:32px;margin-bottom:24px;box-shadow:0 2px 12px rgba(0,0,0,.07)}
+  .header-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;gap:16px}
+  .empresa-info h2{font-size:22px;font-weight:700;color:#2C3E50;margin-bottom:4px}
+  .empresa-info p{font-size:13px;color:#666;line-height:1.6}
+  .orc-meta{text-align:right}
+  .orc-num{font-size:28px;font-weight:700;color:#8B7355;margin-bottom:4px}
+  .badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600}
+  .badge-enviado{background:#dbeafe;color:#1e40af}
+  .badge-aprovado{background:#dcfce7;color:#166534}
+  .badge-rascunho{background:#f3f4f6;color:#6b7280}
+  .badge-cancelado{background:#fee2e2;color:#991b1b}
+  .section-title{font-size:13px;font-weight:700;color:#8B7355;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #f0ebe3}
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;margin-bottom:20px}
+  .info-item label{font-size:11px;color:#999;display:block;margin-bottom:2px}
+  .info-item span{font-size:14px;color:#2a2a2a;font-weight:500}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{background:#f8f6f2;padding:10px 12px;text-align:left;font-size:11px;font-weight:700;color:#8B7355;text-transform:uppercase;letter-spacing:.5px}
+  td{padding:10px 12px;border-bottom:1px solid #f0ebe3;vertical-align:middle}
+  td img{width:40px;height:40px;object-fit:cover;border-radius:4px}
+  .total-section{margin-top:20px;border-top:2px solid #f0ebe3;padding-top:16px}
+  .total-row{display:flex;justify-content:space-between;padding:5px 0;font-size:14px}
+  .total-row.grand{font-size:20px;font-weight:700;color:#8B7355;border-top:1px solid #e0d8cc;margin-top:8px;padding-top:12px}
+  .tc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 24px}
+  .tc-item label{font-size:11px;color:#999;display:block;margin-bottom:2px}
+  .tc-item span{font-size:13px;color:#2a2a2a}
+  .print-btn{background:#2C3E50;color:#fff;border:none;padding:10px 24px;border-radius:6px;font-size:14px;cursor:pointer;font-weight:600}
+  .print-btn:hover{background:#3d5166}
+  .loading{text-align:center;padding:80px;color:#999;font-size:16px}
+  .error{text-align:center;padding:80px;color:#c0392b;font-size:16px}
+  @media print{.no-print{display:none!important}.card{box-shadow:none;border:1px solid #eee}}
+  @media(max-width:600px){.header-row{flex-direction:column}.orc-meta{text-align:left}.info-grid,.tc-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <h1>BridgeControl</h1>
+  <span>Portal do Cliente</span>
+</div>
+<div class="container">
+  <div id="loading" class="loading">A carregar orçamento...</div>
+  <div id="error" class="error" style="display:none">Orçamento não encontrado ou expirado.</div>
+  <div id="content" style="display:none">
+    <div class="card no-print" style="padding:16px 32px;display:flex;align-items:center;justify-content:space-between">
+      <span style="font-size:13px;color:#666">Pode imprimir ou guardar este orçamento como PDF</span>
+      <button class="print-btn" onclick="window.print()">🖨️ Imprimir / PDF</button>
+    </div>
+    <div class="card">
+      <div class="header-row">
+        <div class="empresa-info">
+          <h2 id="emp-nome"></h2>
+          <p id="emp-morada"></p>
+          <p id="emp-nif"></p>
+          <p id="emp-contacto"></p>
+        </div>
+        <div class="orc-meta">
+          <div class="orc-num" id="orc-num"></div>
+          <div id="orc-estado-badge"></div>
+          <div style="font-size:13px;color:#666;margin-top:6px">Data: <span id="orc-data"></span></div>
+          <div style="font-size:13px;color:#666">Validade: <span id="orc-validade"></span></div>
+        </div>
+      </div>
+
+      <div class="section-title">Cliente</div>
+      <div class="info-grid" style="margin-bottom:24px">
+        <div class="info-item"><label>Nome</label><span id="cli-nome"></span></div>
+        <div class="info-item"><label>País / Villa</label><span id="orc-pais"></span></div>
+      </div>
+
+      <div class="section-title">Artigos</div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Img</th>
+            <th>Ref</th>
+            <th>Artigo</th>
+            <th>Descrição</th>
+            <th>Dim. (L×P×A)</th>
+            <th>Área</th>
+            <th>Qtd</th>
+            <th style="text-align:right">P.U.</th>
+            <th style="text-align:right">Total</th>
+          </tr>
+        </thead>
+        <tbody id="linhas-tbody"></tbody>
+      </table>
+
+      <div class="total-section">
+        <div class="total-row"><span>Mobiliário</span><span id="t-mob"></span></div>
+        <div class="total-row" id="t-ret-row" style="display:none"><span>Retenção</span><span id="t-ret"></span></div>
+        <div class="total-row" id="t-mont-row" style="display:none"><span>Montagem</span><span id="t-mont"></span></div>
+        <div class="total-row" id="t-transp-row" style="display:none"><span>Transporte</span><span id="t-transp"></span></div>
+        <div class="total-row" id="t-com-row" style="display:none"><span>Comissão</span><span id="t-com"></span></div>
+        <div class="total-row" id="t-iva-row" style="display:none"><span id="t-iva-label">IVA</span><span id="t-iva"></span></div>
+        <div class="total-row grand"><span>TOTAL</span><span id="t-total"></span></div>
+      </div>
+    </div>
+
+    <div class="card" id="tc-card">
+      <div class="section-title">Condições Comerciais</div>
+      <div class="tc-grid" id="tc-grid"></div>
+      <div id="tc-texto" style="margin-top:12px;font-size:13px;color:#555;line-height:1.6"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var SUPABASE_URL='https://rxkunucxxyhvfexrvpev.supabase.co';
+  var SUPABASE_KEY='sb_publishable_aD4-v1BkW5oapqoMBRrkTA_wZQnH1hB';
+
+  function fmt(v){return(+v||0).toLocaleString('pt-PT',{minimumFractionDigits:2,maximumFractionDigits:2});}
+  function show(id,val){var el=document.getElementById(id);if(el)el.textContent=val||'—';}
+
+  function getGrandTotal(o){
+    var mob=o.sumMob||0;
+    var ret=o.sumRet||0;
+    var mont=o.montIncluida==='sim'?0:(o.sumMontVal||0);
+    var transp=o.transpIncluido==='sim'?0:(o.transpVal||0);
+    var com=o.comissao||0;
+    var margem=o.margemAjuste||0;
+    var margemExtra=o.margemExtra||0;
+    var sub=mob+mont+transp+com+margem+margemExtra-ret;
+    var iva=o.ivaTaxa>0?(sub*(o.ivaTaxa/100)):0;
+    return sub+iva;
+  }
+
+  async function loadOrcamento(){
+    var params=new URLSearchParams(window.location.search);
+    var token=params.get('token');
+    if(!token){showError();return;}
+
+    try{
+      var s=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+      var res=await s.from('public_orcamentos').select('*').eq('token',token).single();
+      if(res.error||!res.data){showError();return;}
+      render(res.data);
+    }catch(e){showError();}
+  }
+
+  function showError(){
+    document.getElementById('loading').style.display='none';
+    document.getElementById('error').style.display='block';
+  }
+
+  function render(row){
+    var o=row.orcamento;
+    var emp=row.empresa||{};
+    var c=o._clienteSnap||{};
+
+    // Empresa
+    show('emp-nome',emp.nome);
+    show('emp-morada',emp.morada);
+    if(emp.nif)show('emp-nif','NIF: '+emp.nif);
+    var contacto=[emp.email,emp.tel,emp.website].filter(Boolean).join(' | ');
+    show('emp-contacto',contacto);
+
+    // Orçamento meta
+    var num=(o.numProjeto||'')+(o.numRef?' / '+o.numRef:'');
+    show('orc-num',num||'Orçamento');
+    var estados={Rascunho:'rascunho',Enviado:'enviado',Aprovado:'aprovado',Cancelado:'cancelado'};
+    var badgeEl=document.getElementById('orc-estado-badge');
+    if(badgeEl)badgeEl.innerHTML='<span class="badge badge-'+(estados[o.estado]||'rascunho')+'">'+( o.estado||'Rascunho')+'</span>';
+    show('orc-data',o.data);
+    show('orc-validade',o.validade);
+
+    // Cliente
+    show('cli-nome',c.nome||o.clienteId);
+    show('orc-pais',[o.pais,o.villa].filter(Boolean).join(' / '));
+
+    // Linhas
+    var tbody=document.getElementById('linhas-tbody');
+    var linhas=o.linhas||[];
+    tbody.innerHTML=linhas.map(function(l,i){
+      var img=l.img&&l.img.indexOf('http')===0?'<img src="'+l.img+'" onerror="this.style.display=\'none\'">':'—';
+      var dims=[l.dimW,l.dimP,l.dimH].filter(Boolean).join('×')||'—';
+      var total=(+l.qtd||0)*(+l.pu||0);
+      return '<tr><td>'+(i+1)+'</td><td>'+img+'</td><td>'+(l.ref||'—')+'</td><td>'+(l.artigo||'—')+'</td><td style="max-width:200px;font-size:12px;color:#555">'+(l.descricao||'—')+'</td><td>'+dims+'</td><td>'+(l.area||'—')+'</td><td>'+(l.qtd||'—')+'</td><td style="text-align:right">'+fmt(l.pu)+' €</td><td style="text-align:right;font-weight:600">'+fmt(total)+' €</td></tr>';
+    }).join('');
+
+    // Totais
+    var mob=o.sumMob||0;
+    var ret=o.sumRet||0;
+    var mont=o.montIncluida==='sim'?0:(o.sumMontVal||0);
+    var transp=o.transpIncluido==='sim'?0:(o.transpVal||0);
+    var com=o.comissao||0;
+    var sub=mob+mont+transp+com-ret+(o.margemAjuste||0)+(o.margemExtra||0);
+    var iva=o.ivaTaxa>0?(sub*(o.ivaTaxa/100)):0;
+    var total=sub+iva;
+
+    show('t-mob',fmt(mob)+' €');
+    if(ret>0){document.getElementById('t-ret-row').style.display='flex';show('t-ret','-'+fmt(ret)+' €');}
+    if(mont>0){document.getElementById('t-mont-row').style.display='flex';show('t-mont',fmt(mont)+' €');}
+    if(transp>0){document.getElementById('t-transp-row').style.display='flex';show('t-transp',fmt(transp)+' €');}
+    if(com>0){document.getElementById('t-com-row').style.display='flex';show('t-com',fmt(com)+' €');}
+    if(iva>0){document.getElementById('t-iva-row').style.display='flex';show('t-iva-label','IVA '+o.ivaTaxa+'%');show('t-iva',fmt(iva)+' €');}
+    show('t-total',fmt(total)+' €');
+
+    // Condições comerciais
+    var tcs=[
+      ['Pagamento',o.tcPagamento],['Prazo',o.tcPrazo],['Transporte',o.tcTransporte],
+      ['Tecidos',o.tcTecidos],['Garantia',o.tcGarantia]
+    ].filter(function(x){return x[1];});
+    var tcGrid=document.getElementById('tc-grid');
+    if(tcGrid)tcGrid.innerHTML=tcs.map(function(x){return '<div class="tc-item"><label>'+x[0]+'</label><span>'+x[1]+'</span></div>';}).join('');
+    if(o.tcTexto){var el=document.getElementById('tc-texto');if(el)el.textContent=o.tcTexto;}
+    if(!tcs.length&&!o.tcTexto){var tc=document.getElementById('tc-card');if(tc)tc.style.display='none';}
+
+    document.getElementById('loading').style.display='none';
+    document.getElementById('content').style.display='block';
+  }
+
+  var s=document.createElement('script');
+  s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+  s.onload=function(){window.supabase=window.supabase||supabase;loadOrcamento();};
+  document.head.appendChild(s);
+</script>
+</body>
+</html>

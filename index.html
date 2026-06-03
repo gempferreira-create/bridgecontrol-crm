@@ -641,6 +641,7 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
       <button class="btn btn-outline" onclick="closeModalOrc()">Cancelar</button>
       <button class="btn btn-primary" onclick="salvarOrcamento()">💾 Guardar</button>
       <button class="btn btn-bronze" onclick="salvarEGerarPDF()">📄 Guardar &amp; PDF</button>
+      <button class="btn btn-primary" style="background:#2C7A4B" onclick="partilharOrcamento()">🔗 Partilhar</button>
     </div>
   </div>
 </div>
@@ -737,7 +738,7 @@ function renderOrcamentos(){
   var list=db.orcamentos.filter(function(o){return !q||(o.numProjeto||'').toLowerCase().includes(q.toLowerCase())||getCliNome(o.clienteId).toLowerCase().includes(q.toLowerCase());});
   document.getElementById('orc-tbody').innerHTML=list.slice().reverse().map(function(o){
     var numCell='<strong>'+(o.numProjeto||'—')+'</strong>'+(o.numRef?'<br><span style="font-size:11px;color:#aaa;font-weight:400">'+o.numRef+'</span>':'');
-    return '<tr><td>'+numCell+'</td><td>'+getCliNome(o.clienteId)+'</td><td>'+(o.pais||'—')+'</td><td>'+badge(o.estado)+'</td><td style="font-weight:600;color:#8B7355">'+fmt(getGrandTotal(o))+' €</td><td>'+(o.data||'—')+'</td><td style="white-space:nowrap"><button class="btn btn-sm btn-outline" style="margin-right:4px" onclick="openModalOrcamento(\''+o.id+'\')">✏️ Editar</button><button class="btn btn-sm btn-bronze" style="margin-right:4px" onclick="gerarPDF(\''+o.id+'\')">📄 PDF</button><button class="btn btn-sm btn-danger" onclick="delOrc(\''+o.id+'\')">🗑️</button></td></tr>';
+    return '<tr><td>'+numCell+'</td><td>'+getCliNome(o.clienteId)+'</td><td>'+(o.pais||'—')+'</td><td>'+badge(o.estado)+'</td><td style="font-weight:600;color:#8B7355">'+fmt(getGrandTotal(o))+' €</td><td>'+(o.data||'—')+'</td><td style="white-space:nowrap"><button class="btn btn-sm btn-outline" style="margin-right:4px" onclick="openModalOrcamento(\''+o.id+'\')">✏️ Editar</button><button class="btn btn-sm btn-bronze" style="margin-right:4px" onclick="gerarPDF(\''+o.id+'\')">📄 PDF</button><button class="btn btn-sm" onclick="partilharOrcamentoById(\''+o.id+'\')" style="margin-right:4px;background:#2C7A4B;color:#fff">🔗</button><button class="btn btn-sm btn-danger" onclick="delOrc(\''+o.id+'\')">🗑️</button></td></tr>';
   }).join('')||'<tr><td colspan="7" style="text-align:center;color:#ccc;padding:24px">Sem orçamentos. Clique em + Novo Orçamento.</td></tr>';
 }
 function delOrc(id){
@@ -1354,53 +1355,41 @@ function compressImg(file,maxPx,quality,cb){
   };
   r.readAsDataURL(file);
 }
-async function _uploadImgToStorage(dataUrl){
-  if(!window._sb||!window._sbUser)return null;
-  try{
-    var blob=_dataUrlToBlob(dataUrl);
-    var fname=window._sbUser.id+'/'+Date.now()+'_'+Math.random().toString(36).slice(2,8)+'.jpg';
-    var res=await window._sb.storage.from('images').upload(fname,blob,{contentType:'image/jpeg',upsert:false});
-    if(res.error)throw res.error;
-    var pub=window._sb.storage.from('images').getPublicUrl(fname);
-    return pub.data.publicUrl;
-  }catch(e){console.error('upload img',e);return null;}
-}
-
 function handleImg(idx,input){
   if(!input.files[0])return;
   compressImg(input.files[0],500,0.80,function(dataUrl){
+    var blob=_dataUrlToBlob(dataUrl);
     var valEl=document.getElementById('ival-'+idx);
-    var cell=input.closest('td');
-    var ph=cell.querySelector('.img-placeholder');if(ph)ph.remove();
-    var img=cell.querySelector('img');
-    if(!img){img=document.createElement('img');img.style.cssText='width:36px;height:36px;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid #eee';img.onclick=function(){input.click();};cell.insertBefore(img,input);}
-    img.src=dataUrl;
-    _uploadImgToStorage(dataUrl).then(function(url){
-      var k=url||dataUrl;
+    if(valEl&&valEl.value&&valEl.value.indexOf('data:')!==0)_idbDel(valEl.value);
+    _idbPut(blob,function(key){
+      var k=key||dataUrl;
       if(valEl)valEl.value=k;
+      var cell=input.closest('td');
+      var ph=cell.querySelector('.img-placeholder');if(ph)ph.remove();
+      var img=cell.querySelector('img');
+      if(!img){img=document.createElement('img');img.style.cssText='width:36px;height:36px;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid #eee';img.onclick=function(){input.click();};cell.insertBefore(img,input);}
+      img.src=dataUrl;
     });
   });
 }
-
 function _setRowImg(idx,key){
   if(!key)return;
-  var row=document.querySelector('tr[data-idx="'+idx+'"]');
-  if(!row)return;
-  var cell=row.querySelector('.img-cell');if(!cell)return;
-  var ph=cell.querySelector('.img-placeholder');if(ph)ph.remove();
-  var img=cell.querySelector('img');
-  if(!img){
-    img=document.createElement('img');
-    img.style.cssText='width:36px;height:36px;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid #eee';
-    img.onclick=function(){var f=document.getElementById('ifile-'+idx);if(f)f.click();};
-    var fi=cell.querySelector('input[type=file]');
-    cell.insertBefore(img,fi);
-  }
-  if(key.indexOf('http')===0||key.indexOf('data:')===0){
-    img.src=key;
-  } else {
-    _idbGet(key,function(url){if(url)img.src=url;});
-  }
+  _idbGet(key,function(url){
+    if(!url)return;
+    var row=document.querySelector('tr[data-idx="'+idx+'"]');
+    if(!row)return;
+    var cell=row.querySelector('.img-cell');if(!cell)return;
+    var ph=cell.querySelector('.img-placeholder');if(ph)ph.remove();
+    var img=cell.querySelector('img');
+    if(!img){
+      img=document.createElement('img');
+      img.style.cssText='width:36px;height:36px;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid #eee';
+      img.onclick=function(){var f=document.getElementById('ifile-'+idx);if(f)f.click();};
+      var fi=cell.querySelector('input[type=file]');
+      cell.insertBefore(img,fi);
+    }
+    img.src=url;
+  });
 }
 
 function getLinhas(){
@@ -1424,6 +1413,30 @@ function salvarOrcamento(){
   return obj;
 }
 function salvarEGerarPDF(){var obj=salvarOrcamento();if(obj)setTimeout(function(){gerarPDF(obj.id);},80);}
+
+async function partilharOrcamento(){
+  var id=document.getElementById('orc-id').value;
+  if(!id){alert('Guarde o orçamento primeiro.');return;}
+  await _partilharOrcById(id);
+}
+async function partilharOrcamentoById(id){
+  await _partilharOrcById(id);
+}
+async function _partilharOrcById(id){
+  if(!window._sb||!window._sbUser){alert('Sem sessão ativa.');return;}
+  var o=db.orcamentos.find(function(x){return x.id==id;});
+  if(!o){alert('Orçamento não encontrado.');return;}
+  var token=id+'-'+Math.random().toString(36).slice(2,10);
+  var empresaData={nome:_EMP.nome,morada:_EMP.morada,nif:_EMP.nif,email:_EMP.email,tel:_EMP.tel,website:_EMP.website};
+  try{
+    await window._sb.from('public_orcamentos').delete().like('token',id+'-%');
+    var res=await window._sb.from('public_orcamentos').insert({token:token,orcamento:o,empresa:empresaData});
+    if(res.error)throw res.error;
+    var link=window.location.origin+'/portal.html?token='+token;
+    try{navigator.clipboard.writeText(link);}catch(e){}
+    alert('Link copiado!\n\n'+link);
+  }catch(e){alert('Erro ao partilhar: '+e.message);}
+}
 
 function gerarPDF(id){
   var o=db.orcamentos.find(function(x){return x.id==id;});
@@ -4386,23 +4399,30 @@ async function sbLogin(){
 /* ── Image Sync ── */
 async function _sbSyncImages(uid){
   if(!window._sb||!uid)return;
-  var updated=false;
-  for(var o of (db.orcamentos||[])){
-    for(var l of (o.linhas||[])){
-      if(l.img&&l.img.indexOf('idb_')===0){
-        await new Promise(function(resolve){
-          var imgKey=l.img;
-          _idbGet(imgKey,async function(url){
-            if(!url){resolve();return;}
-            var storageUrl=await _uploadImgToStorage(url);
-            if(storageUrl){l.img=storageUrl;updated=true;}
-            resolve();
-          });
-        });
-      }
-    }
+  // Collect all image keys from orçamentos
+  var keys=[];
+  (db.orcamentos||[]).forEach(function(o){
+    (o.linhas||[]).forEach(function(l){if(l.img&&l.img.indexOf('idb_')===0)keys.push(l.img);});
+  });
+  if(!keys.length)return;
+  // Check which keys already synced
+  var existing=[];
+  try{
+    var res=await window._sb.from('config').select('chave').eq('user_id',uid).like('chave','img_%');
+    if(res.data)existing=res.data.map(function(r){return r.chave;});
+  }catch(e){}
+  var toSync=keys.filter(function(k){return existing.indexOf('img_'+k)<0;});
+  for(var key of toSync){
+    await new Promise(function(resolve){
+      _idbGet(key,async function(url){
+        if(!url){resolve();return;}
+        try{
+          await window._sb.from('config').insert({user_id:uid,chave:'img_'+key,valor:{data:url,ts:Date.now()}});
+        }catch(e){}
+        resolve();
+      });
+    });
   }
-  if(updated)save();
 }
 
 async function _sbLoadImages(){
