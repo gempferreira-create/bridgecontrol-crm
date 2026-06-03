@@ -2074,8 +2074,15 @@ function fcAddFCRow(sec){
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
       _fcBtn(i3);
     document.getElementById('fc-'+sec+'-body').appendChild(tr3);
-  } else if(sec==='est'||sec==='met'){
-    fcAddRow(sec);
+  } else if(sec==='est'||sec==='met'||sec==='tec'){
+    tr.innerHTML=
+      '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
+      '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição..." onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
+      '<td style="'+td+'"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
+      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
+      _fcBtn(i);
+    document.getElementById('fc-'+sec+'-body').appendChild(tr);
+    fcCalcTotais();
     return;
   } else if(sec==='ocomp'){
     tr.innerHTML=
@@ -2326,14 +2333,6 @@ function fcAddRow(sec){
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
       _fcBtn(i);
     document.getElementById('fc-tec-body').appendChild(tr);
-  } else if(sec==='tec'){
-    tr.innerHTML=
-      '<td style="'+td+'"><input type="number" value="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
-      '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição do tecido..." onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
-      '<td style="'+td+'"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
-      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
-      _fcBtn(i);
-    document.getElementById('fc-tec-body').appendChild(tr);
   } else if(sec==='est'||sec==='met'||sec==='ocomp'){
     tr.innerHTML=
       '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
@@ -2513,7 +2512,7 @@ function fcCalcTotais(){
   });
 
   // Estofo / Metais / Outros Componentes rows (unit based, col2=€/uni input)
-  ['est','met','ocomp'].forEach(function(sec){
+  ['est','met','ocomp','tec'].forEach(function(sec){
     var sub=0;
     document.querySelectorAll('#'+cp+'-'+sec+'-body tr').forEach(function(tr){
       var cells=tr.cells;if(!cells.length)return;
@@ -2523,7 +2522,7 @@ function fcCalcTotais(){
       _setVal(cells[3],fmt(tot));
       sub+=tot;
     });
-    if(sec==='est')subEst=sub; else if(sec==='met')subMet=sub; else subOcomp=sub;
+    if(sec==='est')subEst=sub; else if(sec==='met')subMet=sub; else if(sec==='tec')subTec=sub; else subOcomp=sub;
     var lbl=document.getElementById(cp+'-sub-'+sec+'-label');
     if(lbl)lbl.textContent=sub>0?'— '+fmt(sub)+' €':'';
   });
