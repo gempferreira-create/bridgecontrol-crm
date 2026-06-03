@@ -1885,12 +1885,12 @@ function _renderFCPageInto(pageId){
     '</div>'+
     '<div class="card" style="margin-bottom:14px">'+
       '<div class="form-grid" style="grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:10px">'+
-        '<div class="form-group"><label>Nº Projeto</label><input type="text" id="fc-nprojeto" placeholder="BC2026.041"></div>'+
+        '<div class="form-group"><label>Nº Orçamento</label><input type="text" id="fc-nprojeto" placeholder="BC2026.041"></div>'+
         '<div class="form-group"><label>Cliente</label><select id="fc-cliente"><option value="">— escolher —</option>'+
           db.clientes.map(function(c){return '<option value="'+c.id+'">'+(c.empresa?c.empresa+' — ':'')+c.nome+'</option>';}).join('')+
         '</select></div>'+
         '<div class="form-group"><label>Data</label><input type="date" id="fc-data" value="'+new Date().toISOString().slice(0,10)+'"></div>'+
-        '<div class="form-group"><label>Orçamento</label><select id="fc-orc"><option value="">— nenhum —</option>'+
+        '<div class="form-group"><label>Orçamento</label><select id="fc-orc" onchange="autoFillNprojeto(this,'fc')"><option value="">— nenhum —</option>'+
           db.orcamentos.map(function(o){return '<option value="'+o.id+'">'+(o.numProjeto||o.id)+'</option>';}).join('')+
         '</select></div>'+
       '</div>'+
@@ -2141,8 +2141,8 @@ function _renderCalcInto(pageId,title){
           '</select></div>'+
         '<div class="form-group"><label>Data</label><input type="date" id="'+px+'-data" value="'+new Date().toISOString().slice(0,10)+'"></div>'+
         '<div class="form-group"><label>Orçamento</label>'+
-          '<select id="'+px+'-orc"><option value="">— nenhum —</option>'+
-            db.orcamentos.map(function(o){return '<option value="'+o.id+'">'+(o.numProjeto||o.id)+' — '+getCliNome(o.clienteId)+'</option>';}).join('')+
+          '<select id="'+px+'-orc" onchange="autoFillNprojeto(this,\''+px+'\')" ><option value="">— nenhum —</option>'+
+            db.orcamentos.map(function(o){return '<option value="'+o.id+'" data-np="'+(o.numProjeto||'')+'">'+(o.numProjeto||o.id)+' — '+getCliNome(o.clienteId)+'</option>';}).join('')+
           '</select></div>'+
       '</div>'+
       '<div class="form-grid" style="grid-template-columns:1fr 2fr 1fr 2fr;gap:12px">'+
@@ -3784,6 +3784,16 @@ function calcFichaTotal(s){
 }
 
 
+function autoFillNprojeto(sel,prefix){
+  var orcId=sel.value;
+  if(!orcId)return;
+  var o=db.orcamentos.find(function(x){return x.id===orcId;});
+  if(!o)return;
+  var npEl=document.getElementById(prefix+'-nprojeto');
+  if(npEl&&!npEl.value&&o.numProjeto)npEl.value=o.numProjeto;
+  var cliEl=document.getElementById(prefix+'-cliente');
+  if(cliEl&&!cliEl.value&&o.clienteId)cliEl.value=getCliNome(o.clienteId);
+}
 function filtrarFichasSel(){
   var np=(document.getElementById('orc-numProjeto')||{}).value||'';
   var cliId=(document.getElementById('orc-clienteId')||{}).value||'';
