@@ -1978,6 +1978,12 @@ function _renderFCPageInto(pageId){
     '952px','est')+
     '<button class="btn btn-outline btn-sm" onclick="fcAddFCRow(&apos;est&apos;)" style="margin-bottom:16px">+ Linha Estofo</button>'+
 
+    sec('Tecido','tec',
+      '<colgroup><col style="width:80px"><col><col style="width:90px"><col style="width:90px"><col style="width:34px"></colgroup>'+
+      _calcTH(['Qtd (ml)','Descrição','€/ml','Total €','']),
+    '952px','tec')+
+    '<button class="btn btn-outline btn-sm" onclick="fcAddFCRow(&apos;tec&apos;)" style="margin-bottom:16px">+ Linha Tecido</button>'+
+
     sec('Metais','met',
       '<colgroup><col style="width:80px"><col><col style="width:90px"><col style="width:90px"><col style="width:34px"></colgroup>'+
       _calcTH(['Qtd','Descrição','€/uni','Total €','']),
@@ -1999,7 +2005,7 @@ function _renderFCPageInto(pageId){
     '</div>'+
     '<div class="card" style="background:#3A3A3A;color:#fff" id="fc-resumo"></div>';
 
-  ['mdf','mad','op','fer','vid','cer','esp','est','met','ocomp'].forEach(function(s){fcAddFCRow(s);});
+  ['mdf','mad','op','fer','vid','cer','esp','est','tec','met','ocomp'].forEach(function(s){fcAddFCRow(s);});
   fcCalcTotais();
 }
 
@@ -2311,6 +2317,23 @@ function fcAddRow(sec){
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
       _fcBtn(i);
     document.getElementById(_CP+'-'+sec+'-body').appendChild(tr);
+  } else if(sec==='tec'){
+    // 0=qtd(ml) 1=desc 2=€/ml 3=total 4=del
+    tr.innerHTML=
+      '<td style="'+td+'"><input type="number" value="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
+      '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição do tecido..." onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
+      '<td style="'+td+'"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
+      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
+      _fcBtn(i);
+    document.getElementById('fc-tec-body').appendChild(tr);
+  } else if(sec==='tec'){
+    tr.innerHTML=
+      '<td style="'+td+'"><input type="number" value="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
+      '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição do tecido..." onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
+      '<td style="'+td+'"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
+      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
+      _fcBtn(i);
+    document.getElementById('fc-tec-body').appendChild(tr);
   } else if(sec==='est'||sec==='met'||sec==='ocomp'){
     tr.innerHTML=
       '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
@@ -2355,7 +2378,7 @@ function fcToggleAcab(sel){
 function _setVal(c,v){if(!c)return;var i=c.querySelector('input');if(i)i.value=v;else c.textContent=v;}
 
 function fcCalcTotais(){
-  var subMdf=0,subMad=0,subOp=0,subFer=0,subVid=0,subCer=0,subEsp=0,subEst=0,subMet=0,subOcomp=0;
+  var subMdf=0,subMad=0,subOp=0,subFer=0,subVid=0,subCer=0,subEsp=0,subEst=0,subTec=0,subMet=0,subOcomp=0;
   var cp=_CP;
 
   if(cp==='fc'){
@@ -2523,7 +2546,7 @@ function fcCalcTotais(){
   var gab=+(el('gab')&&el('gab').value)||0;
   var fixos=+(el('fixos')&&el('fixos').value)||0;
   var lucroP=+(el('lucro')&&el('lucro').value)||0;
-  var base=subMdf+subMad+subOp+subFer+emb+transp+mont+gab+fixos+subVid+subCer+subEsp+subEst+subMet+subOcomp;
+  var base=subMdf+subMad+subOp+subFer+emb+transp+mont+gab+fixos+subVid+subCer+subEsp+subEst+subTec+subMet+subOcomp;
   var lucroV=base*(lucroP/100);
   var total=base+lucroV;
 
@@ -2540,9 +2563,9 @@ function fcCalcTotais(){
     ['Embalagem',emb],['Transporte',transp],
     ['Montagem',mont],['Gabinete Técnico',gab],['Custos Fixos',fixos]
   ];
-  var rowsSub=cp==='fc'?[['Vidros',subVid],['Cerâmica · Mármore · Compósitos',subCer],['Espelhos',subEsp],['Estofo',subEst]]:[];
+  var rowsSub=cp==='fc'?[['Vidros',subVid],['Cerâmica · Mármore · Compósitos',subCer],['Espelhos',subEsp],['Estofo',subEst],['Tecido',subTec]]:[];
   var subProd=subMdf+subMad+subOp+subFer+emb+transp+mont+gab+fixos;
-  var subContrat=cp==='fc'?subVid+subCer+subEsp+subEst:subVid+subCer+subEsp+subEst+subMet;
+  var subContrat=cp==='fc'?subVid+subCer+subEsp+subEst+subTec:subVid+subCer+subEsp+subEst+subTec+subMet;
   var _rowIdx=0;
   function _row(r,col){
     var even=(_rowIdx++)%2===0;
