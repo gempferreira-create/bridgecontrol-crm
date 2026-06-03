@@ -2179,8 +2179,8 @@ function _renderCalcInto(pageId,title){
     '</div>'+
     '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8B7355;margin-bottom:6px">Marcenaria <span id="'+px+'-sub-mdf-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
     '<div style="overflow-x:auto;margin-bottom:6px"><table style="border-collapse:collapse;width:100%;min-width:600px;table-layout:fixed;font-size:11px" id="'+px+'-mdf-tbl">'+
-      '<colgroup><col style="width:80px"><col><col style="width:100px"><col style="width:100px"><col style="width:34px"></colgroup>'+
-      _calcTH(['Qtd','Descrição','€/uni','Total €',''])+
+      '<colgroup><col style="width:80px"><col><col style="width:150px"><col style="width:100px"><col style="width:100px"><col style="width:34px"></colgroup>'+
+      _calcTH(['Qtd','Descrição','Acabamento','€/uni','Total €',''])+
       '<tbody id="'+px+'-mdf-body"></tbody>'+
     '</table></div>'+
     '<button class="btn btn-outline btn-sm" onclick="fcAddRow(\'mdf\')" style="margin-bottom:16px">+ Linha Marcenaria</button>'+
@@ -2267,9 +2267,11 @@ function fcAddRow(sec){
   var tr=document.createElement('tr');
   var td=_fcTd;
   if(sec==='mdf'){
+    // SC MDF: 0=qtd 1=desc 2=acab(sel) 3=€/uni 4=total 5=del
     tr.innerHTML=
       '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição do artigo..." onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
+      '<td style="'+td+'">'+_sel('',_PR.acab,null,'fcScMdfAcabChange(this)')+'</td>'+
       '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
       _fcBtn(i);
@@ -2356,6 +2358,12 @@ function fcCalcMont(){
   fcCalcTotais();
 }
 function fcCalcMdfRow(inp){fcCalcTotais();}
+function fcScMdfAcabChange(sel){
+  var tr=sel.closest('tr');
+  var inp=tr&&tr.cells[3]?tr.cells[3].querySelector('input'):null;
+  if(inp&&sel.value)inp.value=parseFloat(sel.value).toFixed(2);
+  fcCalcTotais();
+}
 function fcMadAcabChange(sel){
   var tr=sel.closest('tr');
   var inp=tr&&tr.cells[2]?tr.cells[2].querySelector('input'):null;
@@ -2432,13 +2440,13 @@ function fcCalcTotais(){
       subFer+=tot;
     });
   } else {
-    // SC MDF: 0=Qtd 1=Desc 2=€/uni 3=Total 4=del
+    // SC MDF: 0=Qtd 1=Desc 2=Acab(sel) 3=€/uni 4=Total 5=del
     document.querySelectorAll('#'+cp+'-mdf-body tr').forEach(function(tr){
       var cells=tr.cells;if(!cells.length)return;
       var qtd=+cells[0].querySelector('input').value||0;
-      var pu=cells[2]?(+cells[2].querySelector('input').value||0):0;
+      var pu=cells[3]?(+(cells[3].querySelector('input')||{}).value||0):0;
       var tot=qtd*pu;
-      _setVal(cells[3],fmt(tot));
+      _setVal(cells[4],fmt(tot));
       subMdf+=tot;
     });
     // SC MAD: 0=Qtd 1=Acab select 2=€/uni 3=Total 4=del
@@ -3361,10 +3369,11 @@ function exportSubcPDF(){
   var opR=unitR('sc-op-body');
   var ferR=unitR('sc-fer-body'),cerR=m2R('sc-cer-body'),espR=m2R('sc-esp-body');
   var estR=unitR('sc-est-body'),metR=unitR('sc-met-body'),ocompR=unitR('sc-ocomp-body');
+  var tecR=[]; // SC Tecido = ferR (already counted)
 
   var sumT=function(rows){return rows.reduce(function(s,r){return s+parseFmt(r[r.length-1]);},0);};
   var tMdf=sumT(mdfR),tMad=sumT(madR),tOp=sumT(opR),tFer=sumT(ferR),tVid=sumT(vidR);
-  var tCer=sumT(cerR),tEsp=sumT(espR),tEst=sumT(estR),tMet=sumT(metR),tOcomp=sumT(ocompR),tTec=sumT(tecR);
+  var tCer=sumT(cerR),tEsp=sumT(espR),tEst=sumT(estR),tMet=sumT(metR),tOcomp=sumT(ocompR),tTec=0;
   var tOutros=emb+transp+gab+fixos+mont;
   var tBase=tMdf+tMad+tOp+tFer+tVid+tCer+tEsp+tEst+tTec+tMet+tOcomp+tOutros;
   var tPV=tBase*(1+lucroP/100);
