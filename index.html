@@ -2517,7 +2517,7 @@ function fcCalcTotais(){
     document.querySelectorAll('#'+cp+'-'+sec+'-body tr').forEach(function(tr){
       var cells=tr.cells;if(!cells.length)return;
       var qtd=+cells[0].querySelector('input').value||0;
-      var pu=+cells[2].querySelector('input').value||0;
+      var pu=cells[2]?(+(cells[2].querySelector('input')||{}).value||0):0;
       var tot=qtd*pu;
       _setVal(cells[3],fmt(tot));
       sub+=tot;
@@ -2562,9 +2562,9 @@ function fcCalcTotais(){
     ['Embalagem',emb],['Transporte',transp],
     ['Montagem',mont],['Gabinete Técnico',gab],['Custos Fixos',fixos]
   ];
-  var rowsSub=cp==='fc'?[['Vidros',subVid],['Cerâmica · Mármore · Compósitos',subCer],['Espelhos',subEsp],['Estofo',subEst],['Tecido',subTec]]:[];
+  var rowsSub=cp==='fc'?[['Vidros',subVid],['Cerâmica · Mármore · Compósitos',subCer],['Espelhos',subEsp],['Estofo',subEst],['Tecido',subTec],['Metais',subMet],['Outros',subOcomp]]:[];
   var subProd=subMdf+subMad+subOp+subFer+emb+transp+mont+gab+fixos;
-  var subContrat=cp==='fc'?subVid+subCer+subEsp+subEst+subTec:subVid+subCer+subEsp+subEst+subTec+subMet;
+  var subContrat=subVid+subCer+subEsp+subEst+subTec+subMet+subOcomp;
   var _rowIdx=0;
   function _row(r,col){
     var even=(_rowIdx++)%2===0;
