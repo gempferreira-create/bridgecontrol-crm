@@ -1772,7 +1772,7 @@ function loadDescLib(){
   try{var s=localStorage.getItem(_DESC_LIB_KEY);if(s){_DESC_LIB=JSON.parse(s);}else{_DESC_LIB=JSON.parse(JSON.stringify(_DESC_LIB_DEFAULTS));}}
   catch(e){_DESC_LIB=JSON.parse(JSON.stringify(_DESC_LIB_DEFAULTS));}
 }
-function saveDescLib(){localStorage.setItem(_DESC_LIB_KEY,JSON.stringify(_DESC_LIB));}
+function saveDescLib(){localStorage.setItem(_DESC_LIB_KEY,JSON.stringify(_DESC_LIB));sbSync();}
 var _descLibTarget=null;
 function openDescLib(targetId){
   _descLibTarget=document.getElementById(targetId);
@@ -3812,7 +3812,6 @@ function filtrarFichasSel(){
 
   function matches(f){
     if(!np&&!cliId&&!villa)return true;
-    // OR logic: basta um dos campos preenchidos corresponder
     if(np){
       var npL=np.toLowerCase();
       if((f.nprojeto||'').toLowerCase().includes(npL)||(f.ref||'').toLowerCase().includes(npL))return true;
@@ -4334,7 +4333,8 @@ async function _sbDoSync(){
     {user_id:uid,chave:'fichas_subcont',valor:JSON.parse(localStorage.getItem('bc-fichas-subcont')||'[]')},
     {user_id:uid,chave:'empresa',valor:_EMP},
     {user_id:uid,chave:'precos',valor:(typeof _PR!=='undefined'?_PR:{})},
-    {user_id:uid,chave:'desc_hist',valor:(typeof _dHist!=='undefined'?_dHist:[])}
+    {user_id:uid,chave:'desc_hist',valor:(typeof _dHist!=='undefined'?_dHist:[])},
+    {user_id:uid,chave:'desc_lib',valor:(typeof _DESC_LIB!=='undefined'?_DESC_LIB:[])}
   ];
   for(var r of rows){
     try{
@@ -4364,6 +4364,7 @@ async function sbLoadAll(){
         if(row.chave==='empresa'){Object.assign(_EMP,row.valor);try{localStorage.setItem('bc-empresa',JSON.stringify(_EMP));}catch(e){}}
         if(row.chave==='precos')try{localStorage.setItem('bc-precos',JSON.stringify(row.valor));_PR=JSON.parse(localStorage.getItem('bc-precos'));}catch(e){}
         if(row.chave==='desc_hist')try{_dHist=row.valor||[];localStorage.setItem('bc-desc-hist',JSON.stringify(_dHist));}catch(e){}
+        if(row.chave==='desc_lib')try{_DESC_LIB=row.valor||[];localStorage.setItem('bc-desc-lib',JSON.stringify(_DESC_LIB));}catch(e){}
       });
     }
   }catch(e){console.error('sbLoadAll',e);}
