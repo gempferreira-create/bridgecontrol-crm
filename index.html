@@ -1884,13 +1884,15 @@ function _renderFCPageInto(pageId){
       '</div>'+
     '</div>'+
     '<div class="card" style="margin-bottom:14px">'+
-      '<div class="form-grid" style="grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:10px">'+
+      '<div class="form-grid" style="grid-template-columns:1fr 1fr 2fr 1fr;gap:12px;margin-bottom:8px">'+
         '<div class="form-group"><label>Nº Orçamento</label><input type="text" id="fc-nprojeto" placeholder="BC2026.041"></div>'+
         '<div class="form-group"><label>Ref. Obra</label><input type="text" id="fc-ref-obra" placeholder="Hotel X — Suite"></div>'+
         '<div class="form-group"><label>Cliente</label><select id="fc-cliente"><option value="">— escolher —</option>'+
           db.clientes.map(function(c){return '<option value="'+c.id+'">'+(c.empresa?c.empresa+' — ':'')+c.nome+'</option>';}).join('')+
         '</select></div>'+
         '<div class="form-group"><label>Data</label><input type="date" id="fc-data" value="'+new Date().toISOString().slice(0,10)+'"></div>'+
+      '</div>'+
+      '<div class="form-grid" style="grid-template-columns:1fr;gap:12px;margin-bottom:10px">'+
         '<div class="form-group"><label>Orçamento</label><select id="fc-orc" onchange="autoFillNprojeto(this,&apos;fc&apos;)"><option value="">— nenhum —</option>'+
           db.orcamentos.map(function(o){return '<option value="'+o.id+'">'+(o.numProjeto||o.id)+'</option>';}).join('')+
         '</select></div>'+
@@ -2134,7 +2136,7 @@ function _renderCalcInto(pageId,title){
       '</div>'+
     '</div>'+
     '<div class="card" style="margin-bottom:14px">'+
-      '<div class="form-grid" style="grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:10px">'+
+      '<div class="form-grid" style="grid-template-columns:1fr 1fr 2fr 1fr;gap:12px;margin-bottom:8px">'+
         '<div class="form-group"><label>Nº Orçamento</label><input type="text" id="'+px+'-nprojeto" placeholder="Ex: BC2026.041"></div>'+
         '<div class="form-group"><label>Ref. Obra</label><input type="text" id="'+px+'-ref-obra" placeholder="Hotel X — Suite"></div>'+
         '<div class="form-group"><label>Cliente</label>'+
@@ -2142,10 +2144,12 @@ function _renderCalcInto(pageId,title){
             db.clientes.map(function(c){return '<option value="'+c.id+'">'+(c.empresa?c.empresa+' — ':'')+c.nome+'</option>';}).join('')+
           '</select></div>'+
         '<div class="form-group"><label>Data</label><input type="date" id="'+px+'-data" value="'+new Date().toISOString().slice(0,10)+'"></div>'+
-        '<div class="form-group"><label>Orçamento</label>'+
-          '<select id="'+px+'-orc" onchange="autoFillNprojeto(this,\''+px+'\')" ><option value="">— nenhum —</option>'+
-            db.orcamentos.map(function(o){return '<option value="'+o.id+'" data-np="'+(o.numProjeto||'')+'">'+(o.numProjeto||o.id)+' — '+getCliNome(o.clienteId)+'</option>';}).join('')+
-          '</select></div>'+
+      '</div>'+
+      '<div class="form-group" style="margin-bottom:10px">'+
+        '<label>Orçamento</label>'+
+        '<select id="'+px+'-orc" onchange="autoFillNprojeto(this,\''+px+'\')" style="width:100%;padding:6px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif"><option value="">— nenhum —</option>'+
+          db.orcamentos.map(function(o){return '<option value="'+o.id+'" data-np="'+(o.numProjeto||'')+'">'+(o.numProjeto||o.id)+' — '+getCliNome(o.clienteId)+'</option>';}).join('')+
+        '</select>'+
       '</div>'+
       '<div class="form-grid" style="grid-template-columns:1fr 2fr 1fr 2fr;gap:12px">'+
         '<div class="form-group"><label>Ref Nº</label><input type="text" id="'+px+'-ref" placeholder="Ex: R.M1"></div>'+
