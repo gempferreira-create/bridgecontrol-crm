@@ -1934,9 +1934,9 @@ function _renderFCPageInto(pageId){
     '<button class="btn btn-outline btn-sm" onclick="fcAddFCRow(&apos;mdf&apos;)" style="margin-bottom:16px">+ Linha MDF</button>'+
 
     sec('Madeira Maciça','mad',
-      '<colgroup><col style="width:72px"><col style="width:250px"><col><col style="width:90px"><col style="width:90px"><col style="width:90px"><col style="width:100px"><col style="width:90px"><col style="width:34px"></colgroup>'+
-      _calcTH(['Qtd','Descrição','Madeira (€/m³)','C mm','L mm','Esp mm','m³','Total €','']),
-    '860px','mad')+
+      '<colgroup><col style="width:72px"><col style="width:200px"><col><col style="width:76px"><col style="width:76px"><col style="width:76px"><col style="width:140px"><col style="width:90px"><col style="width:90px"><col style="width:34px"></colgroup>'+
+      _calcTH(['Qtd','Descrição','Madeira (€/m³)','C mm','L mm','Esp mm','Acabamento (€/m²)','m³','Total €','']),
+    '920px','mad')+
     '<button class="btn btn-outline btn-sm" onclick="fcAddFCRow(&apos;mad&apos;)" style="margin-bottom:16px">+ Linha Madeira</button>'+
 
     sec('Mão de Obra','op',
@@ -2022,7 +2022,7 @@ function fcAddFCRow(sec){
       _fcBtn(i);
     document.getElementById('fc-mdf-body').appendChild(tr);
   } else if(sec==='mad'){
-    // 0=qtd 1=mad(sel) 2=C 3=L 4=Esp 5=m³ 6=total 7=del
+    // 0=qtd 1=desc 2=mad(sel €/m³) 3=C 4=L 5=Esp 6=acab(sel €/m²) 7=m³ 8=total 9=del
     tr.innerHTML=
       '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição..." onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
@@ -2030,6 +2030,7 @@ function fcAddFCRow(sec){
       '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;box-sizing:border-box"></td>'+
       '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;box-sizing:border-box"></td>'+
       '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;box-sizing:border-box"></td>'+
+      '<td style="'+td+'">'+_sel('',_PR.acab,null,'fcCalcTotais()')+'</td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-m2v" value="0.00"></td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
       _fcBtn(i);
@@ -2372,7 +2373,7 @@ function fcCalcTotais(){
       _setVal(cells[7],fmt(tot));
       subMdf+=tot;
     });
-    // FC MAD: 0=qtd 1=desc 2=mad(sel €/m³) 3=C 4=L 5=Esp 6=m³ 7=total
+    // FC MAD: 0=qtd 1=desc 2=mad(sel €/m³) 3=C 4=L 5=Esp 6=acab(sel €/m²) 7=m³ 8=total
     document.querySelectorAll('#fc-mad-body tr').forEach(function(tr){
       var cells=tr.cells;if(!cells.length)return;
       var qtd=+cells[0].querySelector('input').value||0;
@@ -2380,10 +2381,12 @@ function fcCalcTotais(){
       var c=cells[3]?(+cells[3].querySelector('input').value||0):0;
       var l=cells[4]?(+cells[4].querySelector('input').value||0):0;
       var esp=cells[5]?(+cells[5].querySelector('input').value||0):0;
+      var acab=cells[6]?(+cells[6].querySelector('select').value||0):0;
       var m3=qtd*(c/1000)*(l/1000)*(esp/1000);
-      var tot=m3*mad;
-      _setVal(cells[6],m3.toFixed(2));
-      _setVal(cells[7],fmt(tot));
+      var m2=qtd*(c/1000)*(l/1000);
+      var tot=m3*mad+m2*acab;
+      _setVal(cells[7],m3.toFixed(2));
+      _setVal(cells[8],fmt(tot));
       subMad+=tot;
     });
     // FC OP: 0=qtd 1=op(sel €/h) 2=total-horas 3=total
@@ -2537,7 +2540,7 @@ function fcCalcTotais(){
     ['Embalagem',emb],['Transporte',transp],
     ['Montagem',mont],['Gabinete Técnico',gab],['Custos Fixos',fixos]
   ];
-  var rowsSub=cp==='fc'?[['Vidros',subVid],['Cerâmica · Mármore · Compósitos',subCer],['Espelhos',subEsp],['Estofo',subEst]]:[];
+  var rowsSub=cp==='fc'?[['Vidros',subVid]]:[];
   var subProd=subMdf+subMad+subOp+subFer+emb+transp+mont+gab+fixos;
   var subContrat=cp==='fc'?subVid:subVid+subCer+subEsp+subEst+subMet;
   var _rowIdx=0;
@@ -2658,7 +2661,8 @@ function guardarFichaCalc(){
       s.mad.push({qtd:tr.cells[0].querySelector('input').value,
         desc:(tr.cells[1]&&tr.cells[1].querySelector('textarea'))?tr.cells[1].querySelector('textarea').value:'',
         mad:tr.cells[2].querySelector('select').value,c:tr.cells[3].querySelector('input').value,
-        l:tr.cells[4].querySelector('input').value,esp:tr.cells[5].querySelector('input').value});
+        l:tr.cells[4].querySelector('input').value,esp:tr.cells[5].querySelector('input').value,
+        acab:tr.cells[6].querySelector('select').value});
     });
     s.op=[];
     document.querySelectorAll('#fc-op-body tr').forEach(function(tr){
@@ -2883,6 +2887,7 @@ function carregarFichaCalc(idx){
       tr.cells[3].querySelector('input').value=r.c||'';
       tr.cells[4].querySelector('input').value=r.l||'';
       tr.cells[5].querySelector('input').value=r.esp||'';
+      if(tr.cells[6])tr.cells[6].querySelector('select').value=r.acab||'';
     });
     fcRestFC(s.op,'op',function(tr,r){
       tr.cells[0].querySelector('input').value=r.qtd||'1';
