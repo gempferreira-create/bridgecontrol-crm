@@ -1884,8 +1884,9 @@ function _renderFCPageInto(pageId){
       '</div>'+
     '</div>'+
     '<div class="card" style="margin-bottom:14px">'+
-      '<div class="form-grid" style="grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:10px">'+
+      '<div class="form-grid" style="grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:10px">'+
         '<div class="form-group"><label>Nº Orçamento</label><input type="text" id="fc-nprojeto" placeholder="BC2026.041"></div>'+
+        '<div class="form-group"><label>Ref. Obra</label><input type="text" id="fc-ref-obra" placeholder="Hotel X — Suite"></div>'+
         '<div class="form-group"><label>Cliente</label><select id="fc-cliente"><option value="">— escolher —</option>'+
           db.clientes.map(function(c){return '<option value="'+c.id+'">'+(c.empresa?c.empresa+' — ':'')+c.nome+'</option>';}).join('')+
         '</select></div>'+
@@ -2133,8 +2134,9 @@ function _renderCalcInto(pageId,title){
       '</div>'+
     '</div>'+
     '<div class="card" style="margin-bottom:14px">'+
-      '<div class="form-grid" style="grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:10px">'+
+      '<div class="form-grid" style="grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:10px">'+
         '<div class="form-group"><label>Nº Orçamento</label><input type="text" id="'+px+'-nprojeto" placeholder="Ex: BC2026.041"></div>'+
+        '<div class="form-group"><label>Ref. Obra</label><input type="text" id="'+px+'-ref-obra" placeholder="Hotel X — Suite"></div>'+
         '<div class="form-group"><label>Cliente</label>'+
           '<select id="'+px+'-cliente"><option value="">— escolher —</option>'+
             db.clientes.map(function(c){return '<option value="'+c.id+'">'+(c.empresa?c.empresa+' — ':'')+c.nome+'</option>';}).join('')+
@@ -2271,7 +2273,7 @@ function fcAddRow(sec){
     tr.innerHTML=
       '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição do artigo..." onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
-      '<td style="'+td+'">'+_sel('',_PR.acab,null,'fcScMdfAcabChange(this)')+'</td>'+
+      '<td style="'+td+'">'+_sel('',_PR.acab,null,'fcCalcTotais()')+'</td>'+
       '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
       _fcBtn(i);
@@ -2662,6 +2664,7 @@ function guardarFichaCalc(){
   var s={id:Date.now(),ts:new Date().toISOString(),nome:nome};
   s.lucro=(g('lucro')||{}).value||'0';
   s.nprojeto=(g('nprojeto')||{}).value||'';
+  s.refobra=(g('ref-obra')||{}).value||'';
   s.cliente=(g('cliente')||{}).value||'';
   s.data=(g('data')||{}).value||'';
   s.orc=(g('orc')||{}).value||'';
@@ -2877,6 +2880,7 @@ function carregarFichaCalc(idx){
   var set=function(id,v){var el=document.getElementById(cp+'-'+id);if(el&&v!==undefined)el.value=v;};
   set('lucro',s.lucro||'0');
   set('nprojeto',s.nprojeto||'');
+  set('ref-obra',s.refobra||'');
   set('cliente',s.cliente||'');
   set('data',s.data||'');
   set('orc',s.orc||'');
@@ -3791,8 +3795,10 @@ function autoFillNprojeto(sel,prefix){
   if(!o)return;
   var npEl=document.getElementById(prefix+'-nprojeto');
   if(npEl&&!npEl.value&&o.numProjeto)npEl.value=o.numProjeto;
+  var roEl=document.getElementById(prefix+'-ref-obra');
+  if(roEl&&!roEl.value&&o.villa)roEl.value=o.villa;
   var cliEl=document.getElementById(prefix+'-cliente');
-  if(cliEl&&!cliEl.value&&o.clienteId)cliEl.value=getCliNome(o.clienteId);
+  if(cliEl&&!cliEl.value&&o.clienteId)cliEl.value=o.clienteId;
 }
 function filtrarFichasSel(){
   var np=(document.getElementById('orc-numProjeto')||{}).value||'';
