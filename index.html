@@ -2540,9 +2540,9 @@ function fcCalcTotais(){
     ['Embalagem',emb],['Transporte',transp],
     ['Montagem',mont],['Gabinete Técnico',gab],['Custos Fixos',fixos]
   ];
-  var rowsSub=cp==='fc'?[['Vidros',subVid]]:[];
+  var rowsSub=cp==='fc'?[['Vidros',subVid],['Cerâmica · Mármore · Compósitos',subCer],['Espelhos',subEsp],['Estofo',subEst]]:[];
   var subProd=subMdf+subMad+subOp+subFer+emb+transp+mont+gab+fixos;
-  var subContrat=cp==='fc'?subVid:subVid+subCer+subEsp+subEst+subMet;
+  var subContrat=cp==='fc'?subVid+subCer+subEsp+subEst:subVid+subCer+subEsp+subEst+subMet;
   var _rowIdx=0;
   function _row(r,col){
     var even=(_rowIdx++)%2===0;
