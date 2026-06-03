@@ -2297,7 +2297,7 @@ function fcAddRow(sec){
   } else if(sec==='fer'){
     // Tecido row: 0=Qtd ml, 1=Descrição, 2=€/ml, 3=Total, 4=del
     tr.innerHTML=
-      '<td style="'+td+'"><input type="number" value="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
+      '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição do tecido..." onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
       '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
