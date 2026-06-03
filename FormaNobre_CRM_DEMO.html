@@ -3,54 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bridge Control — CRM &amp; Orçamento</title>
+<title>Forma Nobre — CRM &amp; Orçamento</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;background:#EFEDE9;color:#2E2E2E;display:flex;height:100vh;overflow:hidden}
+body{font-family:'Inter',sans-serif;background:#F4F2ED;color:#2E2E2E;display:flex;height:100vh;overflow:hidden}
 
 /* ── Sidebar ── */
 #sidebar{width:224px;min-width:224px;background:linear-gradient(180deg,#252525 0%,#1E1E1E 100%);display:flex;flex-direction:column;overflow:hidden;height:100vh;box-shadow:2px 0 12px rgba(0,0,0,0.18)}
-#sb-logo{padding:20px 18px 16px;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;align-items:center;gap:12px}
+#sb-logo{display:flex;flex-direction:column;align-items:center}
 #sb-logo .wordmark{width:100%;height:auto;display:block;fill:rgba(255,255,255,0.75)}
 #sb-logo .mono-wrap{display:flex;align-items:center;justify-content:center}
 #sb-logo .mono-svg{width:60px;height:auto;flex-shrink:0}
 .nav-item{display:flex;align-items:center;gap:10px;padding:11px 18px;color:rgba(255,255,255,0.55);cursor:pointer;font-size:12.5px;font-weight:500;letter-spacing:0.2px;transition:all 0.18s;border-left:3px solid transparent;user-select:none}
 .nav-item:hover{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.9)}
-.nav-item.active{background:rgba(201,169,110,0.12);color:#e8d5a8;border-left-color:#c9a96e}
+.nav-item.active{background:rgba(201,169,110,0.12);color:#d4b07a;border-left-color:#B88A5E}
 .nav-sub{padding-left:36px;font-size:12px;color:rgba(255,255,255,0.38);border-left-color:transparent;position:relative}
 .nav-sub::before{content:'';position:absolute;left:22px;top:50%;width:6px;height:1px;background:rgba(255,255,255,0.15)}
 .nav-sub:hover{color:rgba(255,255,255,0.75)}
-.nav-sub.active{color:#e8d5a8;background:rgba(201,169,110,0.1);border-left-color:#c9a96e}
+.nav-sub.active{color:#d4b07a;background:rgba(201,169,110,0.1);border-left-color:#B88A5E}
 .nav-discrete{font-size:12px;color:rgba(255,255,255,0.3);padding:9px 18px}
 .nav-discrete:hover{color:rgba(255,255,255,0.6)}
-.nav-discrete.active{color:#e8d5a8;background:rgba(201,169,110,0.1);border-left-color:#c9a96e}
+.nav-discrete.active{color:#d4b07a;background:rgba(201,169,110,0.1);border-left-color:#B88A5E}
 .nav-item .icon{font-size:14px;width:20px;text-align:center;opacity:0.85}
 #sb-footer{margin-top:auto;padding:14px 18px;font-size:11px;color:rgba(255,255,255,0.22);line-height:1.7;border-top:1px solid rgba(255,255,255,0.05)}
 
 /* ── Main ── */
-#main{flex:1;overflow-y:scroll;overflow-x:hidden;background:#EFEDE9}
+#main{flex:1;overflow-y:scroll;overflow-x:hidden;background:#F4F2ED}
 .page{display:none;padding:30px 34px;min-height:100%}
 .page.active{display:block}
 .page-title{font-family:'Playfair Display',serif;font-size:27px;font-weight:600;color:#2E2E2E;margin-bottom:4px;letter-spacing:-0.3px}
-.page-sub{font-size:13px;color:#A89880;margin-bottom:26px;font-weight:400}
+.page-sub{font-size:13px;color:#8A7060;margin-bottom:26px;font-weight:400}
 
 /* ── Cards ── */
 .card{background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 14px rgba(0,0,0,0.05);padding:20px;border:1px solid rgba(0,0,0,0.04)}
 .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px;margin-bottom:26px}
-.stat-card{background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 14px rgba(0,0,0,0.05);padding:22px 20px;border-left:3px solid #c9a96e;border:1px solid rgba(0,0,0,0.04);border-left:3px solid #c9a96e}
-.stat-label{font-size:10px;font-weight:600;letter-spacing:0.9px;text-transform:uppercase;color:#B8A898;margin-bottom:7px}
+.stat-card{background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 14px rgba(0,0,0,0.05);padding:22px 20px;border-left:3px solid #B88A5E;border:1px solid rgba(0,0,0,0.04);border-left:3px solid #B88A5E}
+.stat-label{font-size:10px;font-weight:600;letter-spacing:0.9px;text-transform:uppercase;color:#9A8878;margin-bottom:7px}
 .stat-value{font-family:'Playfair Display',serif;font-size:31px;font-weight:600;color:#2E2E2E;letter-spacing:-0.5px}
-.stat-sub{font-size:12px;color:#C4B8A8;margin-top:5px}
+.stat-sub{font-size:12px;color:#A69888;margin-top:5px}
 
 /* ── Buttons ── */
 .btn{display:inline-flex;align-items:center;gap:6px;padding:8px 17px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;border:none;transition:all 0.18s;font-family:'Inter',sans-serif;white-space:nowrap;letter-spacing:0.1px}
 .btn-primary{background:#2E2E2E;color:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.2)}
 .btn-primary:hover{background:#1a1a1a;box-shadow:0 2px 6px rgba(0,0,0,0.25)}
-.btn-bronze{background:linear-gradient(135deg,#9B8265 0%,#7D6448 100%);color:#fff;box-shadow:0 1px 3px rgba(139,115,85,0.35)}
+.btn-bronze{background:linear-gradient(135deg,#7A5A38 0%,#5D3A1A 100%);color:#fff;box-shadow:0 1px 3px rgba(139,115,85,0.35)}
 .btn-bronze:hover{background:linear-gradient(135deg,#8B7255 0%,#6D5438 100%);box-shadow:0 2px 8px rgba(139,115,85,0.4)}
 .btn-outline{background:#fff;color:#4A4A4A;border:1.5px solid #E0D8CE}
-.btn-outline:hover{border-color:#c9a96e;color:#8B7355;background:#fdf9f4}
+.btn-outline:hover{border-color:#B88A5E;color:#6B4A2F;background:#faf7f2}
 .btn-sm{padding:5px 11px;font-size:12px}
 .btn-danger{background:#c0392b;color:#fff;box-shadow:0 1px 3px rgba(192,57,43,0.3)}
 .btn-danger:hover{background:#a93226}
@@ -58,7 +58,7 @@ body{font-family:'Inter',sans-serif;background:#EFEDE9;color:#2E2E2E;display:fle
 /* ── Toolbar ── */
 .toolbar{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap}
 .toolbar input[type=text]{flex:1;min-width:180px;padding:8px 13px;border:1.5px solid #E0D8CE;border-radius:6px;font-size:13px;font-family:'Inter',sans-serif;background:#fff;outline:none;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
-.toolbar input[type=text]:focus{border-color:#c9a96e;box-shadow:0 0 0 3px rgba(201,169,110,0.1)}
+.toolbar input[type=text]:focus{border-color:#B88A5E;box-shadow:0 0 0 3px rgba(201,169,110,0.1)}
 
 /* ── Tables ── */
 .tbl-wrap{overflow-x:auto;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 14px rgba(0,0,0,0.05);border:1px solid rgba(0,0,0,0.04)}
@@ -66,7 +66,7 @@ table.tbl{width:100%;border-collapse:collapse;background:#fff;font-size:13px}
 table.tbl th{background:#272727;color:rgba(255,255,255,0.85);padding:11px 13px;text-align:left;font-weight:500;font-size:10.5px;letter-spacing:0.6px;text-transform:uppercase;white-space:nowrap}
 table.tbl td{padding:10px 13px;border-bottom:1px solid #F2EEE8;color:#2E2E2E;vertical-align:middle}
 table.tbl tr:last-child td{border-bottom:none}
-table.tbl tr:hover td{background:#FAF7F3}
+table.tbl tr:hover td{background:#F8F5F0}
 
 /* ── Badges ── */
 .badge{display:inline-block;padding:3px 11px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:0.2px}
@@ -91,11 +91,11 @@ table.tbl tr:hover td{background:#FAF7F3}
 /* ── Forms ── */
 .form-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
 .form-group{display:flex;flex-direction:column;gap:5px}
-.form-group label{font-size:10px;font-weight:600;letter-spacing:0.7px;text-transform:uppercase;color:#B8A898}
+.form-group label{font-size:10px;font-weight:600;letter-spacing:0.7px;text-transform:uppercase;color:#9A8878}
 .form-group input,.form-group select,.form-group textarea{padding:8px 11px;border:1.5px solid #E2D9CE;border-radius:6px;font-size:13px;font-family:'Inter',sans-serif;color:#2E2E2E;background:#fff;outline:none;transition:border-color 0.15s,box-shadow 0.15s}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#c9a96e;box-shadow:0 0 0 3px rgba(201,169,110,0.12)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#B88A5E;box-shadow:0 0 0 3px rgba(201,169,110,0.12)}
 .form-group textarea{resize:vertical;min-height:68px}
-.form-section{font-family:'Playfair Display',serif;font-size:15px;color:#2E2E2E;margin:22px 0 13px;padding-bottom:7px;border-bottom:1px solid #EDE6DC;letter-spacing:-0.1px}
+.form-section{font-family:'Playfair Display',serif;font-size:15px;color:#2E2E2E;margin:22px 0 13px;padding-bottom:7px;border-bottom:1px solid #E0D8CE;letter-spacing:-0.1px}
 
 /* ── Linhas table ── */
 #linhas-wrap{overflow-x:auto;overflow-y:auto;max-height:520px;margin:14px 0;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 14px rgba(0,0,0,0.05);width:100%;min-width:0;border:1px solid rgba(0,0,0,0.04)}
@@ -107,10 +107,10 @@ table.tbl tr:hover td{background:#FAF7F3}
 #linhas-tbl tr:nth-child(even) td{background:#FAFAF8}
 #linhas-tbl tr:hover td{background:#F5EFE7}
 #linhas-tbl input[type=text],#linhas-tbl input[type=number]{width:100%;padding:4px 6px;border:1.5px solid #ddd;border-radius:4px;font-size:12px;font-family:'Inter',sans-serif;background:#fff;outline:none;text-align:inherit;transition:border-color 0.12s,background 0.12s}
-#linhas-tbl input[type=text]:focus,#linhas-tbl input[type=number]:focus{border-color:#c9a96e;background:#fff}
+#linhas-tbl input[type=text]:focus,#linhas-tbl input[type=number]:focus{border-color:#B88A5E;background:#fff}
 #linhas-tbl td.td-artigo{min-width:180px;vertical-align:middle;text-align:left}
 #linhas-tbl textarea{width:100%;padding:4px 6px;border:1.5px solid transparent;border-radius:4px;font-size:12px;font-family:'Inter',sans-serif;background:transparent;outline:none;resize:none;overflow:hidden;line-height:1.15;display:block;box-sizing:border-box;margin:0;height:26px;vertical-align:middle}
-#linhas-tbl textarea:focus{border-color:#c9a96e;background:#fff}
+#linhas-tbl textarea:focus{border-color:#B88A5E;background:#fff}
 #linhas-tbl input[type=number]{text-align:right}
 .td-tot{font-weight:600;color:#2E2E2E;text-align:right;padding:3px 4px !important;min-width:70px}
 .td-del{text-align:center !important}
@@ -119,9 +119,9 @@ table.tbl tr:hover td{background:#FAF7F3}
 
 /* ── Image cells ── */
 .img-cell{position:relative;width:46px;text-align:center !important}
-.img-cell img{width:36px;height:36px;object-fit:cover;border-radius:4px;cursor:pointer;border:1px solid #EDE6DC}
-.img-placeholder{width:36px;height:36px;border:1.5px dashed #D0C4B4;border-radius:4px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:#C4B8A8;font-size:18px;transition:border-color 0.15s}
-.img-placeholder:hover{border-color:#c9a96e;color:#c9a96e}
+.img-cell img{width:36px;height:36px;object-fit:cover;border-radius:4px;cursor:pointer;border:1px solid #E0D8CE}
+.img-placeholder{width:36px;height:36px;border:1.5px dashed #D0C4B4;border-radius:4px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:#A69888;font-size:18px;transition:border-color 0.15s}
+.img-placeholder:hover{border-color:#B88A5E;color:#B88A5E}
 .img-cell input[type=file]{display:none}
 
 /* ── Summary / totals ── */
@@ -129,8 +129,8 @@ table.tbl tr:hover td{background:#FAF7F3}
 #totals-bar{background:linear-gradient(135deg,#2A2A2A 0%,#1E1E1E 100%);color:#fff;border-radius:10px;padding:15px 22px;margin:16px 0;display:flex;gap:28px;flex-wrap:wrap;align-items:center;box-shadow:0 4px 16px rgba(0,0,0,0.2)}
 .tb-item{display:flex;flex-direction:column;gap:3px}
 .tb-label{font-size:10px;letter-spacing:0.7px;text-transform:uppercase;color:rgba(255,255,255,0.42)}
-.tb-val{font-family:'Playfair Display',serif;font-size:18px;color:#c9a96e}
-.tb-grand .tb-val{font-size:24px;color:#d4b47a}
+.tb-val{font-family:'Playfair Display',serif;font-size:18px;color:#B88A5E}
+.tb-grand .tb-val{font-size:24px;color:#c49a6e}
 .tb-sep{width:1px;background:rgba(255,255,255,0.08);align-self:stretch;margin:0 4px}
 
 /* ── Pipeline ── */
@@ -138,17 +138,17 @@ table.tbl tr:hover td{background:#FAF7F3}
 .pipeline-col{background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 14px rgba(0,0,0,0.05);overflow:hidden;border:1px solid rgba(0,0,0,0.04)}
 .pipeline-col-hdr{background:#272727;color:rgba(255,255,255,0.82);padding:12px 15px;font-size:10.5px;font-weight:600;letter-spacing:0.7px;text-transform:uppercase}
 .pipeline-col-body{padding:10px;display:flex;flex-direction:column;gap:8px;min-height:180px}
-.pipeline-card{background:#F7F4F0;border-radius:6px;padding:11px 13px;border-left:3px solid #c9a96e;cursor:pointer;transition:all 0.18s;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+.pipeline-card{background:#F7F4F0;border-radius:6px;padding:11px 13px;border-left:3px solid #B88A5E;cursor:pointer;transition:all 0.18s;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
 .pipeline-card:hover{background:#EDE8E0;box-shadow:0 2px 8px rgba(0,0,0,0.1);transform:translateY(-1px)}
 .pc-cli{font-size:11px;color:#B4A898;margin-bottom:3px;font-weight:400}
 .pc-proj{font-size:13px;font-weight:600;color:#2E2E2E}
-.pc-val{font-size:12px;color:#9B8265;margin-top:5px;font-weight:600}
+.pc-val{font-size:12px;color:#7A5A38;margin-top:5px;font-weight:600}
 
 /* ── Export cards ── */
 .export-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px}
-.export-card{background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 14px rgba(0,0,0,0.05);padding:24px;border-top:3px solid #c9a96e;border:1px solid rgba(0,0,0,0.04);border-top:3px solid #c9a96e}
+.export-card{background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 14px rgba(0,0,0,0.05);padding:24px;border-top:3px solid #B88A5E;border:1px solid rgba(0,0,0,0.04);border-top:3px solid #B88A5E}
 .export-card h3{font-family:'Playfair Display',serif;font-size:17px;margin-bottom:8px;color:#2E2E2E}
-.export-card p{font-size:13px;color:#A89880;margin-bottom:16px;line-height:1.65}
+.export-card p{font-size:13px;color:#8A7060;margin-bottom:16px;line-height:1.65}
 
 /* ── TC row ── */
 .tc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
@@ -157,7 +157,7 @@ table.tbl tr:hover td{background:#FAF7F3}
 #page-calc table,#page-subcont table{font-family:'Inter',sans-serif}
 #page-calc table td,#page-subcont table td{padding:2px 4px;vertical-align:top;border-bottom:1px solid #F2EEE8}
 #page-calc table td input,#page-calc table td select,#page-subcont table td input,#page-subcont table td select{height:30px;padding:4px 6px;font-size:12px;box-sizing:border-box;width:100%;border:1.5px solid #E2D9CE;border-radius:4px;font-family:'Inter',sans-serif;outline:none}
-#page-calc table td input:focus,#page-calc table td select:focus,#page-subcont table td input:focus,#page-subcont table td select:focus{border-color:#c9a96e}
+#page-calc table td input:focus,#page-calc table td select:focus,#page-subcont table td input:focus,#page-subcont table td select:focus{border-color:#B88A5E}
 #page-calc table td input[type=number],#page-subcont table td input[type=number]{text-align:right;font-variant-numeric:tabular-nums}
 input.fc-m2v{background:#edf5fb !important;border-color:#9ec6de !important;color:#1e5f96 !important;font-weight:600;text-align:right !important;font-variant-numeric:tabular-nums;cursor:default}
 input.fc-tot1{background:#fdf5ea !important;border-color:#c49055 !important;color:#7a4e1f !important;font-weight:700;text-align:right !important;font-variant-numeric:tabular-nums;cursor:default}
@@ -168,36 +168,25 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
 ::-webkit-scrollbar{width:7px;height:8px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:#C4B4A0;border-radius:4px}
-::-webkit-scrollbar-thumb:hover{background:#9B8265}
+::-webkit-scrollbar-thumb:hover{background:#7A5A38}
 </style>
 </head>
 <body>
 
 <div id="sidebar">
-  <div id="sb-logo">
-    <div class="mono-wrap">
-      <svg class="mono-svg" viewBox="0 0 609.41 400.78" xmlns="http://www.w3.org/2000/svg">
-        <path style="fill:#c9a96e" d="M350.38,195.8c-1.01,41.42,5.37,86.85,40.4,114.52,25.76,20.35,66.79,24.02,96.1,9.23,22.16-11.18,37.19-31.98,41.7-56.28.18-.97,1.07-1.57,2.06-1.57l29.96.13,48.53-.08c.81,11.84-5.53,33.29-9.92,44.4-5.02,12.71-13.82,27.05-22.53,37.52-28.53,34.29-68.85,53.1-113.29,56.45-34.4,2.6-68.24-2.28-99.42-17.18-8.02-3.83-15.24-8.47-22.51-13.44-12.23-8.35-23.95-20.14-33.1-31.93-17.93-23.09-30.04-49.33-35.68-78.15-4.24-21.68-6.17-43.37-5.96-64.64,14.71-3.16,51.05-3.5,65.97-1.6,6.76.86,11.29,1.04,17.7,2.63h0Z"/>
-        <path style="fill:#fff" d="M508.49,98.56c-20.22-22.74-51.75-29.71-80.93-24.27-24.14,4.5-43.3,18.48-56.34,38.93-12.61,19.76-17.48,40.71-20.09,64-2.15.26-4.19-.37-6.44-.88-24.63-3.67-50.96-3.81-75.99-.3,1.76-33.89,9.65-64.9,27.13-94.29,15.08-24.07,34.15-43.94,58.73-58.27,44.91-26.19,110.04-30.91,158.12-11.94,18.5,7.3,35.23,17.48,49.88,30.92,24.33,22.33,40.57,53.71,45.58,86.27.71,4.59,1.67,8.77,1.08,13.45-3.54-.27-6.97-.36-10.79-.35l-67.9.08c-1.55,0-2.44-1.6-2.58-2.78-.52-4.52-1.94-8.39-3.43-12.59-3.68-10.39-8.71-19.75-16.04-27.99h0Z"/>
-        <path style="fill:#c9a96e" d="M350.38,195.8c-6.42-1.59-10.95-1.77-17.7-2.63-14.92-1.9-51.26-1.56-65.97,1.6l-18.31,2.49c-1.7.23-2.98,1.04-3.92,1.92-6.33-.88-26.39,5.01-33,7.28l-19.29,6.63c-6.58,2.26-24.01,9.66-28.53,13.78-2.94.65-5.01,1.39-7.17,2.59-9.56,5.3-18.56,10.9-27.39,17.36l-7.4,4.47,5.74-5.99c48.92-43.67,114.81-65.66,180.13-66.15,15.94.49,31.05,2.15,46.64,4.8l25.22,5.96c29.29,6.92,65.87,26.48,90.02,44.7,4.44,3.35,8.65,6.6,12.65,10.4,4.52,4.28,6.97,4.67,6.49,5.91-.8,2.06-2.05-1.08-7.32-4.32l-20.49-12.59c-29.47-18.12-76.41-34.16-110.41-38.22h.01Z"/>
-        <path style="fill:#fff" d="M163.66,226.88c4.52-4.12,21.95-11.52,28.53-13.78l19.29-6.63c6.62-2.27,26.68-8.16,33-7.28,4.35,3.33,11.07,3.32,11.02,8.17-.17,16.53,3.66,44.31,7.58,60.53,4.66,19.34,14.59,46.94,26.54,62.67,1.1,1.45,1.52,3.47.52,5.24-23.85,42.47-69.73,58.13-116.55,58.17l-51.09.04H5.61c-2.11,0-3.6.15-5.4-.4L.18,11.69c0-2.09-.64-3.07.5-4.41h161.77c22.64.01,51.46,3.95,71.46,13.88,20.03,9.95,34.67,23.13,44.66,43.27,1.86,3.75,3.09,7.56,4.57,11.41,1,2.61.15,4.76-.99,7.03-4.63,9.19-8.64,18.28-12.29,27.9-5.92,15.63-11.17,39.63-12.66,56.29-.25,2.84-1.63,4.65-3.73,6.25-5.06,3.85-10.34,6.71-16.54,8.49-32.82,9.42-50.29,15.98-79.59,33.53-4.61,2.76-8.61,5.96-12.97,9.04-2.29,1.56-4.94,1.42-7.76,1.42l-53.52.06-.05,100.5c0,.94.66,1.58,1.57,1.58l70.91-.1c25.69-.04,53.28-9.56,59.1-37.32,2.96-14.12.34-32.74-8.6-44.37-10.02-13.04-27.31-17.65-42.37-19.26h0ZM83.32,73.46c-.32,3.47-.17,6.99-.17,11.08l-.08,80.79c0,1.21,1.08,1.67,2.07,1.67l62.44-.02c2.24,0,4.09-.05,5.8-.28.21.37.3,2.12,1.03,2.01,1.29-.21.92-1.72,1.16-2.26,12.71-.93,31.56-7.01,39.16-18.82,9.76-15.17,10.81-34.28,3.05-50.48s-24.35-22.57-40.06-23.87c1.65-2.66-4.83-1.87-7.18-1.87l-67.79.1c-.43,0,.28,2.2.56,1.93v.02Z"/>
-      </svg>
-    </div>
-    <svg class="wordmark" viewBox="0 0 1986.94 159.1" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="1376.17 156.14 1350.1 156.75 1276.8 52.22 1276.08 156.66 1247.51 156.72 1247.5 3.06 1274.1 2.99 1347.08 107.21 1348.09 2.89 1375.96 2.96 1376.17 156.14"/>
-      <path d="M87.85,75.58c20.55,5.94,31.77,22.13,30.44,42.49-1.24,19-16.64,35.73-38.17,37.44-26.39,2.1-52.67,1.05-80.08,1.3L0,2.84l73.09.13c18.89,2.78,35.74,13.35,38.15,32.26,2.78,17.92-4.46,33-23.39,40.35ZM63.3,67.07c13-.23,20.18-10.89,19.95-21.06s-7.74-20.09-19.59-20.19l-35.29-.3.31,42.16,34.62-.61ZM67.97,133.21c12.71-.17,21.41-9.88,21.61-21.43.52-29.5-39.34-22.87-60.75-23.47l-.16,45.44,39.31-.54Z"/>
-      <path d="M1652.53,157.13l-29.51-56.45-30.16-.58-.39,56.68-28.47-.28.02-153.7,71.37.73c25.88.27,44.27,22.02,43.3,47.12,1.04,19.73-8.69,35.77-26.84,44.63l32.78,60.91-32.1.93ZM1649.45,48.16c-1.58-13.44-10.72-21.84-23.44-21.86l-33.22-.05-.1,49.91,34.91-.32c14.56-.13,23.54-13.28,21.84-27.68Z"/>
-      <path d="M239.2,156.86l-29.94-56.19-30.19-.5-.37,56.47-28.22.04.07-153.8c23.99-.03,47.45-.58,70.75.7,26.6,1.46,43.77,21.81,43.93,47.15.12,19.58-8.86,36.14-27.51,44.39l32.79,61.05-31.32.7ZM236.07,49.9c-1.05-14.44-10.62-23.39-23.99-23.48l-32.97-.22-.09,50.16,34.54-.36c14.14-.15,23.57-11.5,22.51-26.11Z"/>
-      <path d="M491.33,116.86c-9.88,23.55-32.76,38.9-57.83,39.2l-64.88.77-.25-154,63.46.36c25.55.15,48.18,14.35,58.46,37.73s11.62,50.71,1.04,75.93ZM467.31,100.44c3.65-15.88,3.51-32.12-1.93-47.05-11.55-31.69-41.58-27.27-68.52-26.66l.08,105.92c29.57,1.45,62.55,1.9,70.38-32.22Z"/>
-      <path d="M640.24,98.7l-35.55-.46-.26-22.35,64.02-.04c2.59,42.01-10.87,75.08-53.9,82.14-33.88,5.56-66.67-9.76-79.58-42.61-8.19-20.85-8.72-44.16-2.15-65.51,11.27-36.59,47.05-55.89,84.07-48.19,25.78,5.36,46.42,23.94,49.71,50.78l-28.67-.1c-5.22-16.12-17.13-26.63-33.83-27.35-18.09-.78-33.39,8.43-40.8,25.21-8.16,18.49-8.4,40.8.2,59.15,7.98,17.02,24.02,26.5,42.32,24.66,18.39-1.85,32.83-13.66,34.42-35.34Z"/>
-      <path d="M1781.03,158.89c-32.32.28-58.09-18.41-67.49-47.92-6.16-19.32-6.55-40.02-1.1-59.65,9.78-35.24,43.57-55.88,79.5-50.37,24.04,3.68,43.83,17.83,53.36,40.73,11.42,27.44,10.54,59.65-4.42,85.66-12.08,21.01-34.82,31.35-59.85,31.56ZM1819.93,105.95c6.44-17.88,6.14-37.67-.75-54.37-6.91-16.74-21.44-26.64-38.16-26.52-16.25.11-30.76,8.74-37.74,24.96-7.82,18.17-7.89,39.67-.6,58.03,6.94,17.48,22.43,26.44,40.19,26.11,16.18-.3,30.68-10.49,37.06-28.2Z"/>
-      <path d="M1148.68,158.58c-37.71,3.96-70.06-18.78-77.71-55.1-3.53-16.76-3.49-33.99.69-50.68,8.16-32.55,36.88-53.44,70.39-52.71,28.69.62,53.1,16.85,63.73,43.5,9.14,22.92,8.97,48.19.59,71.44-9,24.99-30.57,40.7-57.69,43.55ZM1179.15,106.66c6.73-17.58,6.55-37.54-.2-54.39-6.7-16.74-21.16-27.15-37.88-27.25-16.71-.1-31.84,9.09-38.58,25.83-7.4,18.4-7.64,39.57-.01,57.8,7.04,16.84,21.9,25.66,38.59,25.57,16.82-.1,31.31-9.87,38.08-27.56Z"/>
-      <path d="M800.59,90.79l-68.48.11.2,42.59h74.17c.42,7.75.42,15.21-.06,23.28h-102.72s-.23-153.7-.23-153.7l102.62-.42.5,23.25-74.43.36v41s68.22.18,68.22.18l.22,23.36Z"/>
-      <path d="M934.75,107.11c6.61,18.09,21.51,27.2,39.28,27.16,18.01-.04,32.13-10.64,36.47-28.88l28.61.1c-4.14,32.39-29.48,50.87-59.18,53.23-35.71,2.84-66.79-17.66-75.51-52.96-4.71-19.06-4.06-39.12,2.02-58.06,11.35-35.34,46.57-53.32,82.51-46.12,26.79,5.36,47.78,25.01,49.75,53.28l-28.29-.09c-3.41-17.47-15.57-27.89-32.38-29.58-18.52-1.86-35.04,7.36-42.31,25.16s-7.72,38.29-.97,56.77Z"/>
-      <path d="M1484.75,155.61c-9.08,1.25-18.4,1.22-28.71.94l-.09-130.17-47.23-.4-.22-23.17,123.48-.03.22,23.18-47.62.41.16,129.24Z"/>
-      <path d="M1986.28,133.4c.84,7.29.87,15.55.13,23.42l-98.35-.02-.07-153.75,28.65-.04.19,130.26,69.44.14Z"/>
-      <rect x="237.82" y="65.46" width="153.97" height="28.69" transform="translate(234.87 394.58) rotate(-89.98)"/>
+  <div id="sb-logo" style="padding:28px 18px 22px;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;align-items:center;gap:0">
+    <!-- Ícone grande centrado -->
+    <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" style="width:110px;height:110px;display:block;margin-bottom:16px">
+      <rect x="215" y="255" width="546.48" height="50.49" rx="10" fill="#B88A5E"/>
+      <rect x="215" y="255" width="50.49" height="463.32" rx="10" fill="#B88A5E"/>
+      <rect x="215" y="421.32" width="397.98" height="50.49" rx="10" fill="#B88A5E"/>
+      <rect x="612.98" y="421.32" width="50.49" height="297" rx="10" fill="#B88A5E"/>
+      <polygon points="232.91,471.39 262.73,430.65 627.89,697.95 598.07,738.69" fill="#B88A5E"/>
     </svg>
+    <!-- Nome da empresa -->
+    <div style="font-family:'Playfair Display',Georgia,serif;font-size:17px;font-weight:700;color:#fff;letter-spacing:3px;text-transform:uppercase;text-align:center;line-height:1.2">FORMA NOBRE</div>
+    <!-- Tagline -->
+    <div style="font-family:'Inter',sans-serif;font-size:10px;font-weight:400;color:#B88A5E;letter-spacing:3px;text-transform:lowercase;text-align:center;margin-top:5px">fábrica de mobiliário</div>
   </div>
   <nav style="flex:1;display:flex;flex-direction:column">
     <div class="nav-item active" data-nav="dashboard" onclick="nav('dashboard')"><span class="icon">📊</span> Dashboard</div>
@@ -212,20 +201,13 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
     <div class="nav-item nav-discrete" data-nav="exportar" onclick="nav('exportar')"><span class="icon" style="font-size:13px">💾</span> Exportar</div>
     <div class="nav-item nav-discrete" data-nav="empresa" onclick="nav('empresa')"><span class="icon" style="font-size:13px">🏢</span> Dados da Empresa</div>
   </nav>
-  <div id="sb-footer">
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
-    <span id="sb-user-label" style="font-size:10px;color:rgba(255,255,255,0.35);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:140px"></span>
-    <span id="sb-sync-ind" title="Sincronizado" style="font-size:11px;color:#7ec87e;opacity:0;transition:opacity 0.5s">✓</span>
-  </div>
-  bridgecontrol.eu<br><span id="sb-stats">0 clientes · 0 orçamentos</span>
-  <div style="display:flex;gap:4px;margin-top:8px"><button onclick="sbNowSync()" title="Forçar sincronização" style="flex:1;padding:5px;background:rgba(201,169,110,0.1);border:1px solid rgba(201,169,110,0.2);border-radius:4px;color:rgba(201,169,110,0.6);font-size:10px;cursor:pointer;font-family:Inter,sans-serif">↑ Sincronizar</button><button onclick="sbLogout()" style="flex:1;padding:5px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:4px;color:rgba(255,255,255,0.35);font-size:10px;cursor:pointer;font-family:Inter,sans-serif">Sair</button></div>
-</div>
+  <div id="sb-footer">formanobre.pt<br><span id="sb-stats">0 clientes · 0 orçamentos</span></div>
 </div>
 
 <div id="main">
   <div id="page-dashboard" class="page active">
     <div class="page-title">Dashboard</div>
-    <div class="page-sub">Visão geral do negócio</div>
+    <div class="page-sub" style="display:flex;align-items:center;justify-content:space-between"><span>Visão geral do negócio</span><button class="btn btn-outline btn-sm" onclick="seedDemo()" style="font-size:12px;border-color:#B88A5E;color:#6B4A2F;gap:6px">🌱 Carregar Dados Demo</button></div>
     <div id="dash-content"></div>
   </div>
 
@@ -293,11 +275,11 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
     <div class="page-sub">Informações usadas nos documentos e PDFs gerados</div>
     <div style="margin-top:0">
 
-      <div style="background:#fff;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,0.08);padding:28px;border-top:3px solid #8B7355">
+      <div style="background:#fff;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,0.08);padding:28px;border-top:3px solid #6B4A2F">
 
         <!-- Logótipo -->
         <div style="margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid #f0ede8">
-          <div style="font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#8B7355;margin-bottom:10px">Logótipo</div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#6B4A2F;margin-bottom:10px">Logótipo</div>
           <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
             <img id="emp-logo-prev" src="" alt="Logo" style="display:none;max-height:60px;max-width:180px;border-radius:4px;border:1px solid #eee;padding:4px;object-fit:contain">
             <div style="display:flex;gap:8px;align-items:center">
@@ -309,70 +291,70 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
         </div>
 
         <!-- Identificação -->
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#8B7355;margin-bottom:12px">Identificação</div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#6B4A2F;margin-bottom:12px">Identificação</div>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-bottom:22px">
           <div>
             <label style="font-size:11px;color:#888;font-weight:600;display:block;margin-bottom:4px">Nome da Empresa</label>
-            <input id="emp-nome" type="text" placeholder="Ex: Bridge Control, Lda." onchange="saveEmpField('nome',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#8B7355'" onblur="this.style.borderColor='#ddd'">
+            <input id="emp-nome" type="text" placeholder="Ex: Forma Nobre, Lda." onchange="saveEmpField('nome',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#6B4A2F'" onblur="this.style.borderColor='#ddd'">
           </div>
           <div>
             <label style="font-size:11px;color:#888;font-weight:600;display:block;margin-bottom:4px">Marca / Nome Comercial</label>
-            <input id="emp-marca" type="text" placeholder="Ex: Bridge Control" onchange="saveEmpField('marca',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#8B7355'" onblur="this.style.borderColor='#ddd'">
+            <input id="emp-marca" type="text" placeholder="Ex: Forma Nobre" onchange="saveEmpField('marca',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#6B4A2F'" onblur="this.style.borderColor='#ddd'">
           </div>
           <div>
             <label style="font-size:11px;color:#888;font-weight:600;display:block;margin-bottom:4px">NIF / Contribuinte</label>
-            <input id="emp-nif" type="text" placeholder="Ex: 123 456 789" onchange="saveEmpField('nif',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#8B7355'" onblur="this.style.borderColor='#ddd'">
+            <input id="emp-nif" type="text" placeholder="Ex: 123 456 789" onchange="saveEmpField('nif',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#6B4A2F'" onblur="this.style.borderColor='#ddd'">
           </div>
           <div>
             <label style="font-size:11px;color:#888;font-weight:600;display:block;margin-bottom:4px">NIB / IBAN</label>
-            <input id="emp-nib" type="text" placeholder="Ex: PT50 0000 0000 0000 0000 0000 0" onchange="saveEmpField('nib',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#8B7355'" onblur="this.style.borderColor='#ddd'">
+            <input id="emp-nib" type="text" placeholder="Ex: PT50 0000 0000 0000 0000 0000 0" onchange="saveEmpField('nib',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#6B4A2F'" onblur="this.style.borderColor='#ddd'">
           </div>
           <div>
             <label style="font-size:11px;color:#888;font-weight:600;display:block;margin-bottom:4px">Capital Social</label>
-            <input id="emp-capital" type="text" placeholder="Ex: 50.000,00 €" onchange="saveEmpField('capital',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#8B7355'" onblur="this.style.borderColor='#ddd'">
+            <input id="emp-capital" type="text" placeholder="Ex: 50.000,00 €" onchange="saveEmpField('capital',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#6B4A2F'" onblur="this.style.borderColor='#ddd'">
           </div>
         </div>
 
         <!-- Morada -->
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#8B7355;margin-bottom:12px">Morada</div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#6B4A2F;margin-bottom:12px">Morada</div>
         <div style="display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:22px">
           <div>
             <label style="font-size:11px;color:#888;font-weight:600;display:block;margin-bottom:4px">Rua / Endereço</label>
-            <input id="emp-morada" type="text" placeholder="Ex: Rua da Carpintaria, nº 12" onchange="saveEmpField('morada',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#8B7355'" onblur="this.style.borderColor='#ddd'">
+            <input id="emp-morada" type="text" placeholder="Ex: Rua da Carpintaria, nº 12" onchange="saveEmpField('morada',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#6B4A2F'" onblur="this.style.borderColor='#ddd'">
           </div>
         </div>
         <div style="display:grid;grid-template-columns:140px 1fr;gap:14px;margin-bottom:22px">
           <div>
             <label style="font-size:11px;color:#888;font-weight:600;display:block;margin-bottom:4px">Código Postal</label>
-            <input id="emp-cp" type="text" placeholder="Ex: 4590-000" onchange="saveEmpField('cp',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#8B7355'" onblur="this.style.borderColor='#ddd'">
+            <input id="emp-cp" type="text" placeholder="Ex: 4590-000" onchange="saveEmpField('cp',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#6B4A2F'" onblur="this.style.borderColor='#ddd'">
           </div>
           <div>
             <label style="font-size:11px;color:#888;font-weight:600;display:block;margin-bottom:4px">Localidade</label>
-            <input id="emp-localidade" type="text" placeholder="Ex: Paços de Ferreira" onchange="saveEmpField('localidade',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#8B7355'" onblur="this.style.borderColor='#ddd'">
+            <input id="emp-localidade" type="text" placeholder="Ex: Paços de Ferreira" onchange="saveEmpField('localidade',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#6B4A2F'" onblur="this.style.borderColor='#ddd'">
           </div>
         </div>
 
         <!-- Contactos -->
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#8B7355;margin-bottom:12px">Contactos</div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#6B4A2F;margin-bottom:12px">Contactos</div>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-bottom:22px">
           <div>
             <label style="font-size:11px;color:#888;font-weight:600;display:block;margin-bottom:4px">Telefone / Telemóvel</label>
-            <input id="emp-telefone" type="tel" placeholder="Ex: +351 912 345 678" onchange="saveEmpField('telefone',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#8B7355'" onblur="this.style.borderColor='#ddd'">
+            <input id="emp-telefone" type="tel" placeholder="Ex: +351 912 345 678" onchange="saveEmpField('telefone',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#6B4A2F'" onblur="this.style.borderColor='#ddd'">
           </div>
           <div>
             <label style="font-size:11px;color:#888;font-weight:600;display:block;margin-bottom:4px">Email</label>
-            <input id="emp-email" type="email" placeholder="Ex: geral@bridgecontrol.pt" onchange="saveEmpField('email',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#8B7355'" onblur="this.style.borderColor='#ddd'">
+            <input id="emp-email" type="email" placeholder="Ex: geral@bridgecontrol.pt" onchange="saveEmpField('email',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#6B4A2F'" onblur="this.style.borderColor='#ddd'">
           </div>
           <div>
             <label style="font-size:11px;color:#888;font-weight:600;display:block;margin-bottom:4px">Website</label>
-            <input id="emp-website" type="url" placeholder="Ex: www.bridgecontrol.pt" onchange="saveEmpField('website',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#8B7355'" onblur="this.style.borderColor='#ddd'">
+            <input id="emp-website" type="url" placeholder="Ex: www.formanobre.pt" onchange="saveEmpField('website',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#6B4A2F'" onblur="this.style.borderColor='#ddd'">
           </div>
         </div>
 
         <!-- Observações -->
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#8B7355;margin-bottom:12px">Notas / Observações internas</div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#6B4A2F;margin-bottom:12px">Notas / Observações internas</div>
         <div>
-          <textarea id="emp-obs" rows="3" placeholder="Ex: Horário de atendimento, condições gerais de pagamento, notas para documentos..." onchange="saveEmpField('obs',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none;resize:vertical;line-height:1.5" onfocus="this.style.borderColor='#8B7355'" onblur="this.style.borderColor='#ddd'"></textarea>
+          <textarea id="emp-obs" rows="3" placeholder="Ex: Horário de atendimento, condições gerais de pagamento, notas para documentos..." onchange="saveEmpField('obs',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none;resize:vertical;line-height:1.5" onfocus="this.style.borderColor='#6B4A2F'" onblur="this.style.borderColor='#ddd'"></textarea>
         </div>
 
         <div style="margin-top:18px;padding-top:14px;border-top:1px solid #f0ede8;display:flex;align-items:center;gap:10px">
@@ -439,14 +421,14 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
 
       <div class="form-section">Linhas do Orçamento</div>
       <div style="background:#f5f3f0;border:1.5px solid #e8e4de;border-radius:7px;padding:12px 16px;margin-bottom:8px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-        <span style="font-size:11px;font-weight:600;color:#8B7355;white-space:nowrap">🔧 Importar Ficha de Custo:</span>
+        <span style="font-size:11px;font-weight:600;color:#6B4A2F;white-space:nowrap">🔧 Importar Ficha de Custo:</span>
         <select id="orc-ficha-sel" onchange="fichaParaOrcamento(this.value)" style="flex:1;min-width:200px;padding:6px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif">
           <option value="">— escolher ficha guardada —</option>
         </select>
         <span id="orc-ficha-info" style="font-size:11px;color:#aaa"></span>
       </div>
       <div style="background:#f5f3f0;border:1.5px solid #e8e4de;border-radius:7px;padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-        <span style="font-size:11px;font-weight:600;color:#8B7355;white-space:nowrap">🏗️ Importar Subcontratado:</span>
+        <span style="font-size:11px;font-weight:600;color:#6B4A2F;white-space:nowrap">🏗️ Importar Subcontratado:</span>
         <select id="orc-sc-ficha-sel" onchange="scFichaParaOrcamento(this.value)" style="flex:1;min-width:200px;padding:6px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif">
           <option value="">— escolher ficha subcontratado —</option>
         </select>
@@ -482,7 +464,7 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
           </div>
           <div style="flex:1;background:rgba(201,169,110,0.08);border:1px solid rgba(201,169,110,0.2);border-radius:6px;padding:6px 10px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-width:0">
             <div style="font-size:8px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px">Aplicada</div>
-            <div id="orc-margem-final-display" style="font-size:14px;font-weight:700;color:#c9a96e;font-family:Inter,sans-serif;font-variant-numeric:tabular-nums;line-height:1">—</div>
+            <div id="orc-margem-final-display" style="font-size:14px;font-weight:700;color:#B88A5E;font-family:Inter,sans-serif;font-variant-numeric:tabular-nums;line-height:1">—</div>
           </div>
         </div>
         <!-- Totais sem/com margem -->
@@ -493,7 +475,7 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
           </div>
           <div style="text-align:right">
             <div style="font-size:9px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px">Preço de venda</div>
-            <div id="orc-mob-com-margem" style="font-size:16px;font-weight:700;color:#c9a96e;font-family:Inter,sans-serif;font-variant-numeric:tabular-nums">—</div>
+            <div id="orc-mob-com-margem" style="font-size:16px;font-weight:700;color:#B88A5E;font-family:Inter,sans-serif;font-variant-numeric:tabular-nums">—</div>
           </div>
         </div>
       </div>
@@ -533,7 +515,7 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
           <div style="display:flex;align-items:flex-end">
             <div style="width:100%;background:#3A3A3A;border-radius:6px;padding:8px 14px;display:flex;justify-content:space-between;align-items:center">
               <span style="font-size:11px;color:rgba(255,255,255,0.45)">Valor transporte</span>
-              <strong id="orc-transp-valor" style="color:#c9a96e;font-size:15px">0 €</strong>
+              <strong id="orc-transp-valor" style="color:#B88A5E;font-size:15px">0 €</strong>
             </div>
           </div>
         </div>
@@ -561,9 +543,9 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
           </div>
         </div>
         <div style="display:flex;gap:20px;align-items:center;background:#3A3A3A;border-radius:6px;padding:10px 16px">
-          <div style="font-size:11px;color:rgba(255,255,255,0.45)">Total horas&nbsp;<strong id="orc-mont-totalH" style="color:#c9a96e">0 h</strong></div>
-          <div style="font-size:11px;color:rgba(255,255,255,0.45)">Custo base&nbsp;<strong id="orc-mont-custoBase" style="color:#c9a96e">0 €</strong></div>
-          <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-left:auto">Valor montagem&nbsp;<strong id="orc-mont-valor" style="color:#c9a96e;font-size:15px">0 €</strong></div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.45)">Total horas&nbsp;<strong id="orc-mont-totalH" style="color:#B88A5E">0 h</strong></div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.45)">Custo base&nbsp;<strong id="orc-mont-custoBase" style="color:#B88A5E">0 €</strong></div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-left:auto">Valor montagem&nbsp;<strong id="orc-mont-valor" style="color:#B88A5E;font-size:15px">0 €</strong></div>
         </div>
       </div>
 
@@ -582,7 +564,7 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
               <button type="button" onclick="setIva(this,0)" data-iva="0" style="flex:1;padding:9px 4px;border-radius:6px;border:1px solid rgba(201,169,110,0.2);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.4);font-size:13px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif;transition:all .15s">Sem IVA</button>
               <button type="button" onclick="setIva(this,6)"  data-iva="6"  style="flex:1;padding:9px 4px;border-radius:6px;border:1px solid rgba(201,169,110,0.2);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.4);font-size:13px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif;transition:all .15s">6%</button>
               <button type="button" onclick="setIva(this,13)" data-iva="13" style="flex:1;padding:9px 4px;border-radius:6px;border:1px solid rgba(201,169,110,0.2);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.4);font-size:13px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif;transition:all .15s">13%</button>
-              <button type="button" onclick="setIva(this,23)" data-iva="23" style="flex:1;padding:9px 4px;border-radius:6px;border:1px solid rgba(201,169,110,0.5);background:rgba(201,169,110,0.15);color:#c9a96e;font-size:13px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif;transition:all .15s">23%</button>
+              <button type="button" onclick="setIva(this,23)" data-iva="23" style="flex:1;padding:9px 4px;border-radius:6px;border:1px solid rgba(201,169,110,0.5);background:rgba(201,169,110,0.15);color:#B88A5E;font-size:13px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif;transition:all .15s">23%</button>
             </div>
           </div>
         </div>
@@ -595,20 +577,20 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
         <div class="form-group" style="grid-column:1/-1">
           <label>Condições de Pagamento</label>
           <div style="position:relative;margin-bottom:6px">
-            <button type="button" id="pag-trigger" onclick="togglePagOpts()" style="width:100%;text-align:left;padding:9px 32px 9px 12px;background:#f7f5f2;border:1px solid #e0d9cf;border-radius:6px;font-size:12px;font-family:Inter,sans-serif;color:#8B7355;cursor:pointer;position:relative;font-weight:500">
+            <button type="button" id="pag-trigger" onclick="togglePagOpts()" style="width:100%;text-align:left;padding:9px 32px 9px 12px;background:#f7f5f2;border:1px solid #e0d9cf;border-radius:6px;font-size:12px;font-family:Inter,sans-serif;color:#6B4A2F;cursor:pointer;position:relative;font-weight:500">
               Selecionar condição de pagamento ▾
             </button>
             <div id="pag-opts" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:200;background:#fff;border:1px solid #ddd;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin-top:2px;overflow:hidden"></div>
           </div>
           <textarea id="orc-tcPagamento" rows="2" placeholder="Ou escreve uma condição personalizada e guarda..." style="resize:none"></textarea>
           <div style="display:flex;justify-content:flex-end;margin-top:5px">
-            <button type="button" onclick="saveCustomPagamento()" style="font-size:11px;padding:5px 12px;background:rgba(201,169,110,0.12);border:1px solid rgba(201,169,110,0.3);border-radius:5px;color:#c9a96e;cursor:pointer;font-family:Inter,sans-serif;font-weight:600">+ Guardar esta condição</button>
+            <button type="button" onclick="saveCustomPagamento()" style="font-size:11px;padding:5px 12px;background:rgba(201,169,110,0.12);border:1px solid rgba(201,169,110,0.3);border-radius:5px;color:#B88A5E;cursor:pointer;font-family:Inter,sans-serif;font-weight:600">+ Guardar esta condição</button>
           </div>
         </div>
         <div class="form-group">
           <label>Prazo de Entrega</label>
           <div style="position:relative;margin-bottom:6px">
-            <button type="button" id="prazo-trigger" onclick="togglePrazoOpts()" style="width:100%;text-align:left;padding:9px 12px;background:#f7f5f2;border:1px solid #e0d9cf;border-radius:6px;font-size:12px;font-family:Inter,sans-serif;color:#8B7355;cursor:pointer;font-weight:500">
+            <button type="button" id="prazo-trigger" onclick="togglePrazoOpts()" style="width:100%;text-align:left;padding:9px 12px;background:#f7f5f2;border:1px solid #e0d9cf;border-radius:6px;font-size:12px;font-family:Inter,sans-serif;color:#6B4A2F;cursor:pointer;font-weight:500">
               Selecionar prazo de entrega ▾
             </button>
             <div id="prazo-opts" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:200;background:#fff;border:1px solid #ddd;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin-top:2px;overflow:hidden">
@@ -619,8 +601,8 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
                     <input type="number" id="prazo-semanas" value="10" min="1" max="20" style="width:52px;padding:5px 8px;border:1px solid #ddd;border-radius:5px;font-size:13px;font-weight:700;color:#3A3A3A;font-family:Inter,sans-serif;text-align:center">
                     <span style="font-size:12px;color:#888">semanas</span>
                   </div>
-                  <button type="button" onclick="gerarPrazo('aprovacao')" style="padding:6px 10px;background:#f0ebe3;border:1px solid #d4c9b8;border-radius:5px;font-size:11px;font-weight:600;color:#8B7355;cursor:pointer;font-family:Inter,sans-serif">Da aprovação</button>
-                  <button type="button" onclick="gerarPrazo('desenhos')" style="padding:6px 10px;background:#f0ebe3;border:1px solid #d4c9b8;border-radius:5px;font-size:11px;font-weight:600;color:#8B7355;cursor:pointer;font-family:Inter,sans-serif">Dos desenhos</button>
+                  <button type="button" onclick="gerarPrazo('aprovacao')" style="padding:6px 10px;background:#f0ebe3;border:1px solid #d4c9b8;border-radius:5px;font-size:11px;font-weight:600;color:#6B4A2F;cursor:pointer;font-family:Inter,sans-serif">Da aprovação</button>
+                  <button type="button" onclick="gerarPrazo('desenhos')" style="padding:6px 10px;background:#f0ebe3;border:1px solid #d4c9b8;border-radius:5px;font-size:11px;font-weight:600;color:#6B4A2F;cursor:pointer;font-family:Inter,sans-serif">Dos desenhos</button>
                 </div>
               </div>
               <div id="prazo-custom-list"></div>
@@ -628,7 +610,7 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
           </div>
           <textarea id="orc-tcPrazo" rows="2" placeholder="Ou escreve um prazo personalizado e guarda..." style="resize:none"></textarea>
           <div style="display:flex;justify-content:flex-end;margin-top:5px">
-            <button type="button" onclick="saveCustomPrazo()" style="font-size:11px;padding:5px 12px;background:rgba(201,169,110,0.12);border:1px solid rgba(201,169,110,0.3);border-radius:5px;color:#c9a96e;cursor:pointer;font-family:Inter,sans-serif;font-weight:600">+ Guardar esta condição</button>
+            <button type="button" onclick="saveCustomPrazo()" style="font-size:11px;padding:5px 12px;background:rgba(201,169,110,0.12);border:1px solid rgba(201,169,110,0.3);border-radius:5px;color:#B88A5E;cursor:pointer;font-family:Inter,sans-serif;font-weight:600">+ Guardar esta condição</button>
           </div>
         </div>
         <div class="form-group"><label>Transporte e Montagem</label><textarea id="orc-tcTransporte" rows="3" placeholder="Ex: Transporte e montagem incluídos até ao local indicado pelo cliente."></textarea></div>
@@ -649,7 +631,7 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
 <div id="desc-modal" style="display:none;position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(0,0,0,0.55);z-index:9999;align-items:center;justify-content:center">
   <div style="background:#fff;border-radius:10px;width:560px;max-width:95vw;box-shadow:0 8px 40px rgba(0,0,0,0.22);display:flex;flex-direction:column;overflow:hidden">
     <div style="background:#272727;padding:14px 20px;display:flex;align-items:center;justify-content:space-between">
-      <span style="color:#e8d5a8;font-family:Georgia,serif;font-size:15px;font-weight:600">Descri&ccedil;&atilde;o</span>
+      <span style="color:#d4b07a;font-family:Georgia,serif;font-size:15px;font-weight:600">Descri&ccedil;&atilde;o</span>
       <button onclick="closeDescModal()" style="background:none;border:none;color:rgba(255,255,255,0.5);font-size:22px;cursor:pointer;line-height:1">&times;</button>
     </div>
     <div style="padding:16px">
@@ -662,13 +644,11 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-
-
 <script>
 var db={clientes:[],orcamentos:[],_nc:1,_no:1};
 var _lc=0,_editOrcId=null;
 
-function save(){try{localStorage.setItem('bc_crm',JSON.stringify(db));}catch(e){}sbSync();}
+function save(){try{localStorage.setItem('bc_crm',JSON.stringify(db));}catch(e){}}
 function load(){try{var d=localStorage.getItem('bc_crm');if(d)db=JSON.parse(d);}catch(e){}}
 function fmt(n){return Number(n||0).toLocaleString('pt-PT',{minimumFractionDigits:2,maximumFractionDigits:2});}
 function today(){return new Date().toISOString().slice(0,10);}
@@ -694,7 +674,7 @@ function renderDashboard(){
   var env=db.orcamentos.filter(function(o){return o.estado=='Enviado';});
   var rec=db.orcamentos.slice().sort(function(a,b){return(b.criadoEm||0)-(a.criadoEm||0);}).slice(0,6);
   var rows=rec.length?rec.map(function(o){
-    return '<tr><td><strong>'+(o.numProjeto||'—')+'</strong></td><td>'+getCliNome(o.clienteId)+'</td><td>'+badge(o.estado)+'</td><td style="font-weight:600;color:#8B7355">'+fmt(getGrandTotal(o))+' €</td><td>'+(o.data||'—')+'</td><td><button class="btn btn-sm btn-bronze" onclick="openModalOrcamento(\''+o.id+'\')">Editar</button></td></tr>';
+    return '<tr><td><strong>'+(o.numProjeto||'—')+'</strong></td><td>'+getCliNome(o.clienteId)+'</td><td>'+badge(o.estado)+'</td><td style="font-weight:600;color:#6B4A2F">'+fmt(getGrandTotal(o))+' €</td><td>'+(o.data||'—')+'</td><td><button class="btn btn-sm btn-bronze" onclick="openModalOrcamento(\''+o.id+'\')">Editar</button></td></tr>';
   }).join(''):'<tr><td colspan="6" style="text-align:center;color:#ccc;padding:24px">Sem orçamentos. Crie o primeiro!</td></tr>';
   document.getElementById('dash-content').innerHTML='<div class="card-grid"><div class="stat-card"><div class="stat-label">Clientes</div><div class="stat-value">'+db.clientes.length+'</div><div class="stat-sub">registados</div></div><div class="stat-card"><div class="stat-label">Orçamentos</div><div class="stat-value">'+db.orcamentos.length+'</div><div class="stat-sub">total</div></div><div class="stat-card"><div class="stat-label">Aprovados</div><div class="stat-value">'+aprov.length+'</div><div class="stat-sub">'+fmt(aprov.reduce(function(s,o){return s+getGrandTotal(o);},0))+' €</div></div><div class="stat-card"><div class="stat-label">Em Aberto</div><div class="stat-value">'+env.length+'</div><div class="stat-sub">'+fmt(env.reduce(function(s,o){return s+getGrandTotal(o);},0))+' €</div></div><div class="stat-card"><div class="stat-label">Volume Total</div><div class="stat-value">'+fmt(total)+' €</div><div class="stat-sub">todos os estados</div></div></div><div class="card"><div style="font-family:\'Playfair Display\',serif;font-size:17px;margin-bottom:14px">Orçamentos Recentes</div><table class="tbl"><thead><tr><th>Projeto</th><th>Cliente</th><th>Estado</th><th>Total</th><th>Data</th><th></th></tr></thead><tbody>'+rows+'</tbody></table></div>';
 }
@@ -737,7 +717,7 @@ function renderOrcamentos(){
   var list=db.orcamentos.filter(function(o){return !q||(o.numProjeto||'').toLowerCase().includes(q.toLowerCase())||getCliNome(o.clienteId).toLowerCase().includes(q.toLowerCase());});
   document.getElementById('orc-tbody').innerHTML=list.slice().reverse().map(function(o){
     var numCell='<strong>'+(o.numProjeto||'—')+'</strong>'+(o.numRef?'<br><span style="font-size:11px;color:#aaa;font-weight:400">'+o.numRef+'</span>':'');
-    return '<tr><td>'+numCell+'</td><td>'+getCliNome(o.clienteId)+'</td><td>'+(o.pais||'—')+'</td><td>'+badge(o.estado)+'</td><td style="font-weight:600;color:#8B7355">'+fmt(getGrandTotal(o))+' €</td><td>'+(o.data||'—')+'</td><td style="white-space:nowrap"><button class="btn btn-sm btn-outline" style="margin-right:4px" onclick="openModalOrcamento(\''+o.id+'\')">✏️ Editar</button><button class="btn btn-sm btn-bronze" style="margin-right:4px" onclick="gerarPDF(\''+o.id+'\')">📄 PDF</button><button class="btn btn-sm btn-danger" onclick="delOrc(\''+o.id+'\')">🗑️</button></td></tr>';
+    return '<tr><td>'+numCell+'</td><td>'+getCliNome(o.clienteId)+'</td><td>'+(o.pais||'—')+'</td><td>'+badge(o.estado)+'</td><td style="font-weight:600;color:#6B4A2F">'+fmt(getGrandTotal(o))+' €</td><td>'+(o.data||'—')+'</td><td style="white-space:nowrap"><button class="btn btn-sm btn-outline" style="margin-right:4px" onclick="openModalOrcamento(\''+o.id+'\')">✏️ Editar</button><button class="btn btn-sm btn-bronze" style="margin-right:4px" onclick="gerarPDF(\''+o.id+'\')">📄 PDF</button><button class="btn btn-sm btn-danger" onclick="delOrc(\''+o.id+'\')">🗑️</button></td></tr>';
   }).join('')||'<tr><td colspan="7" style="text-align:center;color:#ccc;padding:24px">Sem orçamentos. Clique em + Novo Orçamento.</td></tr>';
 }
 function delOrc(id){
@@ -794,7 +774,7 @@ function openModalOrcamento(id){
     btns.forEach(function(b){
       var active=(+b.dataset.iva===+iv);
       b.style.background=active?'rgba(201,169,110,0.15)':'rgba(255,255,255,0.05)';
-      b.style.color=active?'#c9a96e':'rgba(255,255,255,0.4)';
+      b.style.color=active?'#B88A5E':'rgba(255,255,255,0.4)';
       b.style.borderColor=active?'rgba(201,169,110,0.5)':'rgba(201,169,110,0.2)';
     });
   })();
@@ -875,7 +855,7 @@ function addLinha(l){
     '<td class="td-tot" id="ptot-'+idx+'"><input readonly id="ptot-inp-'+idx+'" value="" style="width:90px;padding:4px 6px;border:1.5px solid #ddd;border-radius:4px;font-size:12px;font-family:Inter,sans-serif;background:#f7f5f2;text-align:right;font-weight:600;color:#2E2E2E"></td>'+
     '<td style="padding:6px 5px;border-bottom:1px solid #f0ede8"><input type="number" data-f="pCusto" value="'+(l.pCusto||'')+'" oninput="calcLinha('+idx+')" style="width:88px;padding:4px 6px;border:1.5px solid #ddd;border-radius:4px;font-size:12px;font-family:Inter,sans-serif;background:#fff;text-align:right" step="0.01" placeholder="—"></td>'+
     '<td class="td-tot" id="marg-'+idx+'"><input readonly id="marg-inp-'+idx+'" value="" style="width:70px;padding:4px 6px;border:1.5px solid #ddd;border-radius:4px;font-size:11px;font-family:Inter,sans-serif;background:#f7f5f2;text-align:right;font-weight:600;color:#2e7d32"></td>'+
-    '<td class="td-del"><button onclick="duplicarLinha(this)" title="Duplicar linha" style="background:transparent;border:none;cursor:pointer;color:#8B7355;font-size:14px;padding:0 3px;line-height:1;vertical-align:middle">⧉</button><button onclick="removeLinha(this)" title="Remover">✕</button></td>';
+    '<td class="td-del"><button onclick="duplicarLinha(this)" title="Duplicar linha" style="background:transparent;border:none;cursor:pointer;color:#6B4A2F;font-size:14px;padding:0 3px;line-height:1;vertical-align:middle">⧉</button><button onclick="removeLinha(this)" title="Remover">✕</button></td>';
   document.getElementById('linhas-tbody').appendChild(row);
   row.querySelectorAll('textarea').forEach(function(ta){ta.style.height='26px';ta.style.height=Math.max(26,ta.scrollHeight)+'px';});
   if(l.img){document.getElementById('ival-'+idx).value=l.img;_setRowImg(idx,l.img);}
@@ -1021,7 +1001,7 @@ function calcAllTotals(){
     var even=(_ri++)%2===0;
     return '<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:'+(even?'rgba(0,0,0,0)':'rgba(0,0,0,0.18)')+';border-radius:3px">'+
       '<span style="font-size:11px;color:rgba(255,255,255,0.5);font-family:Inter,sans-serif;letter-spacing:0.2px">'+label+'</span>'+
-      '<span style="font-size:12px;color:'+(col||'#c9a96e')+';font-weight:700;font-family:Inter,sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap;padding-left:24px">'+fmt(val)+' €</span>'+
+      '<span style="font-size:12px;color:'+(col||'#B88A5E')+';font-weight:700;font-family:Inter,sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap;padding-left:24px">'+fmt(val)+' €</span>'+
     '</div>';
   }
 
@@ -1069,7 +1049,7 @@ function calcAllTotals(){
     return '<div style="padding:8px 10px;background:'+bg+';border-radius:3px">'+
       '<div style="display:flex;justify-content:space-between;align-items:center">'+
         labelHtml+
-        '<span style="font-size:13px;color:#c9a96e;font-weight:700;font-family:Inter,sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap;padding-left:24px">'+fmt(r.val)+' €</span>'+
+        '<span style="font-size:13px;color:#B88A5E;font-weight:700;font-family:Inter,sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap;padding-left:24px">'+fmt(r.val)+' €</span>'+
       '</div>'+
       subHtml+
     '</div>';
@@ -1080,7 +1060,7 @@ function calcAllTotals(){
     (rows.length?rows.map(_rowFull).join(''):'<div style="font-size:11px;color:rgba(255,255,255,0.25);padding:8px 0;text-align:center">— sem custos —</div>')+
     '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding:10px 10px;border-top:1px solid rgba(255,255,255,0.1)">'+
       '<span style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.8px">Total'+(comissaoP>0?' Bruto':'')+'</span>'+
-      '<span style="font-size:16px;font-weight:700;color:#c9a96e;font-variant-numeric:tabular-nums;white-space:nowrap">'+fmt(grand)+' €</span>'+
+      '<span style="font-size:16px;font-weight:700;color:#B88A5E;font-variant-numeric:tabular-nums;white-space:nowrap">'+fmt(grand)+' €</span>'+
     '</div>'+
     (totalCusto>0?
       '<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 10px;margin-bottom:2px">'+
@@ -1096,7 +1076,7 @@ function calcAllTotals(){
     :'')+
     '<div style="display:flex;justify-content:space-between;align-items:center;padding:14px 10px 6px;border-top:2px solid rgba(255,255,255,0.18)">'+
       '<span style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.85);letter-spacing:1.2px;text-transform:uppercase">Total Líquido</span>'+
-      '<span style="font-size:28px;font-weight:700;color:#c9a96e;letter-spacing:-0.5px;font-variant-numeric:tabular-nums;white-space:nowrap">'+fmt(totalLiq)+' €</span>'+
+      '<span style="font-size:28px;font-weight:700;color:#B88A5E;letter-spacing:-0.5px;font-variant-numeric:tabular-nums;white-space:nowrap">'+fmt(totalLiq)+' €</span>'+
     '</div>'+
     (ivaP>0?
       '<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 10px;margin-bottom:2px">'+
@@ -1105,7 +1085,7 @@ function calcAllTotals(){
       '</div>'+
       '<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 10px 2px;border-top:1px solid rgba(255,255,255,0.1);margin-top:4px">'+
         '<span style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.85);letter-spacing:1.2px;text-transform:uppercase">Total com IVA</span>'+
-        '<span style="font-size:28px;font-weight:700;color:#c9a96e;letter-spacing:-0.5px;font-variant-numeric:tabular-nums;white-space:nowrap">'+fmt(totalLiq+ivaV)+' €</span>'+
+        '<span style="font-size:28px;font-weight:700;color:#B88A5E;letter-spacing:-0.5px;font-variant-numeric:tabular-nums;white-space:nowrap">'+fmt(totalLiq+ivaV)+' €</span>'+
       '</div>'
     :'')+
   '</div>';
@@ -1221,7 +1201,7 @@ function renderPagamentoOpts(){
     var btn=document.createElement('button');
     btn.type='button';
     btn.textContent=txt;
-    btn.style.cssText='flex:1;text-align:left;padding:10px 14px;background:transparent;border:none;cursor:pointer;font-size:12px;font-family:Inter,sans-serif;color:'+(active?'#8B7355':'#444')+';font-weight:'+(active?'600':'400')+';line-height:1.5';
+    btn.style.cssText='flex:1;text-align:left;padding:10px 14px;background:transparent;border:none;cursor:pointer;font-size:12px;font-family:Inter,sans-serif;color:'+(active?'#6B4A2F':'#444')+';font-weight:'+(active?'600':'400')+';line-height:1.5';
     btn.onclick=function(){
       document.getElementById('orc-tcPagamento').value=txt;
       var trig=document.getElementById('pag-trigger');
@@ -1264,7 +1244,7 @@ function setIva(btn,val){
   var btns=btn.parentNode.querySelectorAll('button');
   btns.forEach(function(b){
     b.style.background=b===btn?'rgba(201,169,110,0.15)':'rgba(255,255,255,0.05)';
-    b.style.color=b===btn?'#c9a96e':'rgba(255,255,255,0.4)';
+    b.style.color=b===btn?'#B88A5E':'rgba(255,255,255,0.4)';
     b.style.borderColor=b===btn?'rgba(201,169,110,0.5)':'rgba(201,169,110,0.2)';
   });
   calcAllTotals();
@@ -1437,8 +1417,8 @@ function _gerarPDFInner(id,imgMap){
   var dFmt=o.data?new Date(o.data+'T12:00:00').toLocaleDateString('pt-PT'):'—';
   var hoje=new Date().toLocaleDateString('pt-PT');
 
-  var monoSvg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 609.41 400.78" style="height:52px;width:auto;display:block;flex-shrink:0"><path style="fill:#ffffff" d="M350.38,195.8c-1.01,41.42,5.37,86.85,40.4,114.52,25.76,20.35,66.79,24.02,96.1,9.23,22.16-11.18,37.19-31.98,41.7-56.28.18-.97,1.07-1.57,2.06-1.57l29.96.13,48.53-.08c.81,11.84-5.53,33.29-9.92,44.4-5.02,12.71-13.82,27.05-22.53,37.52-28.53,34.29-68.85,53.1-113.29,56.45-34.4,2.6-68.24-2.28-99.42-17.18-8.02-3.83-15.24-8.47-22.51-13.44-12.23-8.35-23.95-20.14-33.1-31.93-17.93-23.09-30.04-49.33-35.68-78.15-4.24-21.68-6.17-43.37-5.96-64.64,14.71-3.16,51.05-3.5,65.97-1.6,6.76.86,11.29,1.04,17.7,2.63h0Z"/><path style="fill:#ffffff" d="M508.49,98.56c-20.22-22.74-51.75-29.71-80.93-24.27-24.14,4.5-43.3,18.48-56.34,38.93-12.61,19.76-17.48,40.71-20.09,64-2.15.26-4.19-.37-6.44-.88-24.63-3.67-50.96-3.81-75.99-.3,1.76-33.89,9.65-64.9,27.13-94.29,15.08-24.07,34.15-43.94,58.73-58.27,44.91-26.19,110.04-30.91,158.12-11.94,18.5,7.3,35.23,17.48,49.88,30.92,24.33,22.33,40.57,53.71,45.58,86.27.71,4.59,1.67,8.77,1.08,13.45-3.54-.27-6.97-.36-10.79-.35l-67.9.08c-1.55,0-2.44-1.6-2.58-2.78-.52-4.52-1.94-8.39-3.43-12.59-3.68-10.39-8.71-19.75-16.04-27.99h0Z"/><path style="fill:#c9a96e" d="M350.38,195.8c-6.42-1.59-10.95-1.77-17.7-2.63-14.92-1.9-51.26-1.56-65.97,1.6l-18.31,2.49c-1.7.23-2.98,1.04-3.92,1.92-6.33-.88-26.39,5.01-33,7.28l-19.29,6.63c-6.58,2.26-24.01,9.66-28.53,13.78-2.94.65-5.01,1.39-7.17,2.59-9.56,5.3-18.56,10.9-27.39,17.36l-7.4,4.47,5.74-5.99c48.92-43.67,114.81-65.66,180.13-66.15,15.94.49,31.05,2.15,46.64,4.8l25.22,5.96c29.29,6.92,65.87,26.48,90.02,44.7,4.44,3.35,8.65,6.6,12.65,10.4,4.52,4.28,6.97,4.67,6.49,5.91-.8,2.06-2.05-1.08-7.32-4.32l-20.49-12.59c-29.47-18.12-76.41-34.16-110.41-38.22h.01Z"/><path style="fill:#ffffff" d="M163.66,226.88c4.52-4.12,21.95-11.52,28.53-13.78l19.29-6.63c6.62-2.27,26.68-8.16,33-7.28,4.35,3.33,11.07,3.32,11.02,8.17-.17,16.53,3.66,44.31,7.58,60.53,4.66,19.34,14.59,46.94,26.54,62.67,1.1,1.45,1.52,3.47.52,5.24-23.85,42.47-69.73,58.13-116.55,58.17l-51.09.04H5.61c-2.11,0-3.6.15-5.4-.4L.18,11.69c0-2.09-.64-3.07.5-4.41h161.77c22.64.01,51.46,3.95,71.46,13.88,20.03,9.95,34.67,23.13,44.66,43.27,1.86,3.75,3.09,7.56,4.57,11.41,1,2.61.15,4.76-.99,7.03-4.63,9.19-8.64,18.28-12.29,27.9-5.92,15.63-11.17,39.63-12.66,56.29-.25,2.84-1.63,4.65-3.73,6.25-5.06,3.85-10.34,6.71-16.54,8.49-32.82,9.42-50.29,15.98-79.59,33.53-4.61,2.76-8.61,5.96-12.97,9.04-2.29,1.56-4.94,1.42-7.76,1.42l-53.52.06-.05,100.5c0,.94.66,1.58,1.57,1.58l70.91-.1c25.69-.04,53.28-9.56,59.1-37.32,2.96-14.12.34-32.74-8.6-44.37-10.02-13.04-27.31-17.65-42.37-19.26h0ZM83.32,73.46c-.32,3.47-.17,6.99-.17,11.08l-.08,80.79c0,1.21,1.08,1.67,2.07,1.67l62.44-.02c2.24,0,4.09-.05,5.8-.28.21.37.3,2.12,1.03,2.01,1.29-.21.92-1.72,1.16-2.26,12.71-.93,31.56-7.01,39.16-18.82,9.76-15.17,10.81-34.28,3.05-50.48s-24.35-22.57-40.06-23.87c1.65-2.66-4.83-1.87-7.18-1.87l-67.79.1c-.43,0,.28,2.2.56,1.93v.02Z"/><path style="fill:#c9a96e" d="M157.73,73.3c-2.78-.23-5.83.22-9.18.22l-65.22-.06c-.28.27-1-1.93-.56-1.93l67.79-.1c2.35,0,8.83-.8,7.18,1.87h0Z"/><path style="fill:#c9a96e" d="M155.58,166.46c-.24.53.13,2.05-1.16,2.26-.74.12-.82-1.64-1.03-2.01l2.19-.25Z"/></svg>';
-  var wmSvg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1986.94 159.1" style="fill:#ffffff;height:26px;width:auto;display:block"><polygon points="1376.17 156.14 1350.1 156.75 1276.8 52.22 1276.08 156.66 1247.51 156.72 1247.5 3.06 1274.1 2.99 1347.08 107.21 1348.09 2.89 1375.96 2.96 1376.17 156.14"/><path d="M87.85,75.58c20.55,5.94,31.77,22.13,30.44,42.49-1.24,19-16.64,35.73-38.17,37.44-26.39,2.1-52.67,1.05-80.08,1.3L0,2.84l73.09.13c18.89,2.78,35.74,13.35,38.15,32.26,2.78,17.92-4.46,33-23.39,40.35ZM63.3,67.07c13-.23,20.18-10.89,19.95-21.06s-7.74-20.09-19.59-20.19l-35.29-.3.31,42.16,34.62-.61ZM67.97,133.21c12.71-.17,21.41-9.88,21.61-21.43.52-29.5-39.34-22.87-60.75-23.47l-.16,45.44,39.31-.54Z"/><path d="M1652.53,157.13l-29.51-56.45-30.16-.58-.39,56.68-28.47-.28.02-153.7,71.37.73c25.88.27,44.27,22.02,43.3,47.12,1.04,19.73-8.69,35.77-26.84,44.63l32.78,60.91-32.1.93ZM1649.45,48.16c-1.58-13.44-10.72-21.84-23.44-21.86l-33.22-.05-.1,49.91,34.91-.32c14.56-.13,23.54-13.28,21.84-27.68Z"/><path d="M239.2,156.86l-29.94-56.19-30.19-.5-.37,56.47-28.22.04.07-153.8c23.99-.03,47.45-.58,70.75.7,26.6,1.46,43.77,21.81,43.93,47.15.12,19.58-8.86,36.14-27.51,44.39l32.79,61.05-31.32.7ZM236.07,49.9c-1.05-14.44-10.62-23.39-23.99-23.48l-32.97-.22-.09,50.16,34.54-.36c14.14-.15,23.57-11.5,22.51-26.11Z"/><path d="M491.33,116.86c-9.88,23.55-32.76,38.9-57.83,39.2l-64.88.77-.25-154,63.46.36c25.55.15,48.18,14.35,58.46,37.73s11.62,50.71,1.04,75.93ZM467.31,100.44c3.65-15.88,3.51-32.12-1.93-47.05-11.55-31.69-41.58-27.27-68.52-26.66l.08,105.92c29.57,1.45,62.55,1.9,70.38-32.22Z"/><path d="M640.24,98.7l-35.55-.46-.26-22.35,64.02-.04c2.59,42.01-10.87,75.08-53.9,82.14-33.88,5.56-66.67-9.76-79.58-42.61-8.19-20.85-8.72-44.16-2.15-65.51,11.27-36.59,47.05-55.89,84.07-48.19,25.78,5.36,46.42,23.94,49.71,50.78l-28.67-.1c-5.22-16.12-17.13-26.63-33.83-27.35-18.09-.78-33.39,8.43-40.8,25.21-8.16,18.49-8.4,40.8.2,59.15,7.98,17.02,24.02,26.5,42.32,24.66,18.39-1.85,32.83-13.66,34.42-35.34Z"/><path d="M1781.03,158.89c-32.32.28-58.09-18.41-67.49-47.92-6.16-19.32-6.55-40.02-1.1-59.65,9.78-35.24,43.57-55.88,79.5-50.37,24.04,3.68,43.83,17.83,53.36,40.73,11.42,27.44,10.54,59.65-4.42,85.66-12.08,21.01-34.82,31.35-59.85,31.56ZM1819.93,105.95c6.44-17.88,6.14-37.67-.75-54.37-6.91-16.74-21.44-26.64-38.16-26.52-16.25.11-30.76,8.74-37.74,24.96-7.82,18.17-7.89,39.67-.6,58.03,6.94,17.48,22.43,26.44,40.19,26.11,16.18-.3,30.68-10.49,37.06-28.2Z"/><path d="M1148.68,158.58c-37.71,3.96-70.06-18.78-77.71-55.1-3.53-16.76-3.49-33.99.69-50.68,8.16-32.55,36.88-53.44,70.39-52.71,28.69.62,53.1,16.85,63.73,43.5,9.14,22.92,8.97,48.19.59,71.44-9,24.99-30.57,40.7-57.69,43.55ZM1179.15,106.66c6.73-17.58,6.55-37.54-.2-54.39-6.7-16.74-21.16-27.15-37.88-27.25-16.71-.1-31.84,9.09-38.58,25.83-7.4,18.4-7.64,39.57-.01,57.8,7.04,16.84,21.9,25.66,38.59,25.57,16.82-.1,31.31-9.87,38.08-27.56Z"/><path d="M800.59,90.79l-68.48.11.2,42.59h74.17c.42,7.75.42,15.21-.06,23.28h-102.72s-.23-153.7-.23-153.7l102.62-.42.5,23.25-74.43.36v41s68.22.18,68.22.18l.22,23.36Z"/><path d="M934.75,107.11c6.61,18.09,21.51,27.2,39.28,27.16,18.01-.04,32.13-10.64,36.47-28.88l28.61.1c-4.14,32.39-29.48,50.87-59.18,53.23-35.71,2.84-66.79-17.66-75.51-52.96-4.71-19.06-4.06-39.12,2.02-58.06,11.35-35.34,46.57-53.32,82.51-46.12,26.79,5.36,47.78,25.01,49.75,53.28l-28.29-.09c-3.41-17.47-15.57-27.89-32.38-29.58-18.52-1.86-35.04,7.36-42.31,25.16s-7.72,38.29-.97,56.77Z"/><path d="M1484.75,155.61c-9.08,1.25-18.4,1.22-28.71.94l-.09-130.17-47.23-.4-.22-23.17,123.48-.03.22,23.18-47.62.41.16,129.24Z"/><path d="M1986.28,133.4c.84,7.29.87,15.55.13,23.42l-98.35-.02-.07-153.75,28.65-.04.19,130.26,69.44.14Z"/><rect x="237.82" y="65.46" width="153.97" height="28.69" transform="translate(234.87 394.58) rotate(-89.98)"/></svg>';
+  var monoSvg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" style="height:52px;width:auto;display:block;flex-shrink:0"><rect x="215" y="255" width="546.48" height="50.49" rx="10" fill="#B88A5E"/><rect x="215" y="255" width="50.49" height="463.32" rx="10" fill="#B88A5E"/><rect x="215" y="421.32" width="397.98" height="50.49" rx="10" fill="#B88A5E"/><rect x="612.98" y="421.32" width="50.49" height="297" rx="10" fill="#B88A5E"/><polygon points="232.91,471.39 262.73,430.65 627.89,697.95 598.07,738.69" fill="#B88A5E"/></svg>';
+  var wmSvg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1900 450" style="fill:#ffffff;height:28px;width:auto;display:block"><rect x="125" y="100" width="174.8" height="14" rx="3" fill="#B88A5E"/><rect x="125" y="100" width="14" height="130" rx="3" fill="#B88A5E"/><rect x="125" y="145" width="120" height="14" rx="3" fill="#B88A5E"/><rect x="245" y="145" width="14" height="85" rx="3" fill="#B88A5E"/><polygon points="130,159 140,145 250,222 240,236" fill="#B88A5E"/><rect x="288" y="108" width="2.5" height="122" rx="1.25" fill="rgba(255,255,255,0.3)"/><text x="308" y="200" font-family="Georgia,serif" font-size="90" letter-spacing="8" fill="rgba(255,255,255,0.85)">FORMA NOBRE</text></svg>';
 
   var lRows=(o.linhas||[]).map(function(l,i){
     var ptot=(+l.qtd||0)*(+l.pu||0);
@@ -1463,7 +1443,7 @@ function _gerarPDFInner(id,imgMap){
     '</tr>';
   }).join('');
 
-  var _r=function(l,v){return v?'<div style="margin-bottom:6px"><div style="font-size:7.5px;font-weight:700;letter-spacing:0.9px;text-transform:uppercase;color:#8B7355;margin-bottom:2px">'+l+'</div><div style="font-size:11px;color:#3A3A3A;line-height:1.3">'+v+'</div></div>':'';};
+  var _r=function(l,v){return v?'<div style="margin-bottom:6px"><div style="font-size:7.5px;font-weight:700;letter-spacing:0.9px;text-transform:uppercase;color:#6B4A2F;margin-bottom:2px">'+l+'</div><div style="font-size:11px;color:#3A3A3A;line-height:1.3">'+v+'</div></div>':'';};
   var empCol='<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 16px">'+_r('Empresa',_EMP.nome||_EMP.marca)+_r('NIF',_EMP.nif)+_r('Email',_EMP.email)+_r('NIB / IBAN',_EMP.nib)+_r('Website',_EMP.website)+_r('Capital Social',_EMP.capital)+_r('Telefone',_EMP.telefone)+'</div>';
   var cliCol='<div style="font-size:13px;font-weight:700;color:#2A2A2A;letter-spacing:-0.2px;margin-bottom:7px;word-break:break-word">'+(c.nome||'\u2014')+'</div>'+_r('Empresa',c.empresa)+_r('Email',c.email)+_r('Telef.',c.telefone)+_r('Pa\xeds',c.pais);
   var valStr=o.validade?new Date(o.validade+'T12:00:00').toLocaleDateString('pt-PT'):'';
@@ -1471,7 +1451,7 @@ function _gerarPDFInner(id,imgMap){
 
 
   var tcHtml='';
-  var _tcItem=function(label,txt){return '<div><div style="font-size:8px;font-weight:700;letter-spacing:0.9px;text-transform:uppercase;color:#8B7355;margin-bottom:3px">'+label+'</div><p style="font-size:11px;color:#3A3A3A;margin-top:0;line-height:1.55">'+txt+'</p></div>';};
+  var _tcItem=function(label,txt){return '<div><div style="font-size:8px;font-weight:700;letter-spacing:0.9px;text-transform:uppercase;color:#6B4A2F;margin-bottom:3px">'+label+'</div><p style="font-size:11px;color:#3A3A3A;margin-top:0;line-height:1.55">'+txt+'</p></div>';};
   if(o.tcPagamento)tcHtml+=_tcItem('Condições de Pagamento',o.tcPagamento);
   if(o.tcPrazo)tcHtml+=_tcItem('Prazo de Entrega',o.tcPrazo);
   if(o.tcTransporte)tcHtml+=_tcItem('Transporte &amp; Montagem',o.tcTransporte);
@@ -1482,15 +1462,15 @@ function _gerarPDFInner(id,imgMap){
   var html='<!DOCTYPE html><html lang="pt"><head><meta charset="UTF-8"><title>Or\xe7amento '+( o.numProjeto||'')+' — '+(c.nome||'')+'</title>'+
   '<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">'+
   '<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:\'Inter\',sans-serif;background:#F5F3F0;color:#3A3A3A;-webkit-print-color-adjust:exact;print-color-adjust:exact}.no-print{display:flex;gap:12px;justify-content:center;padding:18px;background:#F5F3F0;border-bottom:1px solid #ddd}.btn-p{padding:10px 24px;border-radius:5px;font-size:14px;font-weight:600;cursor:pointer;border:none;font-family:\'Inter\',sans-serif}.doc{background:#fff;max-width:1050px;margin:0 auto;box-shadow:0 2px 20px rgba(0,0,0,0.1)}@media print{.no-print{display:none!important}body{background:#fff}.doc{box-shadow:none;max-width:100%}@page{size:A4 landscape;margin:12mm 14mm}}</style></head>'+
-  '<body><div class="no-print"><button class="btn-p" style="background:#8B7355;color:#fff" onclick="window.print()">&#128424;&#65039; Guardar / Imprimir PDF</button><button class="btn-p" style="background:#3A3A3A;color:#fff" onclick="window.close()">&#10005; Fechar</button></div>'+
+  '<body><div class="no-print"><button class="btn-p" style="background:#6B4A2F;color:#fff" onclick="window.print()">&#128424;&#65039; Guardar / Imprimir PDF</button><button class="btn-p" style="background:#3A3A3A;color:#fff" onclick="window.close()">&#10005; Fechar</button></div>'+
   '<div class="doc">'+
   '<div style="background:#3A3A3A;padding:24px 36px;display:flex;align-items:center;justify-content:space-between">'+
   '<div style="display:flex;align-items:center;gap:18px">'+monoSvg+'<div style="border-left:1px solid rgba(255,255,255,0.15);padding-left:18px">'+wmSvg+'</div></div>'+
-  '<div style="text-align:right"><div style="font-family:\'Inter\',sans-serif;font-size:20px;font-weight:300;color:#ffffff;letter-spacing:6px;text-transform:uppercase">OR\xc7AMENTO</div><div style="font-family:\'Inter\',sans-serif;font-size:12px;color:#8B7355;margin-top:8px;font-weight:500;letter-spacing:2.5px">'+(o.numProjeto||'')+'</div></div></div>'+
-  '<div style="display:grid;grid-template-columns:3.2fr 2.5fr 1.8fr;border-bottom:2px solid #8B7355">'+
-  '<div style="padding:14px 20px;border-right:1px solid #f0ede8"><div style="font-size:9.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#8B7355;margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid #e8e0d4">Emitido Por</div>'+empCol+'</div>'+
-  '<div style="padding:14px 20px;border-right:1px solid #f0ede8"><div style="font-size:9.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#8B7355;margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid #e8e0d4">Cliente</div>'+cliCol+'</div>'+
-  '<div style="padding:14px 20px;background:#faf9f7"><div style="font-size:9.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#8B7355;margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid #e8e0d4">Projeto</div>'+projCol+'</div></div>'+
+  '<div style="text-align:right"><div style="font-family:\'Inter\',sans-serif;font-size:20px;font-weight:300;color:#ffffff;letter-spacing:6px;text-transform:uppercase">OR\xc7AMENTO</div><div style="font-family:\'Inter\',sans-serif;font-size:12px;color:#6B4A2F;margin-top:8px;font-weight:500;letter-spacing:2.5px">'+(o.numProjeto||'')+'</div></div></div>'+
+  '<div style="display:grid;grid-template-columns:3.2fr 2.5fr 1.8fr;border-bottom:2px solid #6B4A2F">'+
+  '<div style="padding:14px 20px;border-right:1px solid #f0ede8"><div style="font-size:9.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#6B4A2F;margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid #e8e0d4">Emitido Por</div>'+empCol+'</div>'+
+  '<div style="padding:14px 20px;border-right:1px solid #f0ede8"><div style="font-size:9.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#6B4A2F;margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid #e8e0d4">Cliente</div>'+cliCol+'</div>'+
+  '<div style="padding:14px 20px;background:#faf9f7"><div style="font-size:9.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#6B4A2F;margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid #e8e0d4">Projeto</div>'+projCol+'</div></div>'+
   '<div style="padding:22px 36px"><div style="font-family:\'Inter\',sans-serif;font-size:13px;font-weight:600;color:#3A3A3A;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #eee;letter-spacing:1.5px;text-transform:uppercase">Proposta</div>'+
   '<table style="width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed"><colgroup>'+
   '<col style="width:5%"><col style="width:13%"><col style="width:8%"><col style="width:9%">'+
@@ -1511,12 +1491,12 @@ function _gerarPDFInner(id,imgMap){
   '</tr></thead><tbody>'+lRows+'</tbody></table></div>'+
   '<div style="padding:0 36px 24px"><div style="background:#3A3A3A;border-radius:8px;padding:20px 28px;display:flex;justify-content:flex-end">'+
   '<table style="min-width:360px">'+
-  (mob&&(o.sumRet||o.sumMontVal)?'<tr><td style="padding:5px 12px;color:rgba(255,255,255,0.55);font-size:11px;text-transform:uppercase;letter-spacing:0.8px;font-weight:500;text-align:right">Mobili\xe1rio</td><td style="padding:5px 12px;color:#c9a96e;font-size:14px;text-align:right;font-weight:600">'+fmt(mob)+' €</td></tr>':'')+
-  (o.sumRet?'<tr><td style="padding:5px 12px;color:rgba(255,255,255,0.55);font-size:11px;text-transform:uppercase;letter-spacing:0.8px;font-weight:500;text-align:right">Retifica\xe7\xe3o de Medidas</td><td style="padding:5px 12px;color:#c9a96e;font-size:14px;text-align:right;font-weight:600">'+fmt(o.sumRet)+' €</td></tr>':'')+
-  (o.sumMontVal?'<tr><td style="padding:5px 12px;color:rgba(255,255,255,0.55);font-size:11px;text-transform:uppercase;letter-spacing:0.8px;font-weight:500;text-align:right">'+(o.sumMontagemDesc||'Montagem')+'</td><td style="padding:5px 12px;color:#c9a96e;font-size:14px;text-align:right;font-weight:600">'+fmt(o.sumMontVal)+' €</td></tr>':'')+
+  (mob&&(o.sumRet||o.sumMontVal)?'<tr><td style="padding:5px 12px;color:rgba(255,255,255,0.55);font-size:11px;text-transform:uppercase;letter-spacing:0.8px;font-weight:500;text-align:right">Mobili\xe1rio</td><td style="padding:5px 12px;color:#B88A5E;font-size:14px;text-align:right;font-weight:600">'+fmt(mob)+' €</td></tr>':'')+
+  (o.sumRet?'<tr><td style="padding:5px 12px;color:rgba(255,255,255,0.55);font-size:11px;text-transform:uppercase;letter-spacing:0.8px;font-weight:500;text-align:right">Retifica\xe7\xe3o de Medidas</td><td style="padding:5px 12px;color:#B88A5E;font-size:14px;text-align:right;font-weight:600">'+fmt(o.sumRet)+' €</td></tr>':'')+
+  (o.sumMontVal?'<tr><td style="padding:5px 12px;color:rgba(255,255,255,0.55);font-size:11px;text-transform:uppercase;letter-spacing:0.8px;font-weight:500;text-align:right">'+(o.sumMontagemDesc||'Montagem')+'</td><td style="padding:5px 12px;color:#B88A5E;font-size:14px;text-align:right;font-weight:600">'+fmt(o.sumMontVal)+' €</td></tr>':'')+
   (function(){var _iva=+(o.ivaTaxa||0);var _ivaV=grand*(_iva/100);var _tot=grand+_ivaV;
-    return '<tr style="border-top:1px solid rgba(255,255,255,0.15)"><td style="padding:8px 12px;color:rgba(255,255,255,0.65);font-size:11px;text-transform:uppercase;letter-spacing:0.8px;font-weight:600;text-align:right">Total s/ IVA</td><td style="padding:8px 12px;color:#c9a96e;font-size:18px;text-align:right;font-weight:700;letter-spacing:-0.3px">'+fmt(grand)+' €</td></tr>'+
-    (_iva?'<tr><td style="padding:5px 12px;color:rgba(255,255,255,0.45);font-size:11px;text-transform:uppercase;letter-spacing:0.8px;font-weight:500;text-align:right">IVA '+_iva+'%</td><td style="padding:5px 12px;color:rgba(255,255,255,0.55);font-size:14px;text-align:right;font-weight:500">'+fmt(_ivaV)+' €</td></tr><tr style="border-top:1px solid rgba(201,169,110,0.3)"><td style="padding:10px 12px;color:#fff;font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:700;text-align:right">Total com IVA</td><td style="padding:10px 12px;color:#c9a96e;font-size:22px;text-align:right;font-weight:700;letter-spacing:-0.4px">'+fmt(_tot)+' €</td></tr>':'');})() +
+    return '<tr style="border-top:1px solid rgba(255,255,255,0.15)"><td style="padding:8px 12px;color:rgba(255,255,255,0.65);font-size:11px;text-transform:uppercase;letter-spacing:0.8px;font-weight:600;text-align:right">Total s/ IVA</td><td style="padding:8px 12px;color:#B88A5E;font-size:18px;text-align:right;font-weight:700;letter-spacing:-0.3px">'+fmt(grand)+' €</td></tr>'+
+    (_iva?'<tr><td style="padding:5px 12px;color:rgba(255,255,255,0.45);font-size:11px;text-transform:uppercase;letter-spacing:0.8px;font-weight:500;text-align:right">IVA '+_iva+'%</td><td style="padding:5px 12px;color:rgba(255,255,255,0.55);font-size:14px;text-align:right;font-weight:500">'+fmt(_ivaV)+' €</td></tr><tr style="border-top:1px solid rgba(201,169,110,0.3)"><td style="padding:10px 12px;color:#fff;font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:700;text-align:right">Total com IVA</td><td style="padding:10px 12px;color:#B88A5E;font-size:22px;text-align:right;font-weight:700;letter-spacing:-0.4px">'+fmt(_tot)+' €</td></tr>':'');})() +
   '</table></div>'+(o.tcTexto?'<p style="font-size:11px;color:#aaa;font-style:italic;margin-top:12px;padding-left:4px">'+o.tcTexto+'</p>':'')+'</div>'+
   (tcHtml?'<div style="padding:0 36px 28px;border-top:1px solid #f0ede8"><div style="font-family:\'Inter\',sans-serif;font-size:13px;font-weight:600;color:#3A3A3A;margin:18px 0 14px;padding-bottom:6px;border-bottom:1px solid #eee;letter-spacing:1.5px;text-transform:uppercase">Termos e Condi\xe7\xf5es</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">'+tcHtml+'</div></div>':'')+
   '<div style="background:#3A3A3A;padding:14px 36px;display:flex;justify-content:space-between;align-items:center"><div style="color:rgba(255,255,255,0.45);font-size:11px">arca-mobiliario.pt  ·  geral@arca-mobiliario.pt</div><div style="color:rgba(255,255,255,0.35);font-size:11px">'+hoje+'</div></div>'+
@@ -1607,24 +1587,151 @@ function exportarExcel(){
 function updateSB(){document.getElementById('sb-stats').textContent=db.clientes.length+' clientes \xb7 '+db.orcamentos.length+' or\xe7amentos';}
 
 function seedDemo(){
-  if((db.clientes.length||db.orcamentos.length)&&!confirm('Adicionar dados de demonstração?'))return;
-  // Seed empresa
-  _EMP.nome='Bridge Control, Lda.';_EMP.marca='Bridge Control';_EMP.nif='514 872 301';
-  _EMP.nib='PT50 0010 0000 1234 5678 9015 4';_EMP.capital='50.000,00 €';
-  _EMP.morada='Rua da Carpintaria, nº 12, Pavilhão 3';_EMP.cp='4590-123';
-  _EMP.localidade='Paços de Ferreira';_EMP.telefone='+351 255 123 456';
-  _EMP.email='geral@bridgecontrol.eu';_EMP.website='www.bridgecontrol.eu';saveEmp();
-  var cliId=uid();
-  db.clientes.push({id:cliId,nome:'Ricardo Monteiro',empresa:'Empatias — Hospitality Group',email:'r.monteiro@empatias.pt',telefone:'+351 912 345 678',pais:'Portugal',morada:'Av. da Liberdade, 110, Lisboa',notas:'Cliente VIP — Projeto hospitality Lisboa'});
-  var orcId=uid();
-  db.orcamentos.push({id:orcId,numProjeto:'BC2026.001',numRef:'REF-EM-001',clienteId:cliId,pais:'Portugal',villa:'Hotel Empatias Lisboa — Suite Master',data:'2026-05-28',validade:'2026-06-28',estado:'Enviado',notas:'',sumMob:325100,sumRet:700,sumMontagemDesc:'Montagem',sumMontVal:4800,transpIncluido:'incluido',transpVal:1200,montIncluida:'incluida',ivaTaxa:23,tcPagamento:'50% na adjudicação. 50% na entrega.',tcPrazo:'10 semanas a partir da aprovação da proposta.',tcTransporte:'Montagem e transporte incluídos no presente orçamento.',tcTecidos:'Tecidos e peles a cargo do cliente, salvo indicação em contrário.',tcGarantia:'Garantia de 2 anos sobre defeitos de fabrico, conforme legislação portuguesa em vigor.',tcTexto:'',criadoEm:Date.now(),
-  linhas:[
-    {ref:'R.M1',artigo:'Balcão R.M1',area:'Receção',img:'',descricao:'Balcão de receção em madeira de nogueira com tampo em mármore Calacatta',dimW:'2400',dimD:'600',dimH:'1100',qtd:'1',pu:'8500',cMetal:'',cMarmore:'1200',cMadeiras:'3200',cAcabamento:'600',cVidraceiro:'',cLed:'280',cMarinho:'',cEmbalagem:'320',pVenda:''},
-    {ref:'B.M1',artigo:'Estante B.M1',area:'Bar',img:'',descricao:'Estante de bar em madeira lacada branca com iluminação LED integrada e prateleiras em vidro temperado',dimW:'3600',dimD:'400',dimH:'2200',qtd:'1',pu:'12400',cMetal:'850',cMarmore:'',cMadeiras:'4100',cAcabamento:'900',cVidraceiro:'1400',cLed:'520',cMarinho:'',cEmbalagem:'480',pVenda:''},
-    {ref:'QD.M1',artigo:'Painel Cabeceira QD.M1',area:'Quartos',img:'',descricao:'Painel de cabeceira estofado em tecido bouclé bege com captonê e latão escovado',dimW:'1800',dimD:'80',dimH:'1200',qtd:'12',pu:'2900',cMetal:'340',cMarmore:'',cMadeiras:'380',cAcabamento:'260',cVidraceiro:'',cLed:'',cMarinho:'',cEmbalagem:'180',pVenda:''}
-  ]});
-  db._no=(db._no||1)+1;
-  save();updateSB();nav('orcamentos');
+  if((db.clientes.length||db.orcamentos.length)&&!confirm('Carregar dados de demonstração? Os dados existentes serão substituídos.'))return;
+
+  // Reset
+  db={clientes:[],orcamentos:[],_no:1};
+
+  // Empresa
+  _EMP.nome='Forma Nobre, Lda.';_EMP.marca='Forma Nobre';_EMP.nif='514 872 301';
+  _EMP.nib='PT50 0033 0000 4567 8901 2345 6';_EMP.capital='75.000,00 €';
+  _EMP.morada='Rua do Mobiliário, nº 8, Nave Industrial B';_EMP.cp='3800-245';
+  _EMP.localidade='Aveiro';_EMP.telefone='+351 234 567 890';
+  _EMP.email='geral@formanobre.pt';_EMP.website='www.formanobre.pt';saveEmp();
+
+  // Clientes
+  var c1=uid(),c2=uid(),c3=uid(),c4=uid();
+  db.clientes=[
+    {id:c1,nome:'Ricardo Monteiro',empresa:'Empatias — Hospitality Group',email:'r.monteiro@empatias.pt',telefone:'+351 912 345 678',pais:'Portugal',morada:'Av. da Liberdade, 110, Lisboa',notas:'Cliente VIP — Projetos hospitality Lisboa e Algarve'},
+    {id:c2,nome:'Sophie Harrington',empresa:'Harrington Interiors',email:'sophie@harringtoninteriors.co.uk',telefone:'+44 7700 900 123',pais:'Reino Unido',morada:'14 Kensington Gardens, London W8',notas:'Arquiteta de interiores — projetos residenciais premium'},
+    {id:c3,nome:'António Ferreira',empresa:'Herdade dos Pinheiros',email:'geral@herdadedospinheiros.pt',telefone:'+351 265 987 654',pais:'Portugal',morada:'Herdade dos Pinheiros, Comporta 7580',notas:'Projeto de renovação completa do restaurante e bar'},
+    {id:c4,nome:'Carlo Benedetti',empresa:'',email:'carlo.benedetti@mail.it',telefone:'+39 055 123 456',pais:'Itália',morada:'Via dei Servi, 42, Firenze',notas:'Cliente particular — villa particular Toscana'}
+  ];
+
+  var now=Date.now();
+
+  // Orçamento 1 — Empatias Suite Master (Enviado)
+  var o1=uid();
+  db.orcamentos.push({id:o1,numProjeto:'BC2026.001',numRef:'EMP-LSB-001',clienteId:c1,pais:'Portugal',
+    villa:'Hotel Empatias Lisboa — Suites Master',data:'2026-04-15',validade:'2026-05-15',
+    estado:'Enviado',notas:'Urgente — abertura prevista para setembro 2026',
+    sumMob:0,sumRet:650,montIncluida:'incluida',sumMontVal:3200,
+    montDias:4,montPessoas:2,montCustoH:18,montMargem:25,
+    transpIncluido:'incluido',transpVal:980,transpCusto:800,transpMargem:22.5,
+    comissao:5,margemAjuste:0,ivaTaxa:23,
+    tcPagamento:'50% na adjudicação. 50% na entrega.',
+    tcPrazo:'12 semanas a partir da aprovação da proposta.',
+    tcTransporte:'Montagem e transporte incluídos no presente orçamento.',
+    tcTecidos:'Tecidos e peles a cargo do cliente, salvo indicação em contrário.',
+    tcGarantia:'Garantia de 2 anos sobre defeitos de fabrico, conforme legislação portuguesa em vigor.',
+    tcTexto:'',criadoEm:now-7*86400000,
+    linhas:[
+      {ref:'SM.01',artigo:'Cabeceira King Size SM.01',area:'Suite Master',img:'',descricao:'Cabeceira estofada em tecido bouclé bege com captonê. Estrutura em MDF lacado branco mate. Latão escovado nos detalhes.',dimW:'2000',dimD:'80',dimH:'1400',qtd:'4',pu:'2850',pCusto:'1520'},
+      {ref:'SM.02',artigo:'Mesa de Cabeceira SM.02',area:'Suite Master',img:'',descricao:'Mesa de cabeceira em nogueira natural com tampo em mármore Calacatta. Pé em latão escovado.',dimW:'550',dimD:'420',dimH:'480',qtd:'8',pu:'1240',pCusto:'680'},
+      {ref:'SM.03',artigo:'Roupeiro Suite SM.03',area:'Suite Master',img:'',descricao:'Roupeiro embutido 4 portas deslizantes em nogueira com espelho interior. Interior forrado a tecido.',dimW:'2400',dimD:'650',dimH:'2200',qtd:'4',pu:'6800',pCusto:'3900'},
+      {ref:'SM.04',artigo:'Escrivaninha SM.04',area:'Suite Master',img:'',descricao:'Mesa de trabalho em MDF lacado cinza antracite com tampo em vidro temperado extra-claro.',dimW:'1400',dimD:'700',dimH:'760',qtd:'4',pu:'1680',pCusto:'920'}
+    ]});
+
+  // Orçamento 2 — Harrington Kensington (Aprovado)
+  var o2=uid();
+  db.orcamentos.push({id:o2,numProjeto:'BC2026.002',numRef:'HAR-KEN-001',clienteId:c2,pais:'Reino Unido',
+    villa:'Kensington Residence — Sala e Escritório',data:'2026-03-22',validade:'2026-04-22',
+    estado:'Aprovado',notas:'Aprovado com alteração na cor do lacado — confirmado cinza Pierre.',
+    sumMob:0,sumRet:0,montIncluida:'nao-incluida',sumMontVal:0,
+    transpIncluido:'nao-incluido',transpVal:0,
+    comissao:8,margemAjuste:2,ivaTaxa:0,
+    tcPagamento:'40% na adjudicação. 60% na entrega.',
+    tcPrazo:'10 semanas a partir da aprovação dos desenhos.',
+    tcTransporte:'Transporte e montagem não incluídos no presente orçamento.',
+    tcTecidos:'Tecidos a cargo do cliente.',
+    tcGarantia:'Garantia de 2 anos sobre defeitos de fabrico.',
+    tcTexto:'',criadoEm:now-21*86400000,
+    linhas:[
+      {ref:'KS.01',artigo:'Biblioteca KS.01',area:'Sala',img:'',descricao:'Biblioteca modular floor-to-ceiling em carvalho envelhecido. Escadas deslizantes em latão escovado. 6 módulos ajustáveis.',dimW:'4800',dimD:'400',dimH:'3200',qtd:'1',pu:'18500',pCusto:'10200'},
+      {ref:'KS.02',artigo:'Mesa de Jantar KS.02',area:'Sala de Jantar',img:'',descricao:'Mesa de jantar 12 lugares em nogueira maciça com tampo monobloco. Base em V invertido em aço preto.',dimW:'3600',dimD:'1100',dimH:'760',qtd:'1',pu:'9800',pCusto:'5400'},
+      {ref:'KS.03',artigo:'Consola Entrada KS.03',area:'Hall',img:'',descricao:'Consola em lacado branco brilho alto com tampo em mármore Nero Marquina. Pés em latão polido.',dimW:'1600',dimD:'380',dimH:'900',qtd:'1',pu:'3200',pCusto:'1750'}
+    ]});
+
+  // Orçamento 3 — Herdade Restaurante (Rascunho)
+  var o3=uid();
+  db.orcamentos.push({id:o3,numProjeto:'BC2026.003',numRef:'HDP-RST-001',clienteId:c3,pais:'Portugal',
+    villa:'Restaurante Principal — Remodelação Completa',data:'2026-05-10',validade:'2026-06-10',
+    estado:'Rascunho',notas:'Aguarda visita à obra e confirmação de medidas finais.',
+    sumMob:0,sumRet:1200,montIncluida:'incluida',sumMontVal:5500,
+    montDias:5,montPessoas:3,montCustoH:16,montMargem:20,
+    transpIncluido:'incluido',transpVal:1400,transpCusto:1100,transpMargem:27.3,
+    comissao:0,margemAjuste:0,ivaTaxa:23,
+    tcPagamento:'30% na adjudicação. 40% no início do fabrico. 30% na entrega.',
+    tcPrazo:'14 semanas a partir da aprovação e receção de sinal.',
+    tcTransporte:'Montagem e transporte incluídos.',
+    tcTecidos:'Estofos a cargo do cliente. Tecidos indicados em anexo.',
+    tcGarantia:'Garantia de 2 anos sobre defeitos de fabrico.',
+    tcTexto:'Preços sujeitos a revisão após confirmação de medidas.',criadoEm:now-3*86400000,
+    linhas:[
+      {ref:'RS.01',artigo:'Bancada Bar RS.01',area:'Bar',img:'',descricao:'Bancada de bar em MDF lacado preto com frente em ripado de carvalho. Tampo em quartzite cinza 3cm.',dimW:'5200',dimD:'650',dimH:'1100',qtd:'1',pu:'12400',pCusto:'7100'},
+      {ref:'RS.02',artigo:'Mesa Restaurante RS.02',area:'Sala',img:'',descricao:'Mesa redonda 4 lugares em carvalho natural com tampo em cerâmica Dekton. Base central em ferro forjado.',dimW:'1200',dimD:'1200',dimH:'760',qtd:'12',pu:'1850',pCusto:'1050'},
+      {ref:'RS.03',artigo:'Aparador RS.03',area:'Sala',img:'',descricao:'Aparador lateral com portas em malha de latão dourado. Interior com prateleiras em vidro temperado.',dimW:'1800',dimD:'450',dimH:'950',qtd:'3',pu:'4200',pCusto:'2400'}
+    ]});
+
+  // Orçamento 4 — Benedetti Villa (Aprovado)
+  var o4=uid();
+  db.orcamentos.push({id:o4,numProjeto:'BC2026.004',numRef:'BEN-TOS-001',clienteId:c4,pais:'Itália',
+    villa:'Villa Toscana — Quarto Principal',data:'2026-02-18',validade:'2026-03-18',
+    estado:'Aprovado',notas:'Entrega prevista julho 2026. Transporte próprio pelo cliente.',
+    sumMob:0,sumRet:0,montIncluida:'nao-incluida',sumMontVal:0,
+    transpIncluido:'nao-incluido',transpVal:0,
+    comissao:10,margemAjuste:5,ivaTaxa:0,
+    tcPagamento:'50% na adjudicação. 50% na entrega.',
+    tcPrazo:'16 semanas a partir da aprovação.',
+    tcTransporte:'Transporte e montagem não incluídos. Entrega em fábrica.',
+    tcTecidos:'Tecidos e peles a definir com o cliente.',
+    tcGarantia:'Garantia de 2 anos sobre defeitos de fabrico.',
+    tcTexto:'',criadoEm:now-45*86400000,
+    linhas:[
+      {ref:'BV.01',artigo:'Cama King BV.01',area:'Quarto Principal',img:'',descricao:'Estrutura de cama King Size em nogueira maciça escovada. Cabeceira estofada em veludo verde musgo com capitonê manual.',dimW:'2100',dimD:'2300',dimH:'1200',qtd:'1',pu:'14800',pCusto:'8200'},
+      {ref:'BV.02',artigo:'Cómoda BV.02',area:'Quarto Principal',img:'',descricao:'Cómoda 6 gavetas em nogueira com puxadores em latão envelhecido. Tampo em mármore verde Guatemala.',dimW:'1400',dimD:'500',dimH:'900',qtd:'1',pu:'6200',pCusto:'3400'},
+      {ref:'BV.03',artigo:'Chaise Longue BV.03',area:'Quarto Principal',img:'',descricao:'Chaise longue em carvalho lacado preto com estofado em pele natural couro havana. Pés em latão polido.',dimW:'1800',dimD:'700',dimH:'850',qtd:'1',pu:'5400',pCusto:'2900'}
+    ]});
+
+  // Orçamento 5 — Empatias Hall (Enviado)
+  var o5=uid();
+  db.orcamentos.push({id:o5,numProjeto:'BC2026.005',numRef:'EMP-LSB-002',clienteId:c1,pais:'Portugal',
+    villa:'Hotel Empatias Lisboa — Hall de Entrada e Receção',data:'2026-05-20',validade:'2026-06-20',
+    estado:'Enviado',notas:'Segunda fase do projeto. Orçamento complementar ao BC2026.001.',
+    sumMob:0,sumRet:850,montIncluida:'incluida',sumMontVal:4800,
+    montDias:6,montPessoas:2,montCustoH:18,montMargem:25,
+    transpIncluido:'incluido',transpVal:1200,transpCusto:950,transpMargem:26.3,
+    comissao:5,margemAjuste:0,ivaTaxa:23,
+    tcPagamento:'50% na adjudicação. 50% na entrega.',
+    tcPrazo:'14 semanas a partir da aprovação da proposta.',
+    tcTransporte:'Montagem e transporte incluídos.',
+    tcTecidos:'Tecidos a cargo do cliente.',
+    tcGarantia:'Garantia de 2 anos sobre defeitos de fabrico.',
+    tcTexto:'',criadoEm:now-1*86400000,
+    linhas:[
+      {ref:'HL.01',artigo:'Balcão Receção HL.01',area:'Hall',img:'',descricao:'Balcão de receção em MDF lacado branco com frente em ripado de carvalho natural. Tampo em mármore Calacatta Gold 2cm. LED integrado.',dimW:'3200',dimD:'700',dimH:'1100',qtd:'1',pu:'16500',pCusto:'9200'},
+      {ref:'HL.02',artigo:'Painel Decorativo HL.02',area:'Hall',img:'',descricao:'Painel ripado vertical em carvalho natural envernizado. Retroiluminação LED quente integrada. Montagem em calhas invisíveis.',dimW:'4000',dimD:'80',dimH:'3200',qtd:'2',pu:'8400',pCusto:'4800'}
+    ]});
+
+  // Orçamento 6 — Harrington Escritório (Cancelado)
+  var o6=uid();
+  db.orcamentos.push({id:o6,numProjeto:'BC2026.006',numRef:'HAR-LON-002',clienteId:c2,pais:'Reino Unido',
+    villa:'London Office — Remodelação',data:'2026-01-30',validade:'2026-03-01',
+    estado:'Cancelado',notas:'Cliente cancelou por mudança de arquiteto. Possível retoma em 2027.',
+    sumMob:0,sumRet:0,montIncluida:'nao-incluida',sumMontVal:0,
+    transpIncluido:'nao-incluido',transpVal:0,
+    comissao:8,margemAjuste:0,ivaTaxa:0,
+    tcPagamento:'40% na adjudicação. 60% na entrega.',
+    tcPrazo:'8 semanas a partir da aprovação.',
+    tcTransporte:'Não incluído.',tcTecidos:'',tcGarantia:'Garantia de 2 anos.',tcTexto:'',
+    criadoEm:now-90*86400000,
+    linhas:[
+      {ref:'LO.01',artigo:'Mesa Reuniões LO.01',area:'Sala Reuniões',img:'',descricao:'Mesa de reuniões 10 lugares em MDF lacado cinza chumbo com tampo em vidro temperado canelado.',dimW:'3000',dimD:'1200',dimH:'760',qtd:'1',pu:'7200',pCusto:'4100'}
+    ]});
+
+  db._no=7;
+  save();updateSB();nav('dashboard');
+  alert('✓ Dados demo Forma Nobre carregados!\n\n• 4 clientes\n• 6 orçamentos\n• Empresa pré-configurada');
 }
 
 /* ── BASE DE DADOS PAGE ────────────────────────────── */
@@ -1642,7 +1749,7 @@ function renderDados(){
   document.getElementById('db-tbody-orc').innerHTML=db.orcamentos.map(function(o){
     var transp=o.transpIncluido?({incluido:'✓ Incluído','nao-incluido':'✗ Não incl.'}[o.transpIncluido]||'—'):'—';
     var mont=o.montIncluida?({incluida:'✓ Incluída','nao-incluida':'✗ Não incl.'}[o.montIncluida]||'—'):'—';
-    return '<tr><td><strong>'+(o.numProjeto||'—')+'</strong></td><td>'+getCliNome(o.clienteId)+'</td><td>'+(o.pais||'—')+'</td><td>'+(o.villa||'—')+'</td><td>'+(o.data||'—')+'</td><td>'+badge(o.estado)+'</td><td style="text-align:center">'+(o.linhas||[]).length+'</td><td style="font-weight:600;color:#8B7355">'+fmt(getGrandTotal(o))+' €</td><td>'+transp+'</td><td>'+mont+'</td></tr>';
+    return '<tr><td><strong>'+(o.numProjeto||'—')+'</strong></td><td>'+getCliNome(o.clienteId)+'</td><td>'+(o.pais||'—')+'</td><td>'+(o.villa||'—')+'</td><td>'+(o.data||'—')+'</td><td>'+badge(o.estado)+'</td><td style="text-align:center">'+(o.linhas||[]).length+'</td><td style="font-weight:600;color:#6B4A2F">'+fmt(getGrandTotal(o))+' €</td><td>'+transp+'</td><td>'+mont+'</td></tr>';
   }).join('')||'<tr><td colspan="10" style="text-align:center;color:#ccc;padding:16px">Sem orçamentos</td></tr>';
 }
 function limparDB(){if(!confirm('Apagar TODOS os dados? Esta ação não pode ser desfeita.'))return;db={clientes:[],orcamentos:[],_no:1};save();renderDados();updateSB();}
@@ -1650,7 +1757,7 @@ function limparDB(){if(!confirm('Apagar TODOS os dados? Esta ação não pode se
 /* ── CALCULADORA DE CUSTO ───────────────────────────── */
 var _PR_KEY='bc-precos';
 var _EMP_KEY='bc-empresa';
-var _EMP={nome:'Bridge Control, Lda.',marca:'Bridge Control',nif:'514 872 301',nib:'PT50 0010 0000 1234 5678 9015 4',capital:'50.000,00 €',morada:'Rua da Carpintaria, nº 12, Pav. 3',cp:'4590-123',localidade:'Paços de Ferreira',telefone:'+351 255 123 456',email:'geral@bridgecontrol.eu',website:'www.bridgecontrol.eu',obs:'',logo:''};
+var _EMP={nome:'Forma Nobre, Lda.',marca:'Forma Nobre',nif:'514 872 301',nib:'PT50 0010 0000 1234 5678 9015 4',capital:'50.000,00 €',morada:'Rua da Carpintaria, nº 12, Pav. 3',cp:'4590-123',localidade:'Paços de Ferreira',telefone:'+351 255 123 456',email:'geral@formanobre.pt',website:'www.formanobre.pt',obs:'',logo:''};
 var _PR_CATS_KEY='bc-precos-cats';
 var _DESC_LIB_KEY='bc-desc-lib';
 var _DESC_LIB=[];
@@ -1761,7 +1868,7 @@ function loadPR(){
   try{var s=localStorage.getItem(_PR_KEY);if(s){var p=JSON.parse(s);Object.keys(_PR_DEFAULTS).forEach(function(k){if(p[k]&&(!Array.isArray(p[k])||p[k].length>=_PR_DEFAULTS[k].length))_PR[k]=p[k];});}}
   catch(e){}
 }
-function savePR(){localStorage.setItem(_PR_KEY,JSON.stringify(_PR));sbSync();}
+function savePR(){localStorage.setItem(_PR_KEY,JSON.stringify(_PR));}
 function loadPRCats(){
   try{var s=localStorage.getItem(_PR_CATS_KEY);if(s){var cats=JSON.parse(s);cats.forEach(function(c){if(!_PR_CATS.find(function(x){return x.key===c.key;})){_PR_CATS.push(c);if(!_PR[c.key])_PR[c.key]=[];}});}}
   catch(e){}
@@ -1828,7 +1935,7 @@ function descLibAddManual(){
 function loadEmp(){
   try{var s=localStorage.getItem(_EMP_KEY);if(s){var e=JSON.parse(s);Object.keys(_EMP).forEach(function(k){if(e[k]!==undefined)_EMP[k]=e[k];});}}catch(e){}
 }
-function saveEmp(){localStorage.setItem(_EMP_KEY,JSON.stringify(_EMP));sbSync();}
+function saveEmp(){localStorage.setItem(_EMP_KEY,JSON.stringify(_EMP));}
 function saveEmpField(f,v){_EMP[f]=v;saveEmp();var m=document.getElementById('emp-saved-msg');if(m){m.style.display='inline';clearTimeout(m._t);m._t=setTimeout(function(){m.style.display='none';},2000);}}
 function empLogoUpload(inp){
   if(!inp.files||!inp.files[0])return;
@@ -1868,7 +1975,7 @@ function renderSubcontPage(){_CP='sc';_renderCalcInto('page-subcont','Calculador
 function _renderFCPageInto(pageId){
   var p=document.getElementById(pageId);if(!p)return;
   function sec(label,id,cols,w,tblId){
-    return '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8B7355;margin-bottom:6px">'+label+' <span id="fc-sub-'+id+'-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
+    return '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6B4A2F;margin-bottom:6px">'+label+' <span id="fc-sub-'+id+'-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
       '<div style="overflow-x:auto;margin-bottom:6px"><table style="border-collapse:collapse;width:100%;min-width:'+(w||'600px')+';table-layout:fixed;font-size:11px" id="fc-'+tblId+'-tbl">'+
       cols+'<tbody id="fc-'+tblId+'-body"></tbody></table></div>';
   }
@@ -1907,20 +2014,20 @@ function _renderFCPageInto(pageId){
               '<label style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.4px">Descrição</label>'+
               '<button type="button" onclick="openDescLib(\'fc-desc\')" class="btn btn-outline btn-sm" style="font-size:11px;padding:3px 10px">📋 Biblioteca de Modelos</button>'+
             '</div>'+
-            '<textarea id="fc-desc" placeholder="Descrição detalhada do artigo/trabalho..." style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;resize:vertical;line-height:1.5;color:#3A3A3A;height:93px;min-height:60px;max-width:100%" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'"></textarea>'+
+            '<textarea id="fc-desc" placeholder="Descrição detalhada do artigo/trabalho..." style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;resize:vertical;line-height:1.5;color:#3A3A3A;height:93px;min-height:60px;max-width:100%" onfocus="this.style.borderColor=\'#6B4A2F\'" onblur="this.style.borderColor=\'#ddd\'"></textarea>'+
           '</div>'+
           '<div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0;padding-top:22px">'+
             '<div style="display:flex;align-items:center;gap:6px">'+
               '<label style="font-size:10px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.5px;width:10px;text-align:center">C</label>'+
-              '<input type="number" step="0.01" id="fc-dim-c" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
+              '<input type="number" step="0.01" id="fc-dim-c" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#6B4A2F\'" onblur="this.style.borderColor=\'#ddd\'">'+
             '</div>'+
             '<div style="display:flex;align-items:center;gap:6px">'+
               '<label style="font-size:10px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.5px;width:10px;text-align:center">L</label>'+
-              '<input type="number" step="0.01" id="fc-dim-l" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
+              '<input type="number" step="0.01" id="fc-dim-l" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#6B4A2F\'" onblur="this.style.borderColor=\'#ddd\'">'+
             '</div>'+
             '<div style="display:flex;align-items:center;gap:6px">'+
               '<label style="font-size:10px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.5px;width:10px;text-align:center">A</label>'+
-              '<input type="number" step="0.01" id="fc-dim-a" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
+              '<input type="number" step="0.01" id="fc-dim-a" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#6B4A2F\'" onblur="this.style.borderColor=\'#ddd\'">'+
             '</div>'+
           '</div>'+
         '</div>'+
@@ -1991,11 +2098,11 @@ function _renderFCPageInto(pageId){
     '<button class="btn btn-outline btn-sm" onclick="fcAddFCRow(&apos;ocomp&apos;)" style="margin-bottom:16px">+ Linha Componente</button>'+
 
     /* ── Outros Custos ── */
-    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8B7355;margin:16px 0 10px;padding-top:16px;border-top:1px solid #eee">Outros Custos</div>'+
+    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6B4A2F;margin:16px 0 10px;padding-top:16px;border-top:1px solid #eee">Outros Custos</div>'+
     '<div class="form-grid" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr));margin-bottom:16px">'+
-      '<div class="form-group"><label style="color:#8B7355;letter-spacing:1px;font-weight:700">Embalagem €</label><input type="number" id="fc-emb" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
-      '<div class="form-group"><label style="color:#8B7355;letter-spacing:1px;font-weight:700">Gab. Técnico €</label><input type="number" id="fc-gab" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
-      '<div class="form-group"><label style="color:#8B7355;letter-spacing:1px;font-weight:700">Custos Fixos €</label><input type="number" id="fc-fixos" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
+      '<div class="form-group"><label style="color:#6B4A2F;letter-spacing:1px;font-weight:700">Embalagem €</label><input type="number" id="fc-emb" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
+      '<div class="form-group"><label style="color:#6B4A2F;letter-spacing:1px;font-weight:700">Gab. Técnico €</label><input type="number" id="fc-gab" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
+      '<div class="form-group"><label style="color:#6B4A2F;letter-spacing:1px;font-weight:700">Custos Fixos €</label><input type="number" id="fc-fixos" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
     '</div>'+
     '<div class="card" style="background:#3A3A3A;color:#fff" id="fc-resumo"></div>';
 
@@ -2144,100 +2251,100 @@ function _renderCalcInto(pageId,title){
               '<label style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.4px">Descrição</label>'+
               '<button type="button" onclick="openDescLib(\''+px+'-desc\')" class="btn btn-outline btn-sm" style="font-size:11px;padding:3px 10px">📋 Biblioteca de Modelos</button>'+
             '</div>'+
-            '<textarea id="'+px+'-desc" placeholder="Descrição detalhada do artigo/trabalho..." style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;resize:vertical;line-height:1.5;color:#3A3A3A;height:93px;min-height:60px;max-width:100%" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'"></textarea>'+
+            '<textarea id="'+px+'-desc" placeholder="Descrição detalhada do artigo/trabalho..." style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;resize:vertical;line-height:1.5;color:#3A3A3A;height:93px;min-height:60px;max-width:100%" onfocus="this.style.borderColor=\'#6B4A2F\'" onblur="this.style.borderColor=\'#ddd\'"></textarea>'+
           '</div>'+
           '<div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0;padding-top:22px">'+
             '<div style="display:flex;align-items:center;gap:6px">'+
               '<label style="font-size:10px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.5px;width:10px;text-align:center">C</label>'+
-              '<input type="number" step="0.01" id="'+px+'-dim-c" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
+              '<input type="number" step="0.01" id="'+px+'-dim-c" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#6B4A2F\'" onblur="this.style.borderColor=\'#ddd\'">'+
             '</div>'+
             '<div style="display:flex;align-items:center;gap:6px">'+
               '<label style="font-size:10px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.5px;width:10px;text-align:center">L</label>'+
-              '<input type="number" step="0.01" id="'+px+'-dim-l" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
+              '<input type="number" step="0.01" id="'+px+'-dim-l" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#6B4A2F\'" onblur="this.style.borderColor=\'#ddd\'">'+
             '</div>'+
             '<div style="display:flex;align-items:center;gap:6px">'+
               '<label style="font-size:10px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.5px;width:10px;text-align:center">A</label>'+
-              '<input type="number" step="0.01" id="'+px+'-dim-a" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
+              '<input type="number" step="0.01" id="'+px+'-dim-a" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#6B4A2F\'" onblur="this.style.borderColor=\'#ddd\'">'+
             '</div>'+
           '</div>'+
         '</div>'+
       '</div>'+
     '</div>'+
-    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8B7355;margin-bottom:6px">Marcenaria <span id="'+px+'-sub-mdf-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
+    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6B4A2F;margin-bottom:6px">Marcenaria <span id="'+px+'-sub-mdf-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
     '<div style="overflow-x:auto;margin-bottom:6px"><table style="border-collapse:collapse;width:100%;min-width:600px;table-layout:fixed;font-size:11px" id="'+px+'-mdf-tbl">'+
       '<colgroup><col style="width:80px"><col><col style="width:100px"><col style="width:100px"><col style="width:34px"></colgroup>'+
       _calcTH(['Qtd','Descrição','€/uni','Total €',''])+
       '<tbody id="'+px+'-mdf-body"></tbody>'+
     '</table></div>'+
     '<button class="btn btn-outline btn-sm" onclick="fcAddRow(\'mdf\')" style="margin-bottom:16px">+ Linha Marcenaria</button>'+
-    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8B7355;margin-bottom:6px">Acabamento <span id="'+px+'-sub-mad-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
+    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6B4A2F;margin-bottom:6px">Acabamento <span id="'+px+'-sub-mad-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
     '<div style="overflow-x:auto;margin-bottom:6px"><table style="border-collapse:collapse;width:100%;min-width:600px;table-layout:fixed;font-size:11px" id="'+px+'-mad-tbl">'+
       '<colgroup><col style="width:80px"><col><col style="width:100px"><col style="width:100px"><col style="width:34px"></colgroup>'+
       _calcTH(['Qtd','Acabamento','€/uni','Total €',''])+
       '<tbody id="'+px+'-mad-body"></tbody>'+
     '</table></div>'+
     '<button class="btn btn-outline btn-sm" onclick="fcAddRow(\'mad\')" style="margin-bottom:16px">+ Linha Acabamento</button>'+
-    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8B7355;margin-bottom:6px">Iluminação <span id="'+px+'-sub-op-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
+    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6B4A2F;margin-bottom:6px">Iluminação <span id="'+px+'-sub-op-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
     '<div style="overflow-x:auto;margin-bottom:6px"><table style="border-collapse:collapse;width:100%;min-width:600px;table-layout:fixed;font-size:11px" id="'+px+'-op-tbl">'+
       '<colgroup><col style="width:80px"><col><col style="width:100px"><col style="width:100px"><col style="width:34px"></colgroup>'+
       _calcTH(['Qtd','Descrição','€/uni','Total €',''])+
       '<tbody id="'+px+'-op-body"></tbody>'+
     '</table></div>'+
     '<button class="btn btn-outline btn-sm" onclick="fcAddRow(\'op\')" style="margin-bottom:16px">+ Linha Iluminação</button>'+
-    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8B7355;margin-bottom:6px">Vidros <span id="'+px+'-sub-vid-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
+    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6B4A2F;margin-bottom:6px">Vidros <span id="'+px+'-sub-vid-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
     '<div style="overflow-x:auto;margin-bottom:6px"><table style="border-collapse:collapse;width:100%;min-width:700px;table-layout:fixed;font-size:11px" id="'+px+'-vid-tbl">'+
       '<colgroup><col style="width:80px"><col style="width:100px"><col style="width:100px"><col><col style="width:100px"><col style="width:100px"><col style="width:100px"><col style="width:34px"></colgroup>'+
       _calcTH(['Qtd','C mm','L mm','Tipo','m²','€/m²','Total €',''])+
       '<tbody id="'+px+'-vid-body"></tbody>'+
     '</table></div>'+
     '<button class="btn btn-outline btn-sm" onclick="fcAddRow(\'vid\')" style="margin-bottom:16px">+ Linha Vidro</button>'+
-    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8B7355;margin-bottom:6px">Cerâmica · Mármore · Compósitos <span id="'+px+'-sub-cer-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
+    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6B4A2F;margin-bottom:6px">Cerâmica · Mármore · Compósitos <span id="'+px+'-sub-cer-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
     '<div style="overflow-x:auto;margin-bottom:6px"><table style="border-collapse:collapse;width:100%;min-width:700px;table-layout:fixed;font-size:11px" id="'+px+'-cer-tbl">'+
       '<colgroup><col style="width:80px"><col style="width:100px"><col style="width:100px"><col><col style="width:100px"><col style="width:100px"><col style="width:100px"><col style="width:34px"></colgroup>'+
       _calcTH(['Qtd','C mm','L mm','Descrição','m²','€/m²','Total €',''])+
       '<tbody id="'+px+'-cer-body"></tbody>'+
     '</table></div>'+
     '<button class="btn btn-outline btn-sm" onclick="fcAddRow(\'cer\')" style="margin-bottom:16px">+ Linha Cerâmica</button>'+
-    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8B7355;margin-bottom:6px">Espelhos <span id="'+px+'-sub-esp-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
+    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6B4A2F;margin-bottom:6px">Espelhos <span id="'+px+'-sub-esp-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
     '<div style="overflow-x:auto;margin-bottom:6px"><table style="border-collapse:collapse;width:100%;min-width:700px;table-layout:fixed;font-size:11px" id="'+px+'-esp-tbl">'+
       '<colgroup><col style="width:80px"><col style="width:100px"><col style="width:100px"><col><col style="width:100px"><col style="width:100px"><col style="width:100px"><col style="width:34px"></colgroup>'+
       _calcTH(['Qtd','C mm','L mm','Descrição','m²','€/m²','Total €',''])+
       '<tbody id="'+px+'-esp-body"></tbody>'+
     '</table></div>'+
     '<button class="btn btn-outline btn-sm" onclick="fcAddRow(\'esp\')" style="margin-bottom:16px">+ Linha Espelho</button>'+
-    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8B7355;margin-bottom:6px">Estofo <span id="'+px+'-sub-est-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
+    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6B4A2F;margin-bottom:6px">Estofo <span id="'+px+'-sub-est-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
     '<div style="overflow-x:auto;margin-bottom:6px"><table style="border-collapse:collapse;width:100%;min-width:600px;table-layout:fixed;font-size:11px" id="'+px+'-est-tbl">'+
       '<colgroup><col style="width:80px"><col><col style="width:100px"><col style="width:100px"><col style="width:34px"></colgroup>'+
       _calcTH(['Qtd','Descrição','€/uni','Total €',''])+
       '<tbody id="'+px+'-est-body"></tbody>'+
     '</table></div>'+
     '<button class="btn btn-outline btn-sm" onclick="fcAddRow(\'est\')" style="margin-bottom:16px">+ Linha Estofo</button>'+
-    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8B7355;margin-bottom:6px">Tecido <span id="'+px+'-sub-fer-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
+    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6B4A2F;margin-bottom:6px">Tecido <span id="'+px+'-sub-fer-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
     '<div style="overflow-x:auto;margin-bottom:6px"><table style="border-collapse:collapse;width:100%;min-width:600px;table-layout:fixed;font-size:11px" id="'+px+'-fer-tbl">'+
       '<colgroup><col style="width:80px"><col><col style="width:100px"><col style="width:100px"><col style="width:34px"></colgroup>'+
       _calcTH(['Qtd (ml)','Descrição','€/ml','Total €',''])+
       '<tbody id="'+px+'-fer-body"></tbody>'+
     '</table></div>'+
     '<button class="btn btn-outline btn-sm" onclick="fcAddRow(\'fer\')" style="margin-bottom:16px">+ Linha Tecido</button>'+
-    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8B7355;margin-bottom:6px">Metais <span id="'+px+'-sub-met-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
+    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6B4A2F;margin-bottom:6px">Metais <span id="'+px+'-sub-met-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
     '<div style="overflow-x:auto;margin-bottom:6px"><table style="border-collapse:collapse;width:100%;min-width:600px;table-layout:fixed;font-size:11px" id="'+px+'-met-tbl">'+
       '<colgroup><col style="width:80px"><col><col style="width:100px"><col style="width:100px"><col style="width:34px"></colgroup>'+
       _calcTH(['Qtd','Descrição','€/uni','Total €',''])+
       '<tbody id="'+px+'-met-body"></tbody>'+
     '</table></div>'+
     '<button class="btn btn-outline btn-sm" onclick="fcAddRow(\'met\')" style="margin-bottom:16px">+ Linha Metal</button>'+
-    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8B7355;margin-bottom:6px">Outros Componentes <span id="'+px+'-sub-ocomp-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
+    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6B4A2F;margin-bottom:6px">Outros Componentes <span id="'+px+'-sub-ocomp-label" style="font-weight:400;color:#aaa;font-size:10px;text-transform:none;letter-spacing:0"></span></div>'+
     '<div style="overflow-x:auto;margin-bottom:6px"><table style="border-collapse:collapse;width:100%;min-width:600px;table-layout:fixed;font-size:11px" id="'+px+'-ocomp-tbl">'+
       '<colgroup><col style="width:80px"><col><col style="width:100px"><col style="width:100px"><col style="width:34px"></colgroup>'+
       _calcTH(['Qtd','Descrição','€/uni','Total €',''])+
       '<tbody id="'+px+'-ocomp-body"></tbody>'+
     '</table></div>'+
     '<button class="btn btn-outline btn-sm" onclick="fcAddRow(\'ocomp\')" style="margin-bottom:16px">+ Linha Componente</button>'+
-    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8B7355;margin:16px 0 10px;padding-top:16px;border-top:1px solid #eee">Outros Custos</div>'+
+    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6B4A2F;margin:16px 0 10px;padding-top:16px;border-top:1px solid #eee">Outros Custos</div>'+
     '<div class="form-grid" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr));margin-bottom:16px">'+
-      '<div class="form-group"><label style="color:#8B7355;letter-spacing:1px;font-weight:700">Embalagem €</label><input type="number" id="'+px+'-emb" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
-      '<div class="form-group"><label style="color:#8B7355;letter-spacing:1px;font-weight:700">Gab. Técnico €</label><input type="number" id="'+px+'-gab" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
-      '<div class="form-group"><label style="color:#8B7355;letter-spacing:1px;font-weight:700">Custos Fixos €</label><input type="number" id="'+px+'-fixos" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
+      '<div class="form-group"><label style="color:#6B4A2F;letter-spacing:1px;font-weight:700">Embalagem €</label><input type="number" id="'+px+'-emb" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
+      '<div class="form-group"><label style="color:#6B4A2F;letter-spacing:1px;font-weight:700">Gab. Técnico €</label><input type="number" id="'+px+'-gab" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
+      '<div class="form-group"><label style="color:#6B4A2F;letter-spacing:1px;font-weight:700">Custos Fixos €</label><input type="number" id="'+px+'-fixos" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
     '</div>'+
     '<div class="card" style="background:#3A3A3A;color:#fff" id="'+px+'-resumo"></div>';
 
@@ -2537,7 +2644,7 @@ function fcCalcTotais(){
     ['Embalagem',emb],['Transporte',transp],
     ['Montagem',mont],['Gabinete Técnico',gab],['Custos Fixos',fixos]
   ];
-  var rowsSub=cp==='fc'?[['Vidros',subVid],['Cerâmica · Mármore · Compósitos',subCer],['Espelhos',subEsp],['Estofo',subEst]]:[];
+  var rowsSub=cp==='fc'?[['Vidros',subVid]]:[];
   var subProd=subMdf+subMad+subOp+subFer+emb+transp+mont+gab+fixos;
   var subContrat=cp==='fc'?subVid:subVid+subCer+subEsp+subEst+subMet;
   var _rowIdx=0;
@@ -2545,7 +2652,7 @@ function fcCalcTotais(){
     var even=(_rowIdx++)%2===0;
     return '<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:'+(even?'rgba(0,0,0,0)':'rgba(0,0,0,0.18)')+';border-radius:3px">'+
       '<span style="font-size:11px;color:rgba(255,255,255,0.5);font-family:Inter,sans-serif;letter-spacing:0.2px">'+r[0]+'</span>'+
-      '<span style="font-size:12px;color:'+(col||'#c9a96e')+';font-weight:700;font-family:Inter,sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap;padding-left:24px">'+fmt(r[1])+' €</span>'+
+      '<span style="font-size:12px;color:'+(col||'#B88A5E')+';font-weight:700;font-family:Inter,sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap;padding-left:24px">'+fmt(r[1])+' €</span>'+
     '</div>';
   }
   var filtProd=rowsProd.filter(function(r){return r[1]>0;});
@@ -2559,7 +2666,7 @@ function fcCalcTotais(){
     (cp==='fc'?'<div style="font-size:9px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:4px">Produção Própria</div>':'')+
 
     /* ── linhas de custo ── */
-    (filtProd.length?filtProd.map(function(r){return _row(r,'#c9a96e');}).join(''):'<div style="font-size:11px;color:rgba(255,255,255,0.25);padding:8px 0;text-align:center">— sem custos —</div>')+
+    (filtProd.length?filtProd.map(function(r){return _row(r,'#B88A5E');}).join(''):'<div style="font-size:11px;color:rgba(255,255,255,0.25);padding:8px 0;text-align:center">— sem custos —</div>')+
 
     /* ── separador + linhas subcontratado (SC) ── */
     (subContrat>0?
@@ -2570,7 +2677,7 @@ function fcCalcTotais(){
     /* ── total sem margem ── */
     '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding:12px 0 12px;border-top:1px solid rgba(255,255,255,0.12)">'+
       '<span style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:0.8px">Total s/ Margem</span>'+
-      '<span style="font-size:16px;font-weight:700;color:#c9a96e;font-variant-numeric:tabular-nums;white-space:nowrap">'+fmt(base)+' €</span>'+
+      '<span style="font-size:16px;font-weight:700;color:#B88A5E;font-variant-numeric:tabular-nums;white-space:nowrap">'+fmt(base)+' €</span>'+
     '</div>'+
 
     /* ── linha de margem ── */
@@ -2580,13 +2687,13 @@ function fcCalcTotais(){
         '<input type="number" id="'+cp+'-lucro" value="'+lucroP+'" step="0.5" min="0" oninput="fcCalcTotais()" style="width:58px;padding:4px 8px;border:1.5px solid rgba(255,255,255,0.18);border-radius:4px;font-size:13px;font-weight:700;background:rgba(255,255,255,0.08);color:#fff;text-align:center;font-family:Inter,sans-serif;outline:none">'+
         '<span style="font-size:11px;color:rgba(255,255,255,0.45)">%</span>'+
       '</div>'+
-      '<span style="font-size:13px;color:#c9a96e;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap">+ '+fmt(lucroV)+' €</span>'+
+      '<span style="font-size:13px;color:#B88A5E;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap">+ '+fmt(lucroV)+' €</span>'+
     '</div>'+
 
     /* ── total com margem ── */
     '<div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0 2px;border-top:2px solid rgba(255,255,255,0.18)">'+
       '<span style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.85);letter-spacing:1.2px;text-transform:uppercase">Total c/ Margem</span>'+
-      '<span style="font-size:28px;font-weight:700;color:#c9a96e;letter-spacing:-0.5px;font-variant-numeric:tabular-nums;white-space:nowrap">'+fmt(total)+' €</span>'+
+      '<span style="font-size:28px;font-weight:700;color:#B88A5E;letter-spacing:-0.5px;font-variant-numeric:tabular-nums;white-space:nowrap">'+fmt(total)+' €</span>'+
     '</div>'+
 
     '</div>';
@@ -2601,9 +2708,9 @@ var _SC_KEY='bc-fichas-subcont';
 var _CP='fc'; // prefixo activo: 'fc' = Calculadora, 'sc' = Subcontratados
 var _fichaLoadedId=null; // id da ficha carregada actualmente
 function getFichas(){try{return JSON.parse(localStorage.getItem(_FC_KEY)||'[]');}catch(e){return[];}}
-function saveFichasArr(arr){localStorage.setItem(_FC_KEY,JSON.stringify(arr));sbSync();}
+function saveFichasArr(arr){localStorage.setItem(_FC_KEY,JSON.stringify(arr));}
 function getSubcFichas(){try{return JSON.parse(localStorage.getItem(_SC_KEY)||'[]');}catch(e){return[];}}
-function saveSubcFichasArr(arr){localStorage.setItem(_SC_KEY,JSON.stringify(arr));sbSync();}
+function saveSubcFichasArr(arr){localStorage.setItem(_SC_KEY,JSON.stringify(arr));}
 function _getFichasCP(){return _CP==='sc'?getSubcFichas():getFichas();}
 function _saveFichasCP(arr){if(_CP==='sc')saveSubcFichasArr(arr);else saveFichasArr(arr);}
 function _gFC(id){return document.getElementById(_CP+'-'+id);}
@@ -2817,10 +2924,10 @@ function renderFichasCalcList(){
     return '<div style="display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:7px;border:1px solid #eee;margin-bottom:8px;background:#fff">'+
       '<div style="flex:1;min-width:0">'+
         '<div style="font-size:13px;font-weight:600;color:#3A3A3A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+titulo+'</div>'+
-        '<div style="font-size:11px;color:#8B7355;font-weight:500;margin-top:1px">'+sub+'</div>'+
+        '<div style="font-size:11px;color:#6B4A2F;font-weight:500;margin-top:1px">'+sub+'</div>'+
         '<div style="font-size:11px;color:#bbb;margin-top:1px">'+d+'</div>'+
       '</div>'+
-      '<button onclick="carregarFichaCalc('+i+')" style="padding:6px 16px;background:#8B7355;color:#fff;border:none;border-radius:4px;font-size:12px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;white-space:nowrap">Carregar</button>'+
+      '<button onclick="carregarFichaCalc('+i+')" style="padding:6px 16px;background:#6B4A2F;color:#fff;border:none;border-radius:4px;font-size:12px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;white-space:nowrap">Carregar</button>'+
       '<button onclick="apagarFichaCalcItem('+i+')" title="Apagar" style="flex-shrink:0;width:28px;height:28px;border:1px solid #eee;border-radius:4px;background:#fff;color:#ccc;cursor:pointer;font-size:14px;line-height:1" onmouseover="this.style.color=\'#c0392b\';this.style.borderColor=\'#c0392b\'" onmouseout="this.style.color=\'#ccc\';this.style.borderColor=\'#eee\'">✕</button>'+
     '</div>';
   }).join('');
@@ -3060,11 +3167,11 @@ function exportFichaCalc(){
     '.page{background:#fff;max-width:210mm;margin:0 auto;padding:16mm 15mm 14mm;min-height:297mm;box-shadow:0 2px 20px rgba(0,0,0,0.08)}',
     /* Header */
     '.doc-header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2.5px solid #3A3A3A;padding-bottom:12px;margin-bottom:14px}',
-    '.doc-brand{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#8B7355;margin-bottom:4px}',
+    '.doc-brand{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#6B4A2F;margin-bottom:4px}',
     '.doc-title{font-family:"Playfair Display",serif;font-size:20px;font-weight:700;color:#2a2a2a;line-height:1.1}',
     '.doc-meta{text-align:right}',
     '.doc-tipo{font-size:8px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#aaa;margin-bottom:3px}',
-    '.doc-nprojeto{font-size:16px;font-weight:700;color:#8B7355;font-family:"Playfair Display",serif}',
+    '.doc-nprojeto{font-size:16px;font-weight:700;color:#6B4A2F;font-family:"Playfair Display",serif}',
     '.doc-data{font-size:10px;color:#888;margin-top:2px}',
     /* Info grid */
     '.info-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-bottom:12px;border:1px solid #e0dbd4;border-radius:4px;overflow:hidden}',
@@ -3074,12 +3181,12 @@ function exportFichaCalc(){
     '.info-label{font-size:8px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#b8ad9e;margin-bottom:1px}',
     '.info-value{font-size:10.5px;font-weight:600;color:#2a2a2a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
     /* Desc */
-    '.desc-box{background:#faf8f5;border-left:3px solid #8B7355;padding:8px 12px;margin-bottom:12px;border-radius:0 3px 3px 0}',
-    '.desc-label{font-size:8px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#8B7355;margin-bottom:3px}',
+    '.desc-box{background:#faf8f5;border-left:3px solid #6B4A2F;padding:8px 12px;margin-bottom:12px;border-radius:0 3px 3px 0}',
+    '.desc-label{font-size:8px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#6B4A2F;margin-bottom:3px}',
     '.desc-text{font-size:10.5px;color:#3A3A3A;line-height:1.5}',
     '.dims{display:inline-flex;gap:18px;margin-top:6px;background:rgba(139,115,85,0.08);border-radius:3px;padding:4px 10px}',
     '.dim-item{display:flex;align-items:baseline;gap:3px}',
-    '.dim-l{font-size:8px;font-weight:700;color:#8B7355;text-transform:uppercase}',
+    '.dim-l{font-size:8px;font-weight:700;color:#6B4A2F;text-transform:uppercase}',
     '.dim-v{font-size:11px;font-weight:700;color:#2a2a2a;font-variant-numeric:tabular-nums}',
     '.dim-u{font-size:8px;color:#aaa}',
     /* Section tables */
@@ -3102,7 +3209,7 @@ function exportFichaCalc(){
     /* Outros */
     '.outros{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px;margin-bottom:10px}',
     '.outro{background:#faf8f5;border:1px solid #e0dbd4;border-radius:3px;padding:6px 9px}',
-    '.outro-l{font-size:8px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:#8B7355;margin-bottom:1px}',
+    '.outro-l{font-size:8px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:#6B4A2F;margin-bottom:1px}',
     '.outro-v{font-size:11px;font-weight:700;color:#2a2a2a;font-variant-numeric:tabular-nums}',
     /* Resumo */
     '.resumo{background:#2a2a2a;border-radius:4px;padding:14px 16px;margin-top:12px}',
@@ -3115,15 +3222,15 @@ function exportFichaCalc(){
     '.tot:first-child{padding-left:0}',
     '.tot-l{font-size:8px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:3px}',
     '.tot-v{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}',
-    '.tot-base .tot-v{color:#c9a96e}',
+    '.tot-base .tot-v{color:#B88A5E}',
     '.tot-marg .tot-v{color:rgba(255,255,255,0.55);font-size:14px}',
     '.tot-pv{text-align:right}',
     '.tot-pv .tot-v{color:#fff;font-size:22px;font-family:"Playfair Display",serif}',
     /* misc */
-    '.notas{background:#fffdf5;border-left:3px solid #c9a96e;padding:7px 11px;margin-bottom:12px;border-radius:0 3px 3px 0}',
-    '.notas-l{font-size:8px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#8B7355;margin-bottom:3px}',
+    '.notas{background:#fffdf5;border-left:3px solid #B88A5E;padding:7px 11px;margin-bottom:12px;border-radius:0 3px 3px 0}',
+    '.notas-l{font-size:8px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#6B4A2F;margin-bottom:3px}',
     '.notas-t{font-size:10.5px;color:#5a4a2f;line-height:1.5}',
-    '.print-btn{position:fixed;top:14px;right:14px;padding:8px 18px;background:#8B7355;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:12px;font-family:Inter,sans-serif;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.18)}',
+    '.print-btn{position:fixed;top:14px;right:14px;padding:8px 18px;background:#6B4A2F;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:12px;font-family:Inter,sans-serif;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.18)}',
     '@media print{.print-btn{display:none!important}body{background:#fff}.page{box-shadow:none;max-width:100%}@page{size:A4 portrait;margin:12mm 12mm 10mm}}'
   ].join('\n');
 
@@ -3236,8 +3343,8 @@ function exportFichaCalc(){
     '<div class="page">'+
       '<div class="doc-header">'+
         '<div>'+
-          '<div class="doc-brand">Bridge Control · Ficha de Custo</div>'+
-          '<div class="doc-title">'+artigo+(areacab?' <span style="font-size:11px;font-weight:400;color:#8B7355;font-family:Inter,sans-serif"> · '+areacab+'</span>':'')+'</div>'+
+          '<div class="doc-brand">Forma Nobre · Ficha de Custo</div>'+
+          '<div class="doc-title">'+artigo+(areacab?' <span style="font-size:11px;font-weight:400;color:#6B4A2F;font-family:Inter,sans-serif"> · '+areacab+'</span>':'')+'</div>'+
         '</div>'+
         '<div class="doc-meta">'+
           '<div class="doc-tipo">Ficha de Custo Interno</div>'+
@@ -3498,7 +3605,7 @@ function exportSubcPDF(){
     '<div class="page">'+
       '<div class="doc-header">'+
         '<div>'+
-          '<div class="doc-brand">Bridge Control · Subcontratado</div>'+
+          '<div class="doc-brand">Forma Nobre · Subcontratado</div>'+
           '<div class="doc-title">'+artigo+(areacab?' <span style="font-size:11px;font-weight:400;color:#1e5f96;font-family:Inter,sans-serif"> · '+areacab+'</span>':'')+'</div>'+
         '</div>'+
         '<div class="doc-meta">'+
@@ -3552,7 +3659,7 @@ function renderPrecosPage(){
   var tabs=_PR_CATS.map(function(c){
     var isAct=c.key===_prActiveCat;
     var delBtn=c.builtin?'':'<span onclick="event.stopPropagation();prDeleteCat(\''+c.key+'\')" title="Apagar categoria" style="margin-left:5px;font-size:10px;color:'+(isAct?'rgba(255,255,255,0.6)':'#bbb')+';cursor:pointer" onmouseover="this.style.color=\'#e74c3c\'" onmouseout="this.style.color=\''+(isAct?'rgba(255,255,255,0.6)':'#bbb')+'\'">✕</span>';
-    return '<button onclick="prSetCat(this.dataset.cat)" data-cat="'+c.key+'" id="prtab-'+c.key+'" style="padding:8px 14px;border:none;border-radius:5px 5px 0 0;font-size:12px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;transition:all 0.15s;display:inline-flex;align-items:center;'+(isAct?'background:#8B7355;color:#fff':'background:#eee;color:#555')+'">'+c.label+delBtn+'</button>';
+    return '<button onclick="prSetCat(this.dataset.cat)" data-cat="'+c.key+'" id="prtab-'+c.key+'" style="padding:8px 14px;border:none;border-radius:5px 5px 0 0;font-size:12px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;transition:all 0.15s;display:inline-flex;align-items:center;'+(isAct?'background:#6B4A2F;color:#fff':'background:#eee;color:#555')+'">'+c.label+delBtn+'</button>';
   }).join('');
 
   p.innerHTML=
@@ -3564,9 +3671,9 @@ function renderPrecosPage(){
       '</div>'+
     '</div>'+
     '<div id="pr-addcat-form" style="display:none;background:#fffdf9;border:1.5px solid #d4c4a8;border-radius:7px;padding:14px 16px;margin-bottom:10px">'+
-      '<div style="font-size:11px;font-weight:700;color:#8B7355;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.6px">Nova Categoria</div>'+
+      '<div style="font-size:11px;font-weight:700;color:#6B4A2F;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.6px">Nova Categoria</div>'+
       '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">'+
-        '<input type="text" id="pr-cat-label" placeholder="Nome da categoria..." style="flex:1;min-width:140px;padding:7px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
+        '<input type="text" id="pr-cat-label" placeholder="Nome da categoria..." style="flex:1;min-width:140px;padding:7px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor=\'#6B4A2F\'" onblur="this.style.borderColor=\'#ddd\'">'+
         '<select id="pr-cat-unit" style="padding:7px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;background:#fff">'+
           '<option value="€/m²">€/m²</option>'+
           '<option value="€/m³">€/m³</option>'+
@@ -3589,7 +3696,7 @@ function prSetCat(key){
   _prActiveCat=key;
   document.querySelectorAll('[id^="prtab-"]').forEach(function(btn){
     var isActive=btn.id==='prtab-'+key;
-    btn.style.background=isActive?'#8B7355':'#eee';
+    btn.style.background=isActive?'#6B4A2F':'#eee';
     btn.style.color=isActive?'#fff':'#555';
   });
   prRenderPanel();
@@ -3601,10 +3708,10 @@ function prRenderPanel(){
   var rows=items.map(function(item,i){
     return '<tr>'+
       '<td style="padding:6px 10px;border-bottom:1px solid #f0ede8;font-size:12px;color:#3A3A3A">'+
-        '<input type="text" value="'+item.d.replace(/"/g,'&quot;')+'" onchange="prUpdateItem('+i+',\'d\',this.value)" onfocus="this.style.borderColor=\'#8B7355\';this.style.background=\'#fffdf9\'" onblur="this.style.borderColor=\'transparent\';this.style.background=\'transparent\'" style="width:100%;padding:4px 6px;border:1.5px solid transparent;border-radius:3px;font-size:12px;font-family:Inter,sans-serif;background:transparent;outline:none;cursor:text">'+
+        '<input type="text" value="'+item.d.replace(/"/g,'&quot;')+'" onchange="prUpdateItem('+i+',\'d\',this.value)" onfocus="this.style.borderColor=\'#6B4A2F\';this.style.background=\'#fffdf9\'" onblur="this.style.borderColor=\'transparent\';this.style.background=\'transparent\'" style="width:100%;padding:4px 6px;border:1.5px solid transparent;border-radius:3px;font-size:12px;font-family:Inter,sans-serif;background:transparent;outline:none;cursor:text">'+
       '</td>'+
       '<td style="padding:6px 10px;border-bottom:1px solid #f0ede8;text-align:right;width:120px">'+
-        '<input type="number" value="'+item.p+'" step="0.01" onchange="prUpdateItem('+i+',\'p\',+this.value)" onfocus="this.style.borderColor=\'#8B7355\';this.style.background=\'#fffdf9\'" onblur="this.style.borderColor=\'transparent\';this.style.background=\'transparent\'" style="width:90px;padding:4px 6px;border:1.5px solid transparent;border-radius:3px;font-size:12px;font-family:Inter,sans-serif;background:transparent;outline:none;text-align:right;cursor:text">'+
+        '<input type="number" value="'+item.p+'" step="0.01" onchange="prUpdateItem('+i+',\'p\',+this.value)" onfocus="this.style.borderColor=\'#6B4A2F\';this.style.background=\'#fffdf9\'" onblur="this.style.borderColor=\'transparent\';this.style.background=\'transparent\'" style="width:90px;padding:4px 6px;border:1.5px solid transparent;border-radius:3px;font-size:12px;font-family:Inter,sans-serif;background:transparent;outline:none;text-align:right;cursor:text">'+
       '</td>'+
       '<td style="padding:6px 10px;border-bottom:1px solid #f0ede8;text-align:center;width:50px">'+
         '<button onclick="prDeleteItem('+i+')" style="background:none;border:none;cursor:pointer;color:#ddd;font-size:14px" onmouseover="this.style.color=\'#c0392b\'" onmouseout="this.style.color=\'#ddd\'">✕</button>'+
@@ -3613,7 +3720,7 @@ function prRenderPanel(){
   }).join('');
 
   document.getElementById('pr-panel').innerHTML=
-    '<div style="font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#8B7355;margin-bottom:12px">'+cat.label+' <span style="color:#bbb;font-weight:400;text-transform:none;font-size:11px">('+cat.unit+')</span> &mdash; '+items.length+' artigos</div>'+
+    '<div style="font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#6B4A2F;margin-bottom:12px">'+cat.label+' <span style="color:#bbb;font-weight:400;text-transform:none;font-size:11px">('+cat.unit+')</span> &mdash; '+items.length+' artigos</div>'+
     '<div style="overflow-x:auto">'+
       '<table style="width:100%;border-collapse:collapse">'+
         '<thead><tr>'+
@@ -3625,8 +3732,8 @@ function prRenderPanel(){
       '</table>'+
     '</div>'+
     '<div style="display:flex;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid #eee;align-items:center">'+
-      '<input type="text" id="pr-new-d" placeholder="Descrição do novo artigo..." style="flex:1;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
-      '<input type="number" id="pr-new-p" placeholder="Preço" step="0.01" style="width:100px;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:right" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
+      '<input type="text" id="pr-new-d" placeholder="Descrição do novo artigo..." style="flex:1;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor=\'#6B4A2F\'" onblur="this.style.borderColor=\'#ddd\'">'+
+      '<input type="number" id="pr-new-p" placeholder="Preço" step="0.01" style="width:100px;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:right" onfocus="this.style.borderColor=\'#6B4A2F\'" onblur="this.style.borderColor=\'#ddd\'">'+
       '<span style="font-size:11px;color:#999">'+cat.unit+'</span>'+
       '<button onclick="prAddItem()" class="btn btn-bronze btn-sm">+ Adicionar</button>'+
     '</div>';
@@ -3848,7 +3955,7 @@ function fichaParaOrcamento(idxStr){
   calcAllTotals();
   if(infoEl){
     infoEl.innerHTML=
-      '<span style="color:#8B7355;font-weight:600">Custo base: '+fmt(result.base)+' €</span>'+
+      '<span style="color:#6B4A2F;font-weight:600">Custo base: '+fmt(result.base)+' €</span>'+
       ' &nbsp;·&nbsp; '+
       '<span style="color:#2e7d32;font-weight:600">PV c/ '+result.lucroP+'% margem: '+fmt(result.total)+' €</span>';
   }
@@ -4176,8 +4283,8 @@ function renderThead(){
       '<th style="min-width:80px">Qtd</th>'+
       '<th style="min-width:95px">P.Unit €</th>'+
       '<th style="min-width:100px">P.Total €</th>'+
-      '<th style="min-width:95px;background:#4a3824;color:#c9a96e">P.Custo €</th>'+
-      '<th style="min-width:80px;background:#4a3824;color:#c9a96e">Margem</th>'+
+      '<th style="min-width:95px;background:#4a3824;color:#B88A5E">P.Custo €</th>'+
+      '<th style="min-width:80px;background:#4a3824;color:#B88A5E">Margem</th>'+
       '<th style="width:44px"></th>'+
     '</tr>';
 }
@@ -4227,228 +4334,8 @@ if(!localStorage.getItem('crm-v3-clean')){
   db={clientes:[],orcamentos:[],_nc:1,_no:1};
   save();
 }
-load();updateSB();
-// Start Supabase auth after DOM ready
-
-/* ── Auto Backup ── */
-function _checkAutoBackup(){
-  var last=parseInt(localStorage.getItem('bc_last_backup')||'0');
-  var now=Date.now();
-  var semana=7*24*60*60*1000;
-  if(now-last>semana){
-    setTimeout(function(){
-      var ind=document.getElementById('sb-sync-ind');
-      if(ind){ind.textContent='💾';ind.style.opacity='1';ind.title='Backup automático disponível';}
-      // Show backup banner
-      var banner=document.createElement('div');
-      banner.id='backup-banner';
-      banner.style.cssText='position:fixed;bottom:16px;right:16px;background:#2a2a2a;color:#fff;border-radius:8px;padding:12px 18px;font-size:12px;font-family:Inter,sans-serif;z-index:9998;display:flex;align-items:center;gap:12px;box-shadow:0 4px 16px rgba(0,0,0,0.3)';
-      var k='bc_last_backup';
-      banner.innerHTML='<span>&#128190; &#218;ltima exporta&#231;&#227;o h&#225; mais de 7 dias</span>'+
-        '<button onclick="exportarJSON();localStorage.setItem(&quot;'+k+'&quot;,Date.now());this.closest(&quot;#backup-banner&quot;).remove()" '+
-        'style="padding:5px 12px;background:#c9a96e;border:none;border-radius:4px;color:#fff;font-size:11px;cursor:pointer;font-family:Inter,sans-serif;font-weight:600">Exportar agora</button>'+
-        '<button onclick="localStorage.setItem(&quot;'+k+'&quot;,Date.now());document.getElementById(&quot;backup-banner&quot;).remove()" '+
-        'style="padding:5px 8px;background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:14px;cursor:pointer">&#215;</button>';
-      document.body.appendChild(banner);
-    },3000);
-  }
-}
-
-// sbInit() é chamado pelo loader Supabase abaixo
-
-/* ── SUPABASE FUNCTIONS ── */
-window._sb=null;
-window._sbUser=null;
-
-function sbSync(){
-  if(!window._sb||!window._sbUser)return;
-  clearTimeout(window._sbSyncTimer);
-  window._sbSyncTimer=setTimeout(function(){_sbDoSync();},1200);
-}
-
-async function _sbDoSync(){
-  if(!window._sb||!window._sbUser)return;
-  var uid=window._sbUser.id;
-  var rows=[
-    {user_id:uid,chave:'db_main',valor:db},
-    {user_id:uid,chave:'fichas_calc',valor:JSON.parse(localStorage.getItem('bc-fichas-calc')||'[]')},
-    {user_id:uid,chave:'fichas_subcont',valor:JSON.parse(localStorage.getItem('bc-fichas-subcont')||'[]')},
-    {user_id:uid,chave:'empresa',valor:_EMP},
-    {user_id:uid,chave:'precos',valor:(typeof _PR!=='undefined'?_PR:{})},
-    {user_id:uid,chave:'desc_hist',valor:(typeof _dHist!=='undefined'?_dHist:[])}
-  ];
-  for(var r of rows){
-    try{
-      await window._sb.from('config').delete().eq('user_id',uid).eq('chave',r.chave);
-      await window._sb.from('config').insert(r);
-    }catch(e){console.error('sbSync',r.chave,e);}
-  }
-  // Sync images — upload to Supabase
-  await _sbSyncImages(uid);
-  var ind=document.getElementById('sb-sync-ind');
-  if(ind){ind.style.opacity='1';setTimeout(function(){ind.style.opacity='0';},1500);}
-}
-
-async function sbLoadAll(){
-  if(!window._sb||!window._sbUser)return;
-  try{
-    var res=await window._sb.from('config').select('chave,valor').eq('user_id',window._sbUser.id);
-    if(res.data){
-      res.data.forEach(function(row){
-        if(row.chave==='db_main'&&row.valor){
-          db=row.valor;
-          if(!db._nc)db._nc=1;
-          if(!db._no)db._no=1;
-        }
-        if(row.chave==='fichas_calc')try{localStorage.setItem('bc-fichas-calc',JSON.stringify(row.valor));}catch(e){}
-        if(row.chave==='fichas_subcont')try{localStorage.setItem('bc-fichas-subcont',JSON.stringify(row.valor));}catch(e){}
-        if(row.chave==='empresa'){Object.assign(_EMP,row.valor);try{localStorage.setItem('bc-empresa',JSON.stringify(_EMP));}catch(e){}}
-        if(row.chave==='precos')try{localStorage.setItem('bc-precos',JSON.stringify(row.valor));_PR=JSON.parse(localStorage.getItem('bc-precos'));}catch(e){}
-        if(row.chave==='desc_hist')try{_dHist=row.valor||[];localStorage.setItem('bc-desc-hist',JSON.stringify(_dHist));}catch(e){}
-      });
-    }
-  }catch(e){console.error('sbLoadAll',e);}
-}
-
-async function sbInit(){
-  if(!window._sb){return;}
-  try{
-    var res=await window._sb.auth.getSession();
-    var session=res.data&&res.data.session;
-    if(session&&session.user){
-      window._sbUser=session.user;
-      await sbLoadAndMerge();
-      document.getElementById('sb-login-overlay').style.display='none';
-      var lbl=document.getElementById('sb-user-label');
-      if(lbl)lbl.textContent=session.user.email;
-      updateSB();nav('dashboard');_checkAutoBackup();
-    } else {
-      document.getElementById('sb-login-overlay').style.display='flex';
-    }
-  }catch(e){
-    console.error('sbInit error',e);
-    document.getElementById('sb-login-overlay').style.display='flex';
-  }
-}
-
-async function sbLoadAndMerge(){
-  // Verifica se Supabase tem dados
-  var res=await window._sb.from('config').select('chave,valor').eq('user_id',window._sbUser.id).eq('chave','db_main');
-  var sbHasData=res.data&&res.data.length>0&&res.data[0].valor&&(res.data[0].valor.clientes||[]).length>0;
-  if(sbHasData){
-    // Supabase tem dados — carrega deles (fonte de verdade)
-    await sbLoadAll();
-    await _sbLoadImages(); // Carrega imagens da cloud para IndexedDB local
-  } else {
-    // Supabase vazio — envia dados locais para Supabase
-    await _sbDoSync();
-  }
-}
-
-async function sbLogin(){
-  if(!window._sb){
-    document.getElementById('sb-login-err').textContent='Sem ligação ao servidor. Verifica a internet.';
-    return;
-  }
-  var email=document.getElementById('sb-email').value.trim();
-  var pass=document.getElementById('sb-pass').value;
-  var errEl=document.getElementById('sb-login-err');
-  errEl.textContent='A entrar...';
-  try{
-    var res=await window._sb.auth.signInWithPassword({email:email,password:pass});
-    if(res.error){errEl.textContent='Email ou password incorretos.';return;}
-    window._sbUser=res.data.user;
-    await sbLoadAndMerge();
-    document.getElementById('sb-login-overlay').style.display='none';
-    var lbl=document.getElementById('sb-user-label');
-    if(lbl)lbl.textContent=email;
-    updateSB();nav('dashboard');
-  }catch(e){
-    var msg=e&&e.message?e.message:String(e);
-    errEl.textContent='Erro: '+msg;
-    console.error('sbLogin',e);
-  }
-}
-
-
-/* ── Image Sync ── */
-async function _sbSyncImages(uid){
-  if(!window._sb||!uid)return;
-  // Collect all image keys from orçamentos
-  var keys=[];
-  (db.orcamentos||[]).forEach(function(o){
-    (o.linhas||[]).forEach(function(l){if(l.img&&l.img.indexOf('idb_')===0)keys.push(l.img);});
-  });
-  if(!keys.length)return;
-  // Check which keys already synced
-  var existing=[];
-  try{
-    var res=await window._sb.from('config').select('chave').eq('user_id',uid).like('chave','img_%');
-    if(res.data)existing=res.data.map(function(r){return r.chave;});
-  }catch(e){}
-  var toSync=keys.filter(function(k){return existing.indexOf('img_'+k)<0;});
-  for(var key of toSync){
-    await new Promise(function(resolve){
-      _idbGet(key,async function(url){
-        if(!url){resolve();return;}
-        try{
-          await window._sb.from('config').insert({user_id:uid,chave:'img_'+key,valor:{data:url,ts:Date.now()}});
-        }catch(e){}
-        resolve();
-      });
-    });
-  }
-}
-
-async function _sbLoadImages(){
-  if(!window._sb||!window._sbUser)return;
-  try{
-    var res=await window._sb.from('config').select('chave,valor').eq('user_id',window._sbUser.id).like('chave','img_%');
-    if(!res.data||!res.data.length)return;
-    for(var row of res.data){
-      var key=row.chave.replace(/^img_/,'');
-      var url=row.valor&&row.valor.data;
-      if(!key||!url)continue;
-      // Check if already in local IndexedDB
-      await new Promise(function(resolve){
-        _idbGet(key,function(existing){
-          if(existing){resolve();return;}
-          // Store in IndexedDB
-          try{
-            var blob=_dataUrlToBlob(url);
-            _idbPut(blob,function(newKey){
-              // Update references in db if key changed
-              if(newKey&&newKey!==key){
-                (db.orcamentos||[]).forEach(function(o){
-                  (o.linhas||[]).forEach(function(l){if(l.img===key)l.img=newKey;});
-                });
-              }
-              resolve();
-            });
-          }catch(e){resolve();}
-        });
-      });
-    }
-  }catch(e){console.error('_sbLoadImages',e);}
-}
-
-async function sbNowSync(){
-  if(!window._sb||!window._sbUser){alert('Sem sessão ativa.');return;}
-  var ind=document.getElementById('sb-sync-ind');
-  if(ind){ind.style.opacity='1';ind.textContent='↑';}
-  await _sbDoSync();
-  if(ind){ind.textContent='✓';setTimeout(function(){ind.style.opacity='0';ind.textContent='✓';},2000);}
-  alert('Dados sincronizados com o servidor!');
-}
-
-async function sbLogout(){
-  if(!confirm('Terminar sessão?'))return;
-  if(window._sb)await window._sb.auth.signOut();
-  window._sbUser=null;
-  db={clientes:[],orcamentos:[],_nc:1,_no:1};
-  document.getElementById('sb-user-label').textContent='';
-  document.getElementById('sb-login-overlay').style.display='flex';
-}
+updateSB();
+nav('dashboard');
 </script>
 <!-- MODAL BIBLIOTECA DE DESCRIÇÕES -->
 <div class="modal-overlay" id="modal-desc-lib">
@@ -4462,22 +4349,22 @@ async function sbLogout(){
       <div style="padding:14px 20px 10px;border-bottom:1px solid #f0ede8;background:#faf9f7">
         <input type="text" id="desc-lib-search" placeholder="Pesquisar modelos..." oninput="descLibRender()"
           style="width:100%;padding:8px 12px;border:1.5px solid #E0D8CE;border-radius:6px;font-size:13px;font-family:Inter,sans-serif;outline:none;box-sizing:border-box"
-          onfocus="this.style.borderColor='#c9a96e'" onblur="this.style.borderColor='#E0D8CE'">
+          onfocus="this.style.borderColor='#B88A5E'" onblur="this.style.borderColor='#E0D8CE'">
       </div>
       <!-- Lista de modelos -->
       <div id="desc-lib-list" style="flex:1;overflow-y:auto;max-height:320px"></div>
       <!-- Adicionar novo -->
       <div style="padding:14px 20px;border-top:1.5px solid #f0ede8;background:#fafaf8">
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#8B7355;margin-bottom:10px">Guardar como novo modelo</div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#6B4A2F;margin-bottom:10px">Guardar como novo modelo</div>
         <div style="display:flex;gap:8px;margin-bottom:8px">
           <input type="text" id="desc-lib-new-titulo" placeholder="Nome do modelo (ex: Balcão em Nogueira)..."
             style="flex:1;padding:7px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none"
-            onfocus="this.style.borderColor='#c9a96e'" onblur="this.style.borderColor='#ddd'">
+            onfocus="this.style.borderColor='#B88A5E'" onblur="this.style.borderColor='#ddd'">
           <button onclick="descLibSaveCurrent()" class="btn btn-bronze btn-sm" title="Guardar texto do campo ativo">Guardar texto atual</button>
         </div>
         <textarea id="desc-lib-new-texto" rows="3" placeholder="Ou escreve um texto novo aqui e guarda..."
           style="width:100%;box-sizing:border-box;padding:7px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;resize:vertical;line-height:1.5"
-          onfocus="this.style.borderColor='#c9a96e'" onblur="this.style.borderColor='#ddd'"></textarea>
+          onfocus="this.style.borderColor='#B88A5E'" onblur="this.style.borderColor='#ddd'"></textarea>
         <div style="display:flex;justify-content:flex-end;margin-top:8px">
           <button onclick="descLibAddManual()" class="btn btn-outline btn-sm">+ Guardar texto acima</button>
         </div>
@@ -4503,7 +4390,7 @@ function _acInit(){
   if(_acDrop)return;
   _acDrop=document.createElement('div');
   _acDrop.id='_desc-ac';
-  _acDrop.style.cssText='position:fixed;z-index:99999;background:#fff;border:1.5px solid #c9a96e;border-radius:6px;box-shadow:0 6px 20px rgba(0,0,0,0.15);max-height:220px;overflow-y:auto;display:none;min-width:220px;';
+  _acDrop.style.cssText='position:fixed;z-index:99999;background:#fff;border:1.5px solid #B88A5E;border-radius:6px;box-shadow:0 6px 20px rgba(0,0,0,0.15);max-height:220px;overflow-y:auto;display:none;min-width:220px;';
   document.body.appendChild(_acDrop);
   document.addEventListener('mousedown',function(e){
     if(_acDrop&&_acDrop.style.display!=='none'&&e.target!==_acTarget&&!_acDrop.contains(e.target)){
@@ -4527,9 +4414,9 @@ function _acShow(ta){
   _acMatches=matches;
   _acDrop.innerHTML=matches.slice(0,14).map(function(m,i){
     var safe=m.replace(/&/g,'&amp;').replace(/</g,'&lt;');
-    var hl=q?safe.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<strong style="color:#8B7355">$1</strong>'):safe;
+    var hl=q?safe.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<strong style="color:#6B4A2F">$1</strong>'):safe;
     return '<div style="padding:7px 12px;cursor:pointer;font-size:12px;font-family:Inter,sans-serif;color:#2a2a2a;border-bottom:1px solid #f5f2ee;line-height:1.4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" '+
-      'onmouseover="this.style.background="#fdf9f4"" onmouseout="this.style.background="#fff"" '+
+      'onmouseover="this.style.background='#faf7f2'" onmouseout="this.style.background='#fff'" '+
       'onmousedown="event.preventDefault();_acPick('+i+')">'+hl+'</div>';
   }).join('');
 }
@@ -4574,71 +4461,5 @@ document.addEventListener('keydown',function(e){
 },true);
 _dhLoad();
 </script>
-
-<!-- LOGIN OVERLAY -->
-<div id="sb-login-overlay" style="display:flex;position:fixed;inset:0;background:linear-gradient(135deg,#1a1a1a 0%,#2a2a2a 100%);z-index:99999;align-items:center;justify-content:center;flex-direction:column">
-  <div style="background:#fff;border-radius:12px;width:360px;padding:40px;box-shadow:0 20px 60px rgba(0,0,0,0.4)">
-    <div style="text-align:center;margin-bottom:28px">
-      <svg viewBox="0 0 609.41 400.78" xmlns="http://www.w3.org/2000/svg" style="height:48px;width:auto;margin:0 auto 14px;display:block">
-        <path style="fill:#c9a96e" d="M350.38,195.8c-1.01,41.42,5.37,86.85,40.4,114.52,25.76,20.35,66.79,24.02,96.1,9.23,22.16-11.18,37.19-31.98,41.7-56.28.18-.97,1.07-1.57,2.06-1.57l29.96.13,48.53-.08c.81,11.84-5.53,33.29-9.92,44.4-5.02,12.71-13.82,27.05-22.53,37.52-28.53,34.29-68.85,53.1-113.29,56.45-34.4,2.6-68.24-2.28-99.42-17.18-8.02-3.83-15.24-8.47-22.51-13.44-12.23-8.35-23.95-20.14-33.1-31.93-17.93-23.09-30.04-49.33-35.68-78.15-4.24-21.68-6.17-43.37-5.96-64.64,14.71-3.16,51.05-3.5,65.97-1.6,6.76.86,11.29,1.04,17.7,2.63h0Z"/>
-        <path style="fill:#2a2a2a" d="M508.49,98.56c-20.22-22.74-51.75-29.71-80.93-24.27-24.14,4.5-43.3,18.48-56.34,38.93-12.61,19.76-17.48,40.71-20.09,64-2.15.26-4.19-.37-6.44-.88-24.63-3.67-50.96-3.81-75.99-.3,1.76-33.89,9.65-64.9,27.13-94.29,15.08-24.07,34.15-43.94,58.73-58.27,44.91-26.19,110.04-30.91,158.12-11.94,18.5,7.3,35.23,17.48,49.88,30.92,24.33,22.33,40.57,53.71,45.58,86.27.71,4.59,1.67,8.77,1.08,13.45-3.54-.27-6.97-.36-10.79-.35l-67.9.08c-1.55,0-2.44-1.6-2.58-2.78-.52-4.52-1.94-8.39-3.43-12.59-3.68-10.39-8.71-19.75-16.04-27.99h0Z"/>
-      </svg>
-      <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#2a2a2a;letter-spacing:-0.3px">Bridge Control</div>
-      <div style="font-size:12px;color:#aaa;margin-top:4px;letter-spacing:0.3px">CRM & Orçamentação</div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:12px">
-      <input id="sb-email" type="email" placeholder="Email" onkeydown="if(event.key==='Enter')document.getElementById('sb-pass').focus()"
-        style="width:100%;padding:11px 14px;border:1.5px solid #ddd;border-radius:7px;font-size:14px;font-family:Inter,sans-serif;outline:none;box-sizing:border-box"
-        onfocus="this.style.borderColor='#c9a96e'" onblur="this.style.borderColor='#ddd'">
-      <input id="sb-pass" type="password" placeholder="Password" onkeydown="if(event.key==='Enter')sbLogin()"
-        style="width:100%;padding:11px 14px;border:1.5px solid #ddd;border-radius:7px;font-size:14px;font-family:Inter,sans-serif;outline:none;box-sizing:border-box"
-        onfocus="this.style.borderColor='#c9a96e'" onblur="this.style.borderColor='#ddd'">
-      <div id="sb-login-err" style="font-size:12px;color:#c0392b;text-align:center;min-height:16px"></div>
-      <button onclick="sbLogin()" style="width:100%;padding:12px;background:linear-gradient(135deg,#9B8265,#7D6448);color:#fff;border:none;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;letter-spacing:0.3px">
-        Entrar
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- SUPABASE — carregado no fim para não bloquear o app -->
-<script>
-window.addEventListener('load', function(){
-  var s=document.createElement('script');
-  s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
-  s.onload=function(){
-    try{
-      var SUPABASE_URL='https://rxkunucxxyhvfexrvpev.supabase.co';
-      var SUPABASE_KEY='sb_publishable_aD4-v1BkW5oapqoMBRrkTA_wZQnH1hB';
-      window._sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-      window._sbUser=null;
-      sbInit();
-    }catch(e){
-      console.error('Supabase init error:',e);
-      // Mostra login mesmo assim
-      var ov=document.getElementById('sb-login-overlay');
-      if(ov)ov.style.display='flex';
-    }
-  };
-  s.onerror=function(){
-    console.error('Supabase CDN não carregou — sem internet?');
-    var ov=document.getElementById('sb-login-overlay');
-    if(ov){
-      ov.style.display='flex';
-      var err=document.getElementById('sb-login-err');
-      if(err)err.textContent='Sem ligação à internet. Liga-te e recarrega a página.';
-    }
-  };
-  // Timeout: se após 8s _sb ainda for null, mostrar aviso
-  setTimeout(function(){
-    if(!window._sb){
-      var err=document.getElementById('sb-login-err');
-      if(err&&!err.textContent)err.textContent='A carregar servidor... se demorar abre em Chrome/Edge com internet.';
-    }
-  },8000);
-  document.head.appendChild(s);
-});
-</script>
-
 </body>
 </html>

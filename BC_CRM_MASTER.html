@@ -212,14 +212,7 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
     <div class="nav-item nav-discrete" data-nav="exportar" onclick="nav('exportar')"><span class="icon" style="font-size:13px">💾</span> Exportar</div>
     <div class="nav-item nav-discrete" data-nav="empresa" onclick="nav('empresa')"><span class="icon" style="font-size:13px">🏢</span> Dados da Empresa</div>
   </nav>
-  <div id="sb-footer">
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
-    <span id="sb-user-label" style="font-size:10px;color:rgba(255,255,255,0.35);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:140px"></span>
-    <span id="sb-sync-ind" title="Sincronizado" style="font-size:11px;color:#7ec87e;opacity:0;transition:opacity 0.5s">✓</span>
-  </div>
-  bridgecontrol.eu<br><span id="sb-stats">0 clientes · 0 orçamentos</span>
-  <div style="display:flex;gap:4px;margin-top:8px"><button onclick="sbNowSync()" title="Forçar sincronização" style="flex:1;padding:5px;background:rgba(201,169,110,0.1);border:1px solid rgba(201,169,110,0.2);border-radius:4px;color:rgba(201,169,110,0.6);font-size:10px;cursor:pointer;font-family:Inter,sans-serif">↑ Sincronizar</button><button onclick="sbLogout()" style="flex:1;padding:5px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:4px;color:rgba(255,255,255,0.35);font-size:10px;cursor:pointer;font-family:Inter,sans-serif">Sair</button></div>
-</div>
+  <div id="sb-footer">bridgecontrol.eu<br><span id="sb-stats">0 clientes · 0 orçamentos</span></div>
 </div>
 
 <div id="main">
@@ -662,13 +655,11 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-
-
 <script>
 var db={clientes:[],orcamentos:[],_nc:1,_no:1};
 var _lc=0,_editOrcId=null;
 
-function save(){try{localStorage.setItem('bc_crm',JSON.stringify(db));}catch(e){}sbSync();}
+function save(){try{localStorage.setItem('bc_crm',JSON.stringify(db));}catch(e){}}
 function load(){try{var d=localStorage.getItem('bc_crm');if(d)db=JSON.parse(d);}catch(e){}}
 function fmt(n){return Number(n||0).toLocaleString('pt-PT',{minimumFractionDigits:2,maximumFractionDigits:2});}
 function today(){return new Date().toISOString().slice(0,10);}
@@ -1761,7 +1752,7 @@ function loadPR(){
   try{var s=localStorage.getItem(_PR_KEY);if(s){var p=JSON.parse(s);Object.keys(_PR_DEFAULTS).forEach(function(k){if(p[k]&&(!Array.isArray(p[k])||p[k].length>=_PR_DEFAULTS[k].length))_PR[k]=p[k];});}}
   catch(e){}
 }
-function savePR(){localStorage.setItem(_PR_KEY,JSON.stringify(_PR));sbSync();}
+function savePR(){localStorage.setItem(_PR_KEY,JSON.stringify(_PR));}
 function loadPRCats(){
   try{var s=localStorage.getItem(_PR_CATS_KEY);if(s){var cats=JSON.parse(s);cats.forEach(function(c){if(!_PR_CATS.find(function(x){return x.key===c.key;})){_PR_CATS.push(c);if(!_PR[c.key])_PR[c.key]=[];}});}}
   catch(e){}
@@ -1828,7 +1819,7 @@ function descLibAddManual(){
 function loadEmp(){
   try{var s=localStorage.getItem(_EMP_KEY);if(s){var e=JSON.parse(s);Object.keys(_EMP).forEach(function(k){if(e[k]!==undefined)_EMP[k]=e[k];});}}catch(e){}
 }
-function saveEmp(){localStorage.setItem(_EMP_KEY,JSON.stringify(_EMP));sbSync();}
+function saveEmp(){localStorage.setItem(_EMP_KEY,JSON.stringify(_EMP));}
 function saveEmpField(f,v){_EMP[f]=v;saveEmp();var m=document.getElementById('emp-saved-msg');if(m){m.style.display='inline';clearTimeout(m._t);m._t=setTimeout(function(){m.style.display='none';},2000);}}
 function empLogoUpload(inp){
   if(!inp.files||!inp.files[0])return;
@@ -2537,7 +2528,7 @@ function fcCalcTotais(){
     ['Embalagem',emb],['Transporte',transp],
     ['Montagem',mont],['Gabinete Técnico',gab],['Custos Fixos',fixos]
   ];
-  var rowsSub=cp==='fc'?[['Vidros',subVid],['Cerâmica · Mármore · Compósitos',subCer],['Espelhos',subEsp],['Estofo',subEst]]:[];
+  var rowsSub=cp==='fc'?[['Vidros',subVid]]:[];
   var subProd=subMdf+subMad+subOp+subFer+emb+transp+mont+gab+fixos;
   var subContrat=cp==='fc'?subVid:subVid+subCer+subEsp+subEst+subMet;
   var _rowIdx=0;
@@ -2601,9 +2592,9 @@ var _SC_KEY='bc-fichas-subcont';
 var _CP='fc'; // prefixo activo: 'fc' = Calculadora, 'sc' = Subcontratados
 var _fichaLoadedId=null; // id da ficha carregada actualmente
 function getFichas(){try{return JSON.parse(localStorage.getItem(_FC_KEY)||'[]');}catch(e){return[];}}
-function saveFichasArr(arr){localStorage.setItem(_FC_KEY,JSON.stringify(arr));sbSync();}
+function saveFichasArr(arr){localStorage.setItem(_FC_KEY,JSON.stringify(arr));}
 function getSubcFichas(){try{return JSON.parse(localStorage.getItem(_SC_KEY)||'[]');}catch(e){return[];}}
-function saveSubcFichasArr(arr){localStorage.setItem(_SC_KEY,JSON.stringify(arr));sbSync();}
+function saveSubcFichasArr(arr){localStorage.setItem(_SC_KEY,JSON.stringify(arr));}
 function _getFichasCP(){return _CP==='sc'?getSubcFichas():getFichas();}
 function _saveFichasCP(arr){if(_CP==='sc')saveSubcFichasArr(arr);else saveFichasArr(arr);}
 function _gFC(id){return document.getElementById(_CP+'-'+id);}
@@ -4227,228 +4218,8 @@ if(!localStorage.getItem('crm-v3-clean')){
   db={clientes:[],orcamentos:[],_nc:1,_no:1};
   save();
 }
-load();updateSB();
-// Start Supabase auth after DOM ready
-
-/* ── Auto Backup ── */
-function _checkAutoBackup(){
-  var last=parseInt(localStorage.getItem('bc_last_backup')||'0');
-  var now=Date.now();
-  var semana=7*24*60*60*1000;
-  if(now-last>semana){
-    setTimeout(function(){
-      var ind=document.getElementById('sb-sync-ind');
-      if(ind){ind.textContent='💾';ind.style.opacity='1';ind.title='Backup automático disponível';}
-      // Show backup banner
-      var banner=document.createElement('div');
-      banner.id='backup-banner';
-      banner.style.cssText='position:fixed;bottom:16px;right:16px;background:#2a2a2a;color:#fff;border-radius:8px;padding:12px 18px;font-size:12px;font-family:Inter,sans-serif;z-index:9998;display:flex;align-items:center;gap:12px;box-shadow:0 4px 16px rgba(0,0,0,0.3)';
-      var k='bc_last_backup';
-      banner.innerHTML='<span>&#128190; &#218;ltima exporta&#231;&#227;o h&#225; mais de 7 dias</span>'+
-        '<button onclick="exportarJSON();localStorage.setItem(&quot;'+k+'&quot;,Date.now());this.closest(&quot;#backup-banner&quot;).remove()" '+
-        'style="padding:5px 12px;background:#c9a96e;border:none;border-radius:4px;color:#fff;font-size:11px;cursor:pointer;font-family:Inter,sans-serif;font-weight:600">Exportar agora</button>'+
-        '<button onclick="localStorage.setItem(&quot;'+k+'&quot;,Date.now());document.getElementById(&quot;backup-banner&quot;).remove()" '+
-        'style="padding:5px 8px;background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:14px;cursor:pointer">&#215;</button>';
-      document.body.appendChild(banner);
-    },3000);
-  }
-}
-
-// sbInit() é chamado pelo loader Supabase abaixo
-
-/* ── SUPABASE FUNCTIONS ── */
-window._sb=null;
-window._sbUser=null;
-
-function sbSync(){
-  if(!window._sb||!window._sbUser)return;
-  clearTimeout(window._sbSyncTimer);
-  window._sbSyncTimer=setTimeout(function(){_sbDoSync();},1200);
-}
-
-async function _sbDoSync(){
-  if(!window._sb||!window._sbUser)return;
-  var uid=window._sbUser.id;
-  var rows=[
-    {user_id:uid,chave:'db_main',valor:db},
-    {user_id:uid,chave:'fichas_calc',valor:JSON.parse(localStorage.getItem('bc-fichas-calc')||'[]')},
-    {user_id:uid,chave:'fichas_subcont',valor:JSON.parse(localStorage.getItem('bc-fichas-subcont')||'[]')},
-    {user_id:uid,chave:'empresa',valor:_EMP},
-    {user_id:uid,chave:'precos',valor:(typeof _PR!=='undefined'?_PR:{})},
-    {user_id:uid,chave:'desc_hist',valor:(typeof _dHist!=='undefined'?_dHist:[])}
-  ];
-  for(var r of rows){
-    try{
-      await window._sb.from('config').delete().eq('user_id',uid).eq('chave',r.chave);
-      await window._sb.from('config').insert(r);
-    }catch(e){console.error('sbSync',r.chave,e);}
-  }
-  // Sync images — upload to Supabase
-  await _sbSyncImages(uid);
-  var ind=document.getElementById('sb-sync-ind');
-  if(ind){ind.style.opacity='1';setTimeout(function(){ind.style.opacity='0';},1500);}
-}
-
-async function sbLoadAll(){
-  if(!window._sb||!window._sbUser)return;
-  try{
-    var res=await window._sb.from('config').select('chave,valor').eq('user_id',window._sbUser.id);
-    if(res.data){
-      res.data.forEach(function(row){
-        if(row.chave==='db_main'&&row.valor){
-          db=row.valor;
-          if(!db._nc)db._nc=1;
-          if(!db._no)db._no=1;
-        }
-        if(row.chave==='fichas_calc')try{localStorage.setItem('bc-fichas-calc',JSON.stringify(row.valor));}catch(e){}
-        if(row.chave==='fichas_subcont')try{localStorage.setItem('bc-fichas-subcont',JSON.stringify(row.valor));}catch(e){}
-        if(row.chave==='empresa'){Object.assign(_EMP,row.valor);try{localStorage.setItem('bc-empresa',JSON.stringify(_EMP));}catch(e){}}
-        if(row.chave==='precos')try{localStorage.setItem('bc-precos',JSON.stringify(row.valor));_PR=JSON.parse(localStorage.getItem('bc-precos'));}catch(e){}
-        if(row.chave==='desc_hist')try{_dHist=row.valor||[];localStorage.setItem('bc-desc-hist',JSON.stringify(_dHist));}catch(e){}
-      });
-    }
-  }catch(e){console.error('sbLoadAll',e);}
-}
-
-async function sbInit(){
-  if(!window._sb){return;}
-  try{
-    var res=await window._sb.auth.getSession();
-    var session=res.data&&res.data.session;
-    if(session&&session.user){
-      window._sbUser=session.user;
-      await sbLoadAndMerge();
-      document.getElementById('sb-login-overlay').style.display='none';
-      var lbl=document.getElementById('sb-user-label');
-      if(lbl)lbl.textContent=session.user.email;
-      updateSB();nav('dashboard');_checkAutoBackup();
-    } else {
-      document.getElementById('sb-login-overlay').style.display='flex';
-    }
-  }catch(e){
-    console.error('sbInit error',e);
-    document.getElementById('sb-login-overlay').style.display='flex';
-  }
-}
-
-async function sbLoadAndMerge(){
-  // Verifica se Supabase tem dados
-  var res=await window._sb.from('config').select('chave,valor').eq('user_id',window._sbUser.id).eq('chave','db_main');
-  var sbHasData=res.data&&res.data.length>0&&res.data[0].valor&&(res.data[0].valor.clientes||[]).length>0;
-  if(sbHasData){
-    // Supabase tem dados — carrega deles (fonte de verdade)
-    await sbLoadAll();
-    await _sbLoadImages(); // Carrega imagens da cloud para IndexedDB local
-  } else {
-    // Supabase vazio — envia dados locais para Supabase
-    await _sbDoSync();
-  }
-}
-
-async function sbLogin(){
-  if(!window._sb){
-    document.getElementById('sb-login-err').textContent='Sem ligação ao servidor. Verifica a internet.';
-    return;
-  }
-  var email=document.getElementById('sb-email').value.trim();
-  var pass=document.getElementById('sb-pass').value;
-  var errEl=document.getElementById('sb-login-err');
-  errEl.textContent='A entrar...';
-  try{
-    var res=await window._sb.auth.signInWithPassword({email:email,password:pass});
-    if(res.error){errEl.textContent='Email ou password incorretos.';return;}
-    window._sbUser=res.data.user;
-    await sbLoadAndMerge();
-    document.getElementById('sb-login-overlay').style.display='none';
-    var lbl=document.getElementById('sb-user-label');
-    if(lbl)lbl.textContent=email;
-    updateSB();nav('dashboard');
-  }catch(e){
-    var msg=e&&e.message?e.message:String(e);
-    errEl.textContent='Erro: '+msg;
-    console.error('sbLogin',e);
-  }
-}
-
-
-/* ── Image Sync ── */
-async function _sbSyncImages(uid){
-  if(!window._sb||!uid)return;
-  // Collect all image keys from orçamentos
-  var keys=[];
-  (db.orcamentos||[]).forEach(function(o){
-    (o.linhas||[]).forEach(function(l){if(l.img&&l.img.indexOf('idb_')===0)keys.push(l.img);});
-  });
-  if(!keys.length)return;
-  // Check which keys already synced
-  var existing=[];
-  try{
-    var res=await window._sb.from('config').select('chave').eq('user_id',uid).like('chave','img_%');
-    if(res.data)existing=res.data.map(function(r){return r.chave;});
-  }catch(e){}
-  var toSync=keys.filter(function(k){return existing.indexOf('img_'+k)<0;});
-  for(var key of toSync){
-    await new Promise(function(resolve){
-      _idbGet(key,async function(url){
-        if(!url){resolve();return;}
-        try{
-          await window._sb.from('config').insert({user_id:uid,chave:'img_'+key,valor:{data:url,ts:Date.now()}});
-        }catch(e){}
-        resolve();
-      });
-    });
-  }
-}
-
-async function _sbLoadImages(){
-  if(!window._sb||!window._sbUser)return;
-  try{
-    var res=await window._sb.from('config').select('chave,valor').eq('user_id',window._sbUser.id).like('chave','img_%');
-    if(!res.data||!res.data.length)return;
-    for(var row of res.data){
-      var key=row.chave.replace(/^img_/,'');
-      var url=row.valor&&row.valor.data;
-      if(!key||!url)continue;
-      // Check if already in local IndexedDB
-      await new Promise(function(resolve){
-        _idbGet(key,function(existing){
-          if(existing){resolve();return;}
-          // Store in IndexedDB
-          try{
-            var blob=_dataUrlToBlob(url);
-            _idbPut(blob,function(newKey){
-              // Update references in db if key changed
-              if(newKey&&newKey!==key){
-                (db.orcamentos||[]).forEach(function(o){
-                  (o.linhas||[]).forEach(function(l){if(l.img===key)l.img=newKey;});
-                });
-              }
-              resolve();
-            });
-          }catch(e){resolve();}
-        });
-      });
-    }
-  }catch(e){console.error('_sbLoadImages',e);}
-}
-
-async function sbNowSync(){
-  if(!window._sb||!window._sbUser){alert('Sem sessão ativa.');return;}
-  var ind=document.getElementById('sb-sync-ind');
-  if(ind){ind.style.opacity='1';ind.textContent='↑';}
-  await _sbDoSync();
-  if(ind){ind.textContent='✓';setTimeout(function(){ind.style.opacity='0';ind.textContent='✓';},2000);}
-  alert('Dados sincronizados com o servidor!');
-}
-
-async function sbLogout(){
-  if(!confirm('Terminar sessão?'))return;
-  if(window._sb)await window._sb.auth.signOut();
-  window._sbUser=null;
-  db={clientes:[],orcamentos:[],_nc:1,_no:1};
-  document.getElementById('sb-user-label').textContent='';
-  document.getElementById('sb-login-overlay').style.display='flex';
-}
+updateSB();
+nav('dashboard');
 </script>
 <!-- MODAL BIBLIOTECA DE DESCRIÇÕES -->
 <div class="modal-overlay" id="modal-desc-lib">
@@ -4529,7 +4300,7 @@ function _acShow(ta){
     var safe=m.replace(/&/g,'&amp;').replace(/</g,'&lt;');
     var hl=q?safe.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<strong style="color:#8B7355">$1</strong>'):safe;
     return '<div style="padding:7px 12px;cursor:pointer;font-size:12px;font-family:Inter,sans-serif;color:#2a2a2a;border-bottom:1px solid #f5f2ee;line-height:1.4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" '+
-      'onmouseover="this.style.background="#fdf9f4"" onmouseout="this.style.background="#fff"" '+
+      'onmouseover="this.style.background='#fdf9f4'" onmouseout="this.style.background='#fff'" '+
       'onmousedown="event.preventDefault();_acPick('+i+')">'+hl+'</div>';
   }).join('');
 }
@@ -4574,71 +4345,5 @@ document.addEventListener('keydown',function(e){
 },true);
 _dhLoad();
 </script>
-
-<!-- LOGIN OVERLAY -->
-<div id="sb-login-overlay" style="display:flex;position:fixed;inset:0;background:linear-gradient(135deg,#1a1a1a 0%,#2a2a2a 100%);z-index:99999;align-items:center;justify-content:center;flex-direction:column">
-  <div style="background:#fff;border-radius:12px;width:360px;padding:40px;box-shadow:0 20px 60px rgba(0,0,0,0.4)">
-    <div style="text-align:center;margin-bottom:28px">
-      <svg viewBox="0 0 609.41 400.78" xmlns="http://www.w3.org/2000/svg" style="height:48px;width:auto;margin:0 auto 14px;display:block">
-        <path style="fill:#c9a96e" d="M350.38,195.8c-1.01,41.42,5.37,86.85,40.4,114.52,25.76,20.35,66.79,24.02,96.1,9.23,22.16-11.18,37.19-31.98,41.7-56.28.18-.97,1.07-1.57,2.06-1.57l29.96.13,48.53-.08c.81,11.84-5.53,33.29-9.92,44.4-5.02,12.71-13.82,27.05-22.53,37.52-28.53,34.29-68.85,53.1-113.29,56.45-34.4,2.6-68.24-2.28-99.42-17.18-8.02-3.83-15.24-8.47-22.51-13.44-12.23-8.35-23.95-20.14-33.1-31.93-17.93-23.09-30.04-49.33-35.68-78.15-4.24-21.68-6.17-43.37-5.96-64.64,14.71-3.16,51.05-3.5,65.97-1.6,6.76.86,11.29,1.04,17.7,2.63h0Z"/>
-        <path style="fill:#2a2a2a" d="M508.49,98.56c-20.22-22.74-51.75-29.71-80.93-24.27-24.14,4.5-43.3,18.48-56.34,38.93-12.61,19.76-17.48,40.71-20.09,64-2.15.26-4.19-.37-6.44-.88-24.63-3.67-50.96-3.81-75.99-.3,1.76-33.89,9.65-64.9,27.13-94.29,15.08-24.07,34.15-43.94,58.73-58.27,44.91-26.19,110.04-30.91,158.12-11.94,18.5,7.3,35.23,17.48,49.88,30.92,24.33,22.33,40.57,53.71,45.58,86.27.71,4.59,1.67,8.77,1.08,13.45-3.54-.27-6.97-.36-10.79-.35l-67.9.08c-1.55,0-2.44-1.6-2.58-2.78-.52-4.52-1.94-8.39-3.43-12.59-3.68-10.39-8.71-19.75-16.04-27.99h0Z"/>
-      </svg>
-      <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#2a2a2a;letter-spacing:-0.3px">Bridge Control</div>
-      <div style="font-size:12px;color:#aaa;margin-top:4px;letter-spacing:0.3px">CRM & Orçamentação</div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:12px">
-      <input id="sb-email" type="email" placeholder="Email" onkeydown="if(event.key==='Enter')document.getElementById('sb-pass').focus()"
-        style="width:100%;padding:11px 14px;border:1.5px solid #ddd;border-radius:7px;font-size:14px;font-family:Inter,sans-serif;outline:none;box-sizing:border-box"
-        onfocus="this.style.borderColor='#c9a96e'" onblur="this.style.borderColor='#ddd'">
-      <input id="sb-pass" type="password" placeholder="Password" onkeydown="if(event.key==='Enter')sbLogin()"
-        style="width:100%;padding:11px 14px;border:1.5px solid #ddd;border-radius:7px;font-size:14px;font-family:Inter,sans-serif;outline:none;box-sizing:border-box"
-        onfocus="this.style.borderColor='#c9a96e'" onblur="this.style.borderColor='#ddd'">
-      <div id="sb-login-err" style="font-size:12px;color:#c0392b;text-align:center;min-height:16px"></div>
-      <button onclick="sbLogin()" style="width:100%;padding:12px;background:linear-gradient(135deg,#9B8265,#7D6448);color:#fff;border:none;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;letter-spacing:0.3px">
-        Entrar
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- SUPABASE — carregado no fim para não bloquear o app -->
-<script>
-window.addEventListener('load', function(){
-  var s=document.createElement('script');
-  s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
-  s.onload=function(){
-    try{
-      var SUPABASE_URL='https://rxkunucxxyhvfexrvpev.supabase.co';
-      var SUPABASE_KEY='sb_publishable_aD4-v1BkW5oapqoMBRrkTA_wZQnH1hB';
-      window._sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-      window._sbUser=null;
-      sbInit();
-    }catch(e){
-      console.error('Supabase init error:',e);
-      // Mostra login mesmo assim
-      var ov=document.getElementById('sb-login-overlay');
-      if(ov)ov.style.display='flex';
-    }
-  };
-  s.onerror=function(){
-    console.error('Supabase CDN não carregou — sem internet?');
-    var ov=document.getElementById('sb-login-overlay');
-    if(ov){
-      ov.style.display='flex';
-      var err=document.getElementById('sb-login-err');
-      if(err)err.textContent='Sem ligação à internet. Liga-te e recarrega a página.';
-    }
-  };
-  // Timeout: se após 8s _sb ainda for null, mostrar aviso
-  setTimeout(function(){
-    if(!window._sb){
-      var err=document.getElementById('sb-login-err');
-      if(err&&!err.textContent)err.textContent='A carregar servidor... se demorar abre em Chrome/Edge com internet.';
-    }
-  },8000);
-  document.head.appendChild(s);
-});
-</script>
-
 </body>
 </html>
