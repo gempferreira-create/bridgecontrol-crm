@@ -3068,14 +3068,14 @@ function exportFichaCalc(){
     if(!d&&!parseFloat(pu))return null;
     return [qtd,d,pu,tot];
   });};
-  var estR=unitR('fc-est-body'),metR=unitR('fc-met-body'),ocompR=unitR('fc-ocomp-body');
+  var estR=unitR('fc-est-body'),metR=unitR('fc-met-body'),ocompR=unitR('fc-ocomp-body'),tecR=unitR('fc-tec-body');
 
   // Subtotals
   var sumT=function(rows){return rows.reduce(function(s,r){return s+parseFmt(r[r.length-1]);},0);};
   var tMdf=sumT(mdfR),tMad=sumT(madR),tOp=sumT(opR),tFer=sumT(ferR),tVid=sumT(vidR);
-  var tCer=sumT(cerR),tEsp=sumT(espR),tEst=sumT(estR),tMet=sumT(metR),tOcomp=sumT(ocompR);
+  var tCer=sumT(cerR),tEsp=sumT(espR),tEst=sumT(estR),tMet=sumT(metR),tOcomp=sumT(ocompR),tTec=sumT(tecR);
   var tOutros=emb+transp+gab+fixos+mont;
-  var tBase=tMdf+tMad+tOp+tFer+tVid+tCer+tEsp+tEst+tMet+tOcomp+tOutros;
+  var tBase=tMdf+tMad+tOp+tFer+tVid+tCer+tEsp+tEst+tTec+tMet+tOcomp+tOutros;
   var tPV=tBase*(1+lucroP/100);
   var tMargem=tPV-tBase;
 
@@ -3203,7 +3203,7 @@ function exportFichaCalc(){
   if(ferR.length)secHtml+=secTbl('Ferragem · Consumíveis','',
     [{t:'Qtd',w:W.qtd,c:1},{t:'Artigo',wrap:1},{t:'€/uni',w:W.pu,r:1},{t:'Total €',w:W.tot,r:1}],
     ferR);
-  if(vidR.length)secHtml+=secTbl('Vidros','',
+  if(vidR.length)secHtml+=secTbl('Vidros','blue',
     [{t:'Qtd',w:W.qtd,c:1},{t:'C mm',w:W.c,r:1},{t:'L mm',w:W.l,r:1},{t:'Tipo',wrap:1},{t:'m²',w:W.m,r:1},{t:'€/m²',w:W.pu,r:1},{t:'Total €',w:W.tot,r:1}],
     vidR);
   if(cerR.length)secHtml+=secTbl('Cerâmica · Mármore · Compósitos','blue',
@@ -3218,7 +3218,10 @@ function exportFichaCalc(){
   if(metR.length)secHtml+=secTbl('Metais','blue',
     [{t:'Qtd',w:W.qtd,c:1},{t:'Descrição',wrap:1},{t:'€/uni',w:W.pu,r:1},{t:'Total €',w:W.tot,r:1}],
     metR);
-  if(ocompR.length)secHtml+=secTbl('Outros Componentes','',
+  if(tecR.length)secHtml+=secTbl('Tecido','blue',
+    [{t:'Qtd (ml)',w:W.qtd,c:1},{t:'Descrição',wrap:1},{t:'€/ml',w:W.pu,r:1},{t:'Total €',w:W.tot,r:1}],
+    tecR);
+  if(ocompR.length)secHtml+=secTbl('Outros Componentes','blue',
     [{t:'Qtd',w:W.qtd,c:1},{t:'Descrição',wrap:1},{t:'€/uni',w:W.pu,r:1},{t:'Total €',w:W.tot,r:1}],
     ocompR);
 
@@ -3361,9 +3364,9 @@ function exportSubcPDF(){
 
   var sumT=function(rows){return rows.reduce(function(s,r){return s+parseFmt(r[r.length-1]);},0);};
   var tMdf=sumT(mdfR),tMad=sumT(madR),tOp=sumT(opR),tFer=sumT(ferR),tVid=sumT(vidR);
-  var tCer=sumT(cerR),tEsp=sumT(espR),tEst=sumT(estR),tMet=sumT(metR),tOcomp=sumT(ocompR);
+  var tCer=sumT(cerR),tEsp=sumT(espR),tEst=sumT(estR),tMet=sumT(metR),tOcomp=sumT(ocompR),tTec=sumT(tecR);
   var tOutros=emb+transp+gab+fixos+mont;
-  var tBase=tMdf+tMad+tOp+tFer+tVid+tCer+tEsp+tEst+tMet+tOcomp+tOutros;
+  var tBase=tMdf+tMad+tOp+tFer+tVid+tCer+tEsp+tEst+tTec+tMet+tOcomp+tOutros;
   var tPV=tBase*(1+lucroP/100);
   var tMargem=tPV-tBase;
 
@@ -3481,7 +3484,7 @@ function exportSubcPDF(){
   if(mdfR.length)secHtml+=secTbl('Marcenaria','dark',unitH,mdfR);
   if(madR.length)secHtml+=secTbl('Acabamento','dark',acabH,madR);
   if(opR.length)secHtml+=secTbl('Iluminação','dark',unitH,opR);
-  if(vidR.length)secHtml+=secTbl('Vidros','',vidH,vidR);
+  if(vidR.length)secHtml+=secTbl('Vidros','blue',vidH,vidR);
   if(cerR.length)secHtml+=secTbl('Cerâmica · Mármore · Compósitos','',m2H,cerR);
   if(espR.length)secHtml+=secTbl('Espelhos','',m2H,espR);
   if(estR.length)secHtml+=secTbl('Estofo','',unitH,estR);
