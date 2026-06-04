@@ -2391,6 +2391,7 @@ function fcToggleAcab(sel){
 function _setVal(c,v){if(!c)return;var i=c.querySelector('input');if(i)i.value=v;else c.textContent=v;}
 
 function fcCalcTotais(){
+  var fmt=function(n){return Number(n||0).toFixed(2);};
   var subMdf=0,subMad=0,subOp=0,subFer=0,subVid=0,subCer=0,subEsp=0,subEst=0,subTec=0,subMet=0,subOcomp=0;
   var cp=_CP;
 
