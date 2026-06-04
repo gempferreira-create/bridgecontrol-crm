@@ -670,7 +670,7 @@ var _lc=0,_editOrcId=null;
 
 function save(){try{localStorage.setItem('bc_crm',JSON.stringify(db));}catch(e){}sbSync();}
 function load(){try{var d=localStorage.getItem('bc_crm');if(d)db=JSON.parse(d);}catch(e){}}
-function fmt(n){return Number(n||0).toLocaleString('pt-PT',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function fmt(n){var x=Number(n||0).toFixed(2);var p=x.split('.');p[0]=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,' ');return p.join('.');}
 function today(){return new Date().toISOString().slice(0,10);}
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
 function getCliNome(id){var c=db.clientes.find(function(x){return x.id==id;});return c?c.nome:(id||'—');}
@@ -2118,7 +2118,7 @@ function fcAddFCRow(sec){
 function fcFerChange(sel){
   var tr=sel.closest('tr');
   var pu=sel.value?+sel.value:0;
-  if(tr&&tr.cells[2]){var inp=tr.cells[2].querySelector('input');if(inp)inp.value=pu?fmt(pu):'0,00';else tr.cells[2].textContent=pu?fmt(pu):'0,00';}
+  if(tr&&tr.cells[2]){var inp=tr.cells[2].querySelector('input');if(inp)inp.value=pu?fmt(pu):'0.00';else tr.cells[2].textContent=pu?fmt(pu):'0.00';}
   fcCalcTotais();
 }
 
@@ -2391,7 +2391,6 @@ function fcToggleAcab(sel){
 function _setVal(c,v){if(!c)return;var i=c.querySelector('input');if(i)i.value=v;else c.textContent=v;}
 
 function fcCalcTotais(){
-  var fmt=function(n){return Number(n||0).toFixed(2);};
   var subMdf=0,subMad=0,subOp=0,subFer=0,subVid=0,subCer=0,subEsp=0,subEst=0,subTec=0,subMet=0,subOcomp=0;
   var cp=_CP;
 
@@ -2441,7 +2440,7 @@ function fcCalcTotais(){
       var cells=tr.cells;if(!cells.length)return;
       var qtd=+cells[0].querySelector('input').value||0;
       var ferPrice=cells[1]?(+cells[1].querySelector('select').value||0):0;
-      if(cells[2]){var fi=cells[2].querySelector('input');if(fi)fi.value=ferPrice?fmt(ferPrice):'—';else cells[2].textContent=ferPrice?fmt(ferPrice):'—';}
+      if(cells[2]){var fi=cells[2].querySelector('input');if(fi)fi.value=ferPrice?fmt(ferPrice):'0.00';else cells[2].textContent=ferPrice?fmt(ferPrice):'0.00';}
       var tot=qtd*ferPrice;
       _setVal(cells[3],fmt(tot));
       subFer+=tot;
@@ -2936,7 +2935,7 @@ function carregarFichaCalc(idx){
     fcRestFC(s.fer,'fer',function(tr,r){
       tr.cells[0].querySelector('input').value=r.qtd||'1';
       tr.cells[1].querySelector('select').value=r.fer||'';
-      var _fi=tr.cells[2]?tr.cells[2].querySelector('input'):null;if(_fi)_fi.value=r.fer?fmt(+r.fer):'—';
+      var _fi=tr.cells[2]?tr.cells[2].querySelector('input'):null;if(_fi)_fi.value=r.fer?fmt(+r.fer):'0.00';
     });
     fcRestFC(s.vid,'vid',function(tr,r){
       tr.cells[0].querySelector('input').value=r.qtd||'1';
@@ -3007,7 +3006,7 @@ function fcUpdateLinhas(){}
 function exportFichaCalc(){
   var gv=function(id){var el=document.getElementById('fc-'+id);return el?el.value:'';};
   var selTxt=function(sel){if(!sel||!sel.options||sel.selectedIndex<0)return '';return sel.options[sel.selectedIndex].text||'';};
-  var fmtN=function(n){return isNaN(n)?'0,00':n.toFixed(2).replace('.',',').replace(/\B(?=(\d{3})+(?!\d))/g,'.');};
+  var fmtN=function(n){if(isNaN(n))return '0.00';var x=n.toFixed(2);var p=x.split('.');p[0]=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,' ');return p.join('.');};
   var parseFmt=function(s){return parseFloat((s||'').replace(/\./g,'').replace(',','.'))||0;};
 
   // Header fields
@@ -3030,7 +3029,7 @@ function exportFichaCalc(){
   var inp=function(c,i){return c&&c[i]?(c[i].querySelector('input')||{value:''}).value:'';};
   var sel=function(c,i){return c&&c[i]?selTxt(c[i].querySelector('select')):'';};
   var ta=function(c,i){return c&&c[i]?((c[i].querySelector('textarea')||c[i].querySelector('input')||{value:''}).value):'';};
-  var totV=function(c,i){return c&&c[i]?(c[i].querySelector('input')||{value:'0,00'}).value:'0,00';};
+  var totV=function(c,i){return c&&c[i]?(c[i].querySelector('input')||{value:'0.00'}).value:'0.00';};
 
   var mdfR=R('fc-mdf-body',function(c){
     if(!c||!c.length)return null;
@@ -3319,7 +3318,7 @@ function exportFichaCalc(){
 function exportSubcPDF(){
   var gv=function(id){var el=document.getElementById('sc-'+id);return el?el.value:'';};
   var selTxt=function(sel){if(!sel||!sel.options||sel.selectedIndex<0)return '';return sel.options[sel.selectedIndex].text||'';};
-  var fmtN=function(n){return isNaN(n)?'0,00':n.toFixed(2).replace('.',',').replace(/\B(?=(\d{3})+(?!\d))/g,'.');};
+  var fmtN=function(n){if(isNaN(n))return '0.00';var x=n.toFixed(2);var p=x.split('.');p[0]=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,' ');return p.join('.');};
   var parseFmt=function(s){return parseFloat((s||'').replace(/\./g,'').replace(',','.'))||0;};
 
   var nprojeto=gv('nprojeto'),ref=gv('ref'),artigo=gv('artigo'),areacab=gv('area-cab');
@@ -3339,7 +3338,7 @@ function exportSubcPDF(){
   };
   var inp=function(c,i){return c&&c[i]?(c[i].querySelector('input')||{value:''}).value:'';};
   var ta=function(c,i){return c&&c[i]?((c[i].querySelector('textarea')||c[i].querySelector('input')||{value:''}).value):'';};
-  var totV=function(c,i){return c&&c[i]?(c[i].querySelector('input')||{value:'0,00'}).value:'0,00';};
+  var totV=function(c,i){return c&&c[i]?(c[i].querySelector('input')||{value:'0.00'}).value:'0.00';};
 
   // Unit rows: Qtd | Desc | €/uni | Total
   var unitR=function(bid){return R(bid,function(c){
