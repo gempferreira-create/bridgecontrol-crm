@@ -3866,9 +3866,9 @@ function fichaParaOrcamento(idxStr){
     var rEl=document.getElementById('orc-ref');
     if(rEl&&!rEl.value)rEl.value=s.ref;
   }
-  if(s.areacab||s.artigo){
+  if(s.refobra){
     var vEl=document.getElementById('orc-villa');
-    if(vEl&&!vEl.value)vEl.value=s.areacab||s.artigo||'';
+    if(vEl&&!vEl.value)vEl.value=s.refobra;
   }
   if(s.cliente){
     var cEl=document.getElementById('orc-clienteId');
@@ -3921,7 +3921,7 @@ function scFichaParaOrcamento(idxStr){
   var result=calcFichaTotal(s);
   if(s.nprojeto){var npEl=document.getElementById('orc-numProjeto');if(npEl&&!npEl.value)npEl.value=s.nprojeto;}
   if(s.ref){var rEl=document.getElementById('orc-ref');if(rEl&&!rEl.value)rEl.value=s.ref;}
-  if(s.areacab||s.artigo){var vEl=document.getElementById('orc-villa');if(vEl&&!vEl.value)vEl.value=s.areacab||s.artigo||'';}
+  if(s.refobra){var vEl=document.getElementById('orc-villa');if(vEl&&!vEl.value)vEl.value=s.refobra;}
   if(s.cliente){var cEl=document.getElementById('orc-clienteId');if(cEl&&!cEl.value)cEl.value=s.cliente;}
   var linha={
     ref:s.ref||'',artigo:s.artigo||s.nome||'',area:s.areacab||'',
