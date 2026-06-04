@@ -4606,9 +4606,12 @@ function _acPick(i){
 }
 function _isDescTa(el){
   if(!el||el.tagName!=='TEXTAREA')return false;
+  var id=(el.id||'');
+  // Excluir campos de descrição do cabeçalho (fc-desc, sc-desc)
+  if(id==='fc-desc'||id==='sc-desc'||id==='fc-notas'||id==='sc-notas')return false;
+  if(id.indexOf('-desc')!==-1&&(id.indexOf('fc-desc')!==-1||id.indexOf('sc-desc')!==-1))return false;
   if(el.dataset&&(el.dataset.f==='descricao'||el.dataset.f==='artigo'))return true;
   var ph=(el.placeholder||'').toLowerCase();
-  var id=(el.id||'');
   if(id.indexOf('desc')!==-1&&id!=='desc-lib-new-texto')return true;
   return ph.indexOf('escri')!==-1||ph.indexOf('artigo')!==-1||
          ph.indexOf('bamento')!==-1||ph.indexOf('luminação')!==-1||
