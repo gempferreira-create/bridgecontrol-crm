@@ -217,7 +217,7 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
     <span id="sb-user-label" style="font-size:10px;color:rgba(255,255,255,0.35);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:140px"></span>
     <span id="sb-sync-ind" title="Sincronizado" style="font-size:11px;color:#7ec87e;opacity:0;transition:opacity 0.5s">✓</span>
   </div>
-  bridgecontrol.eu<br><span id="sb-stats">0 clientes · 0 orçamentos</span>
+  <span id="sb-website">bridgecontrol.eu</span><br><span id="sb-stats">0 clientes · 0 orçamentos</span>
   <div style="display:flex;gap:4px;margin-top:8px"><button onclick="sbNowSync()" title="Forçar sincronização" style="flex:1;padding:5px;background:rgba(201,169,110,0.1);border:1px solid rgba(201,169,110,0.2);border-radius:4px;color:rgba(201,169,110,0.6);font-size:10px;cursor:pointer;font-family:Inter,sans-serif">↑ Sincronizar</button><button onclick="sbLogout()" style="flex:1;padding:5px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:4px;color:rgba(255,255,255,0.35);font-size:10px;cursor:pointer;font-family:Inter,sans-serif">Sair</button></div>
 </div>
 </div>
@@ -361,11 +361,11 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
           </div>
           <div>
             <label style="font-size:11px;color:#888;font-weight:600;display:block;margin-bottom:4px">Email</label>
-            <input id="emp-email" type="email" placeholder="Ex: geral@bridgecontrol.pt" onchange="saveEmpField('email',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#8B7355'" onblur="this.style.borderColor='#ddd'">
+            <input id="emp-email" type="email" placeholder="Ex: jose.ferreira@oficinadigitall.pt" onchange="saveEmpField('email',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#8B7355'" onblur="this.style.borderColor='#ddd'">
           </div>
           <div>
             <label style="font-size:11px;color:#888;font-weight:600;display:block;margin-bottom:4px">Website</label>
-            <input id="emp-website" type="url" placeholder="Ex: www.bridgecontrol.pt" onchange="saveEmpField('website',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#8B7355'" onblur="this.style.borderColor='#ddd'">
+            <input id="emp-website" type="url" placeholder="Ex: www.bridgecontrol.eu" onchange="saveEmpField('website',this.value)" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor='#8B7355'" onblur="this.style.borderColor='#ddd'">
           </div>
         </div>
 
@@ -1519,7 +1519,7 @@ function _gerarPDFInner(id,imgMap){
     (_iva?'<tr><td style="padding:5px 12px;color:rgba(255,255,255,0.45);font-size:11px;text-transform:uppercase;letter-spacing:0.8px;font-weight:500;text-align:right">IVA '+_iva+'%</td><td style="padding:5px 12px;color:rgba(255,255,255,0.55);font-size:14px;text-align:right;font-weight:500">'+fmt(_ivaV)+' €</td></tr><tr style="border-top:1px solid rgba(201,169,110,0.3)"><td style="padding:10px 12px;color:#fff;font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:700;text-align:right">Total com IVA</td><td style="padding:10px 12px;color:#c9a96e;font-size:22px;text-align:right;font-weight:700;letter-spacing:-0.4px">'+fmt(_tot)+' €</td></tr>':'');})() +
   '</table></div>'+(o.tcTexto?'<p style="font-size:11px;color:#aaa;font-style:italic;margin-top:12px;padding-left:4px">'+o.tcTexto+'</p>':'')+'</div>'+
   (tcHtml?'<div style="padding:0 36px 28px;border-top:1px solid #f0ede8"><div style="font-family:\'Inter\',sans-serif;font-size:13px;font-weight:600;color:#3A3A3A;margin:18px 0 14px;padding-bottom:6px;border-bottom:1px solid #eee;letter-spacing:1.5px;text-transform:uppercase">Termos e Condi\xe7\xf5es</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">'+tcHtml+'</div></div>':'')+
-  '<div style="background:#3A3A3A;padding:14px 36px;display:flex;justify-content:space-between;align-items:center"><div style="color:rgba(255,255,255,0.45);font-size:11px">arca-mobiliario.pt  ·  geral@arca-mobiliario.pt</div><div style="color:rgba(255,255,255,0.35);font-size:11px">'+hoje+'</div></div>'+
+  '<div style="background:#3A3A3A;padding:14px 36px;display:flex;justify-content:space-between;align-items:center"><div style="color:rgba(255,255,255,0.45);font-size:11px">'+((_EMP.website||'')+(_EMP.website&&_EMP.email?'  ·  ':'')+(_EMP.email||''))+'</div><div style="color:rgba(255,255,255,0.35);font-size:11px">'+hoje+'</div></div>'+
   '</div></body></html>';
 
   var w=window.open('','_blank','width=1100,height=820,scrollbars=yes');
@@ -1604,7 +1604,7 @@ function exportarExcel(){
   XLSX.writeFile(wb,'BridgeControl_Export_'+today()+'.xlsx');
 }
 
-function updateSB(){document.getElementById('sb-stats').textContent=db.clientes.length+' clientes \xb7 '+db.orcamentos.length+' or\xe7amentos';}
+function updateSB(){document.getElementById('sb-stats').textContent=db.clientes.length+' clientes \xb7 '+db.orcamentos.length+' or\xe7amentos';var w=document.getElementById('sb-website');if(w)w.textContent=(_EMP&&_EMP.website)?_EMP.website:'bridgecontrol.eu';}
 
 function seedDemo(){
   if((db.clientes.length||db.orcamentos.length)&&!confirm('Adicionar dados de demonstração?'))return;
@@ -1613,7 +1613,7 @@ function seedDemo(){
   _EMP.nib='PT50 0010 0000 1234 5678 9015 4';_EMP.capital='50.000,00 €';
   _EMP.morada='Rua da Carpintaria, nº 12, Pavilhão 3';_EMP.cp='4590-123';
   _EMP.localidade='Paços de Ferreira';_EMP.telefone='+351 255 123 456';
-  _EMP.email='geral@bridgecontrol.eu';_EMP.website='www.bridgecontrol.eu';saveEmp();
+  _EMP.email='jose.ferreira@oficinadigitall.pt';_EMP.website='www.bridgecontrol.eu';saveEmp();
   var cliId=uid();
   db.clientes.push({id:cliId,nome:'Ricardo Monteiro',empresa:'Empatias — Hospitality Group',email:'r.monteiro@empatias.pt',telefone:'+351 912 345 678',pais:'Portugal',morada:'Av. da Liberdade, 110, Lisboa',notas:'Cliente VIP — Projeto hospitality Lisboa'});
   var orcId=uid();
@@ -1650,7 +1650,7 @@ function limparDB(){if(!confirm('Apagar TODOS os dados? Esta ação não pode se
 /* ── CALCULADORA DE CUSTO ───────────────────────────── */
 var _PR_KEY='bc-precos';
 var _EMP_KEY='bc-empresa';
-var _EMP={nome:'Bridge Control, Lda.',marca:'Bridge Control',nif:'514 872 301',nib:'PT50 0010 0000 1234 5678 9015 4',capital:'50.000,00 €',morada:'Rua da Carpintaria, nº 12, Pav. 3',cp:'4590-123',localidade:'Paços de Ferreira',telefone:'+351 255 123 456',email:'geral@bridgecontrol.eu',website:'www.bridgecontrol.eu',obs:'',logo:''};
+var _EMP={nome:'Bridge Control, Lda.',marca:'Bridge Control',nif:'514 872 301',nib:'PT50 0010 0000 1234 5678 9015 4',capital:'50.000,00 €',morada:'Rua da Carpintaria, nº 12, Pav. 3',cp:'4590-123',localidade:'Paços de Ferreira',telefone:'+351 255 123 456',email:'jose.ferreira@oficinadigitall.pt',website:'www.bridgecontrol.eu',obs:'',logo:''};
 var _PR_CATS_KEY='bc-precos-cats';
 var _DESC_LIB_KEY='bc-desc-lib';
 var _DESC_LIB=[];
@@ -4650,6 +4650,10 @@ _dhLoad();
       <svg viewBox="0 0 609.41 400.78" xmlns="http://www.w3.org/2000/svg" style="height:48px;width:auto;margin:0 auto 14px;display:block">
         <path style="fill:#c9a96e" d="M350.38,195.8c-1.01,41.42,5.37,86.85,40.4,114.52,25.76,20.35,66.79,24.02,96.1,9.23,22.16-11.18,37.19-31.98,41.7-56.28.18-.97,1.07-1.57,2.06-1.57l29.96.13,48.53-.08c.81,11.84-5.53,33.29-9.92,44.4-5.02,12.71-13.82,27.05-22.53,37.52-28.53,34.29-68.85,53.1-113.29,56.45-34.4,2.6-68.24-2.28-99.42-17.18-8.02-3.83-15.24-8.47-22.51-13.44-12.23-8.35-23.95-20.14-33.1-31.93-17.93-23.09-30.04-49.33-35.68-78.15-4.24-21.68-6.17-43.37-5.96-64.64,14.71-3.16,51.05-3.5,65.97-1.6,6.76.86,11.29,1.04,17.7,2.63h0Z"/>
         <path style="fill:#2a2a2a" d="M508.49,98.56c-20.22-22.74-51.75-29.71-80.93-24.27-24.14,4.5-43.3,18.48-56.34,38.93-12.61,19.76-17.48,40.71-20.09,64-2.15.26-4.19-.37-6.44-.88-24.63-3.67-50.96-3.81-75.99-.3,1.76-33.89,9.65-64.9,27.13-94.29,15.08-24.07,34.15-43.94,58.73-58.27,44.91-26.19,110.04-30.91,158.12-11.94,18.5,7.3,35.23,17.48,49.88,30.92,24.33,22.33,40.57,53.71,45.58,86.27.71,4.59,1.67,8.77,1.08,13.45-3.54-.27-6.97-.36-10.79-.35l-67.9.08c-1.55,0-2.44-1.6-2.58-2.78-.52-4.52-1.94-8.39-3.43-12.59-3.68-10.39-8.71-19.75-16.04-27.99h0Z"/>
+        <path style="fill:#c9a96e" d="M350.38,195.8c-6.42-1.59-10.95-1.77-17.7-2.63-14.92-1.9-51.26-1.56-65.97,1.6l-18.31,2.49c-1.7.23-2.98,1.04-3.92,1.92-6.33-.88-26.39,5.01-33,7.28l-19.29,6.63c-6.58,2.26-24.01,9.66-28.53,13.78-2.94.65-5.01,1.39-7.17,2.59-9.56,5.3-18.56,10.9-27.39,17.36l-7.4,4.47,5.74-5.99c48.92-43.67,114.81-65.66,180.13-66.15,15.94.49,31.05,2.15,46.64,4.8l25.22,5.96c29.29,6.92,65.87,26.48,90.02,44.7,4.44,3.35,8.65,6.6,12.65,10.4,4.52,4.28,6.97,4.67,6.49,5.91-.8,2.06-2.05-1.08-7.32-4.32l-20.49-12.59c-29.47-18.12-76.41-34.16-110.41-38.22h.01Z"/>
+        <path style="fill:#2a2a2a" d="M163.66,226.88c4.52-4.12,21.95-11.52,28.53-13.78l19.29-6.63c6.62-2.27,26.68-8.16,33-7.28,4.35,3.33,11.07,3.32,11.02,8.17-.17,16.53,3.66,44.31,7.58,60.53,4.66,19.34,14.59,46.94,26.54,62.67,1.1,1.45,1.52,3.47.52,5.24-23.85,42.47-69.73,58.13-116.55,58.17l-51.09.04H5.61c-2.11,0-3.6.15-5.4-.4L.18,11.69c0-2.09-.64-3.07.5-4.41h161.77c22.64.01,51.46,3.95,71.46,13.88,20.03,9.95,34.67,23.13,44.66,43.27,1.86,3.75,3.09,7.56,4.57,11.41,1,2.61.15,4.76-.99,7.03-4.63,9.19-8.64,18.28-12.29,27.9-5.92,15.63-11.17,39.63-12.66,56.29-.25,2.84-1.63,4.65-3.73,6.25-5.06,3.85-10.34,6.71-16.54,8.49-32.82,9.42-50.29,15.98-79.59,33.53-4.61,2.76-8.61,5.96-12.97,9.04-2.29,1.56-4.94,1.42-7.76,1.42l-53.52.06-.05,100.5c0,.94.66,1.58,1.57,1.58l70.91-.1c25.69-.04,53.28-9.56,59.1-37.32,2.96-14.12.34-32.74-8.6-44.37-10.02-13.04-27.31-17.65-42.37-19.26h0ZM83.32,73.46c-.32,3.47-.17,6.99-.17,11.08l-.08,80.79c0,1.21,1.08,1.67,2.07,1.67l62.44-.02c2.24,0,4.09-.05,5.8-.28.21.37.3,2.12,1.03,2.01,1.29-.21.92-1.72,1.16-2.26,12.71-.93,31.56-7.01,39.16-18.82,9.76-15.17,10.81-34.28,3.05-50.48s-24.35-22.57-40.06-23.87c1.65-2.66-4.83-1.87-7.18-1.87l-67.79.1c-.43,0,.28,2.2.56,1.93v.02Z"/>
+        <path style="fill:#c9a96e" d="M157.73,73.3c-2.78-.23-5.83.22-9.18.22l-65.22-.06c-.28.27-1-1.93-.56-1.93l67.79-.1c2.35,0,8.83-.8,7.18,1.87h0Z"/>
+        <path style="fill:#c9a96e" d="M155.58,166.46c-.24.53.13,2.05-1.16,2.26-.74.12-.82-1.64-1.03-2.01l2.19-.25Z"/>
       </svg>
       <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#2a2a2a;letter-spacing:-0.3px">Bridge Control</div>
       <div style="font-size:12px;color:#aaa;margin-top:4px;letter-spacing:0.3px">CRM & Orçamentação</div>
