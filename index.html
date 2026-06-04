@@ -2027,7 +2027,7 @@ function fcAddFCRow(sec){
       '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;box-sizing:border-box"></td>'+
       '<td style="'+td+'">'+_sel('',_PR.acab,null,'fcCalcTotais()')+'</td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-m2v" value="0.00"></td>'+
-      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
+      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById('fc-mdf-body').appendChild(tr);
   } else if(sec==='mad'){
@@ -2041,7 +2041,7 @@ function fcAddFCRow(sec){
       '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;box-sizing:border-box"></td>'+
       '<td style="'+td+'">'+_sel('',_PR.acab,null,'fcCalcTotais()')+'</td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-m2v" value="0.00"></td>'+
-      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
+      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById('fc-mad-body').appendChild(tr);
   } else if(sec==='op'){
@@ -2050,7 +2050,7 @@ function fcAddFCRow(sec){
       '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'">'+_sel('',_PR.op,null,'fcCalcTotais()')+'</td>'+
       '<td style="'+td+'"><input type="number" placeholder="0" step="1" oninput="fcCalcTotais()" class="fc-m2v" style="width:100%;box-sizing:border-box;padding:4px 6px;border-radius:3px;font-size:12px;font-family:Inter,sans-serif;cursor:text;font-weight:700"></td>'+
-      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
+      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById('fc-op-body').appendChild(tr);
   } else if(sec==='fer'){
@@ -2058,8 +2058,8 @@ function fcAddFCRow(sec){
     tr.innerHTML=
       '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'"><select onchange="fcFerChange(this)" style="width:100%;padding:3px 4px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif"><option value="">— escolher —</option>'+_selOpts(_PR.ferragem,null)+'</select></td>'+
-      '<td style="padding:4px 6px;border-bottom:1px solid #f0ede8;vertical-align:top"><input type="text" readonly class="fc-eur" value="0,00"></td>'+
-      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
+      '<td style="padding:4px 6px;border-bottom:1px solid #f0ede8;vertical-align:top"><input type="text" readonly class="fc-eur" value="0.00"></td>'+
+      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById('fc-fer-body').appendChild(tr);
   } else if(sec==='cer'||sec==='esp'){
@@ -2073,8 +2073,8 @@ function fcAddFCRow(sec){
       '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'">'+_sel('',prList,null,'fcCalcTotais()')+'</td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-m2v" value="0.00"></td>'+
-      '<td style="padding:4px 6px;border-bottom:1px solid #f0ede8;vertical-align:top"><input type="text" readonly class="fc-pv" value="0,00"></td>'+
-      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
+      '<td style="padding:4px 6px;border-bottom:1px solid #f0ede8;vertical-align:top"><input type="text" readonly class="fc-pv" value="0.00"></td>'+
+      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i3);
     document.getElementById('fc-'+sec+'-body').appendChild(tr3);
   } else if(sec==='est'||sec==='met'||sec==='tec'){
@@ -2082,7 +2082,7 @@ function fcAddFCRow(sec){
       '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição..." data-hk="est" onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
       '<td style="'+td+'"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
-      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
+      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById('fc-'+sec+'-body').appendChild(tr);
     fcCalcTotais();
@@ -2092,7 +2092,7 @@ function fcAddFCRow(sec){
       '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição..." data-hk="est" onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
       '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
-      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
+      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById(_CP+'-ocomp-body').appendChild(tr);
     fcCalcTotais();
@@ -2107,8 +2107,8 @@ function fcAddFCRow(sec){
       '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'">'+_sel('',_PR.vidros,null,'fcCalcTotais()')+'</td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-m2v" value="0.00"></td>'+
-      '<td style="padding:4px 6px;border-bottom:1px solid #f0ede8;vertical-align:top"><input type="text" readonly class="fc-pv" value="0,00"></td>'+
-      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
+      '<td style="padding:4px 6px;border-bottom:1px solid #f0ede8;vertical-align:top"><input type="text" readonly class="fc-pv" value="0.00"></td>'+
+      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i2);
     document.getElementById('fc-vid-body').appendChild(trv);
   }
@@ -2279,7 +2279,7 @@ function fcAddRow(sec){
       '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição do artigo..." onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
       '<td style="'+td+'">'+_sel('',_PR.acab,null,'fcCalcTotais()')+'</td>'+
       '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
-      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
+      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById(_CP+'-mdf-body').appendChild(tr);
   } else if(sec==='mad'){
@@ -2288,7 +2288,7 @@ function fcAddRow(sec){
       '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'">'+_sel('',_PR.acab,null,'fcMadAcabChange(this)')+'</td>'+
       '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
-      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
+      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById(_CP+'-mad-body').appendChild(tr);
   } else if(sec==='op'){
@@ -2297,7 +2297,7 @@ function fcAddRow(sec){
       '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição da iluminação..." data-hk="op" onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
       '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
-      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
+      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById(_CP+'-op-body').appendChild(tr);
   } else if(sec==='fer'){
@@ -2306,7 +2306,7 @@ function fcAddRow(sec){
       '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição do tecido..." data-hk="tec" onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
       '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
-      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
+      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById(_CP+'-fer-body').appendChild(tr);
   } else if(sec==='vid'){
@@ -2316,8 +2316,8 @@ function fcAddRow(sec){
       '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'">'+_sel('',_PR.vidros,null,'fcCalcTotais()')+'</td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-m2v" value="0.00"></td>'+
-      '<td style="padding:4px 6px;border-bottom:1px solid #f0ede8;vertical-align:top"><input type="text" readonly class="fc-pv" value="0,00"></td>'+
-      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
+      '<td style="padding:4px 6px;border-bottom:1px solid #f0ede8;vertical-align:top"><input type="text" readonly class="fc-pv" value="0.00"></td>'+
+      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById(_CP+'-vid-body').appendChild(tr);
   } else if(sec==='cer'||sec==='esp'){
@@ -2328,8 +2328,8 @@ function fcAddRow(sec){
       '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'">'+_sel('',prList2,null,'fcCalcTotais()')+'</td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-m2v" value="0.00"></td>'+
-      '<td style="padding:4px 6px;border-bottom:1px solid #f0ede8;vertical-align:top"><input type="text" readonly class="fc-pv" value="0,00"></td>'+
-      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
+      '<td style="padding:4px 6px;border-bottom:1px solid #f0ede8;vertical-align:top"><input type="text" readonly class="fc-pv" value="0.00"></td>'+
+      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById(_CP+'-'+sec+'-body').appendChild(tr);
   } else if(sec==='tec'){
@@ -2338,7 +2338,7 @@ function fcAddRow(sec){
       '<td style="'+td+'"><input type="number" value="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição do tecido..." data-hk="tec" onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
       '<td style="'+td+'"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
-      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
+      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById('fc-tec-body').appendChild(tr);
   } else if(sec==='est'||sec==='met'||sec==='ocomp'){
@@ -2346,7 +2346,7 @@ function fcAddRow(sec){
       '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição" onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
       '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
-      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
+      '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById(_CP+'-'+sec+'-body').appendChild(tr);
   }
