@@ -866,7 +866,7 @@ function addLinha(l){
     '<td class="td-artigo"><textarea data-f="artigo" oninput="this.style.height=\'26px\';this.style.height=Math.max(26,this.scrollHeight)+\'px\'" style="border-color:#ddd">'+(l.artigo||'')+'</textarea></td>'+
     '<td class="td-artigo"><textarea data-f="area" oninput="this.style.height=\'26px\';this.style.height=Math.max(26,this.scrollHeight)+\'px\'" style="min-width:70px;max-width:130px;border-color:#ddd">'+(l.area||'')+'</textarea></td>'+
     '<td class="img-cell">'+imgH+'<input type="file" id="ifile-'+idx+'" accept="image/*" onchange="handleImg('+idx+',this)"><input type="hidden" id="ival-'+idx+'" value="'+(l.img||'')+'"></td>'+
-    '<td style="vertical-align:middle;text-align:left;min-width:340px"><textarea data-f="descricao" id="idesc-'+idx+'" placeholder="Descrição do artigo..." onfocus="openDescModal(this)" oninput="this.style.height=\'26px\';this.style.height=Math.max(26,this.scrollHeight)+\'px\'" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4">'+(l.descricao||'')+'</textarea></td>'+
+    '<td style="vertical-align:middle;text-align:left;min-width:340px"><textarea data-f="descricao" data-hk="orc" id="idesc-'+idx+'" placeholder="Descrição do artigo..." data-hk="marc" onfocus="openDescModal(this)" oninput="this.style.height=\'26px\';this.style.height=Math.max(26,this.scrollHeight)+\'px\'" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4">'+(l.descricao||'')+'</textarea></td>'+
     '<td><input type="number" data-f="dimW" value="'+(l.dimW||'')+'" oninput="calcLinha('+idx+')" style="width:62px"></td>'+
     '<td><input type="number" data-f="dimD" value="'+(l.dimD||'')+'" oninput="calcLinha('+idx+')" style="width:62px"></td>'+
     '<td><input type="number" data-f="dimH" value="'+(l.dimH||'')+'" oninput="calcLinha('+idx+')" style="width:62px"></td>'+
@@ -2021,7 +2021,7 @@ function fcAddFCRow(sec){
     // 0=qtd 1=placa(sel) 2=C 3=L 4=acab(sel) 5=m² 6=total 7=del
     tr.innerHTML=
       '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
-      '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição..." onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
+      '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição..." data-hk="est" data-hk="mdf" onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
       '<td style="'+td+'">'+_sel('',_PR.mdf,null,'fcCalcTotais()')+'</td>'+
       '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;box-sizing:border-box"></td>'+
       '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;box-sizing:border-box"></td>'+
@@ -2034,7 +2034,7 @@ function fcAddFCRow(sec){
     // 0=qtd 1=desc 2=mad(sel €/m³) 3=C 4=L 5=Esp 6=acab(sel €/m²) 7=m³ 8=total 9=del
     tr.innerHTML=
       '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
-      '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição..." onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
+      '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição..." data-hk="est" onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
       '<td style="'+td+'">'+_sel('',_PR.madeira,null,'fcCalcTotais()')+'</td>'+
       '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;box-sizing:border-box"></td>'+
       '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;box-sizing:border-box"></td>'+
@@ -2080,7 +2080,7 @@ function fcAddFCRow(sec){
   } else if(sec==='est'||sec==='met'||sec==='tec'){
     tr.innerHTML=
       '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
-      '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição..." onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
+      '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição..." data-hk="est" onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
       '<td style="'+td+'"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
       _fcBtn(i);
@@ -2090,7 +2090,7 @@ function fcAddFCRow(sec){
   } else if(sec==='ocomp'){
     tr.innerHTML=
       '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
-      '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição..." onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
+      '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição..." data-hk="est" onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
       '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
       _fcBtn(i);
@@ -2295,7 +2295,7 @@ function fcAddRow(sec){
     // Iluminação row: 0=Qtd, 1=Descrição textarea, 2=€/uni, 3=Total, 4=del
     tr.innerHTML=
       '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
-      '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição da iluminação..." onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
+      '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição da iluminação..." data-hk="op" onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
       '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
       _fcBtn(i);
@@ -2304,7 +2304,7 @@ function fcAddRow(sec){
     // Tecido row: 0=Qtd ml, 1=Descrição, 2=€/ml, 3=Total, 4=del
     tr.innerHTML=
       '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
-      '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição do tecido..." onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
+      '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição do tecido..." data-hk="tec" onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
       '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
       _fcBtn(i);
@@ -2336,7 +2336,7 @@ function fcAddRow(sec){
     // 0=qtd(ml) 1=desc 2=€/ml 3=total 4=del
     tr.innerHTML=
       '<td style="'+td+'"><input type="number" value="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
-      '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição do tecido..." onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
+      '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição do tecido..." data-hk="tec" onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
       '<td style="'+td+'"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0,00"></td>'+
       _fcBtn(i);
@@ -4548,14 +4548,18 @@ async function sbLogout(){
 
 <script>
 /* ── Histórico de Descrições (autocomplete) ─────────────────────── */
-var _DH_KEY='bc-desc-hist';
-var _dHist=[];
-function _dhLoad(){try{_dHist=JSON.parse(localStorage.getItem(_DH_KEY)||'[]');}catch(e){_dHist=[];}}
+var _DH_KEY='bc-desc-hist2';
+var _dHist={};
+function _dhLoad(){try{var s=localStorage.getItem(_DH_KEY);_dHist=s?JSON.parse(s):{};}catch(e){_dHist={};}}
 function _dhSave(){try{localStorage.setItem(_DH_KEY,JSON.stringify(_dHist));}catch(e){}}
-function _dhAdd(t){
+function _dhKey(el){return(el&&el.dataset&&el.dataset.hk)||'other';}
+function _dhGet(el){var k=_dhKey(el);return _dHist[k]||[];}
+function _dhAdd(t,el){
   if(!t||t.trim().length<3)return;
   t=t.trim();
-  _dHist=[t].concat(_dHist.filter(function(x){return x!==t;}));
+  var k=_dhKey(el);
+  var arr=_dHist[k]||[];
+  _dHist[k]=[t].concat(arr.filter(function(x){return x!==t;})).slice(0,50);
   _dhSave();
 }
 var _acDrop=null,_acTarget=null,_acMatches=[];
@@ -4575,9 +4579,10 @@ function _acShow(ta){
   _acInit();
   _acTarget=ta;
   var q=(ta.value||'').toLowerCase().trim();
+  var hist=_dhGet(ta);
   var matches=q.length>=1
-    ?_dHist.filter(function(x){return x.toLowerCase().includes(q);})
-    :_dHist.slice(0,10);
+    ?hist.filter(function(x){return x.toLowerCase().includes(q);})
+    :hist.slice(0,10);
   if(!matches.length){_acDrop.style.display='none';return;}
   var rect=ta.getBoundingClientRect();
   _acDrop.style.left=rect.left+'px';
@@ -4601,7 +4606,7 @@ function _acPick(i){
     _acTarget.style.height=Math.max(26,_acTarget.scrollHeight)+'px';
   }
   _acDrop.style.display='none';
-  _dhAdd(_acMatches[i]);
+  _dhAdd(_acMatches[i],_acTarget);
   _acTarget.dispatchEvent(new Event('input',{bubbles:true}));
 }
 function _isDescTa(el){
@@ -4627,7 +4632,7 @@ document.addEventListener('focus',function(e){
   if(_isDescTa(e.target)&&_dHist.length)_acShow(e.target);
 },true);
 document.addEventListener('blur',function(e){
-  if(_isDescTa(e.target)&&(e.target.value||'').trim().length>=3)_dhAdd(e.target.value.trim());
+  if(_isDescTa(e.target)&&(e.target.value||'').trim().length>=3)_dhAdd(e.target.value.trim(),e.target);
   setTimeout(function(){if(_acDrop)_acDrop.style.display='none';},180);
 },true);
 document.addEventListener('keydown',function(e){
