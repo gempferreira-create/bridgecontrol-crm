@@ -678,8 +678,8 @@ function today(){return new Date().toISOString().slice(0,10);}
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
 function getCliNome(id){var c=db.clientes.find(function(x){return x.id==id;});return c?c.nome:(id||'—');}
 function getCliEmpresa(id){var c=db.clientes.find(function(x){return x.id==id;});return c?(c.empresa?c.empresa+' — '+c.nome:c.nome):(id||'—');}
-function getTotal(o){return(o.linhas||[]).reduce(function(s,l){return s+((+l.qtd||0)*(+l.pu||0));},0);}
-function getGrandTotal(o){var base=getTotal(o)+(+o.sumRet||0)+(+o.sumMontVal||0)+(+o.transpVal||0);var c=+o.comissao||0;return base*(1+c/100);}
+function getTotal(o){return(o.linhas||[]).reduce(function(s,l){return s+(_pn(l.qtd)*_pn(l.pu));},0);}
+function getGrandTotal(o){var base=getTotal(o)+_pn(o.sumRet)+_pn(o.sumMontVal)+_pn(o.transpVal);var c=_pn(o.comissao);return base*(1+c/100);}
 function badge(e){var m={Rascunho:'badge-y',Enviado:'badge-b',Aprovado:'badge-g',Cancelado:'badge-r'};return '<span class="badge '+(m[e]||'badge-y')+'">'+e+'</span>';}
 
 function nav(id){
@@ -1397,8 +1397,9 @@ function _setRowImg(idx,key){
 function getLinhas(){
   return Array.from(document.querySelectorAll('#linhas-tbody tr')).map(function(row){
     function g(f){return(row.querySelector('[data-f="'+f+'"]')||{}).value||'';}
+    function gn(f){return _pn(g(f));}
     var idx=row.dataset.idx;
-    return {ref:g('ref'),artigo:g('artigo'),area:g('area'),img:(document.getElementById('ival-'+idx)||{}).value||'',descricao:g('descricao'),dimW:g('dimW'),dimD:g('dimD'),dimH:g('dimH'),qtd:g('qtd'),pu:g('pu'),pCusto:g('pCusto')};
+    return {ref:g('ref'),artigo:g('artigo'),area:g('area'),img:(document.getElementById('ival-'+idx)||{}).value||'',descricao:g('descricao'),dimW:gn('dimW'),dimD:gn('dimD'),dimH:gn('dimH'),qtd:gn('qtd'),pu:gn('pu'),pCusto:gn('pCusto')};
   });
 }
 
@@ -1407,7 +1408,7 @@ function salvarOrcamento(){
   var clienteId=document.getElementById('orc-clienteId').value;
   if(!clienteId){alert('Selecione um cliente.');return null;}
   var linhas=getLinhas();
-  var mob=linhas.reduce(function(s,l){return s+((+l.qtd||0)*(+l.pu||0));},0);
+  var mob=linhas.reduce(function(s,l){return s+(_pn(l.qtd)*_pn(l.pu));},0);
   var obj={id:id,numProjeto:document.getElementById('orc-numProjeto').value,numRef:document.getElementById('orc-ref').value,clienteId:clienteId,pais:document.getElementById('orc-pais').value,villa:document.getElementById('orc-villa').value,data:document.getElementById('orc-data').value,validade:document.getElementById('orc-validade').value,estado:document.getElementById('orc-estado').value,notas:document.getElementById('orc-notas').value,sumMob:mob,sumRet:+(document.getElementById('orc-sumRet').value)||0,montIncluida:document.getElementById('orc-montIncluida').value,sumMontVal:+(document.getElementById('orc-sumMontVal').value)||0,montDias:_pn((document.getElementById('orc-mont-dias')||{}).value)||0,montPessoas:_pn((document.getElementById('orc-mont-pessoas')||{}).value)||0,montCustoH:_pn((document.getElementById('orc-mont-custoH')||{}).value)||0,montMargem:_pn((document.getElementById('orc-mont-margem')||{}).value)||0,transpVal:_pn((document.getElementById('orc-transpVal')||{}).value)||0,transpCusto:_pn((document.getElementById('orc-transp-custo')||{}).value)||0,transpMargem:_pn((document.getElementById('orc-transp-margem')||{}).value)||0,comissao:_pn((document.getElementById('orc-comissao')||{}).value)||0,margemAjuste:_pn((document.getElementById('orc-margem-ajuste')||{}).value)||0,ivaTaxa:_pn((document.getElementById('orc-iva')||{}).value)||23,margemExtra:_pn((document.getElementById('orc-margem')||{}).value)||0,transpIncluido:document.getElementById('orc-transpIncluido').value,tcPagamento:document.getElementById('orc-tcPagamento').value,tcPrazo:document.getElementById('orc-tcPrazo').value,tcTransporte:document.getElementById('orc-tcTransporte').value,tcTecidos:document.getElementById('orc-tcTecidos').value,tcGarantia:document.getElementById('orc-tcGarantia').value,tcTexto:document.getElementById('orc-tcTexto').value,linhas:linhas,criadoEm:Date.now()};
   var idx=db.orcamentos.findIndex(function(x){return x.id==id;});
   if(idx>=0)db.orcamentos[idx]=obj;else{db.orcamentos.push(obj);db._no=(db._no||1)+1;}
@@ -1444,7 +1445,7 @@ function _gerarPDFInner(id,imgMap){
   var wmSvg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1986.94 159.1" style="fill:#ffffff;height:26px;width:auto;display:block"><polygon points="1376.17 156.14 1350.1 156.75 1276.8 52.22 1276.08 156.66 1247.51 156.72 1247.5 3.06 1274.1 2.99 1347.08 107.21 1348.09 2.89 1375.96 2.96 1376.17 156.14"/><path d="M87.85,75.58c20.55,5.94,31.77,22.13,30.44,42.49-1.24,19-16.64,35.73-38.17,37.44-26.39,2.1-52.67,1.05-80.08,1.3L0,2.84l73.09.13c18.89,2.78,35.74,13.35,38.15,32.26,2.78,17.92-4.46,33-23.39,40.35ZM63.3,67.07c13-.23,20.18-10.89,19.95-21.06s-7.74-20.09-19.59-20.19l-35.29-.3.31,42.16,34.62-.61ZM67.97,133.21c12.71-.17,21.41-9.88,21.61-21.43.52-29.5-39.34-22.87-60.75-23.47l-.16,45.44,39.31-.54Z"/><path d="M1652.53,157.13l-29.51-56.45-30.16-.58-.39,56.68-28.47-.28.02-153.7,71.37.73c25.88.27,44.27,22.02,43.3,47.12,1.04,19.73-8.69,35.77-26.84,44.63l32.78,60.91-32.1.93ZM1649.45,48.16c-1.58-13.44-10.72-21.84-23.44-21.86l-33.22-.05-.1,49.91,34.91-.32c14.56-.13,23.54-13.28,21.84-27.68Z"/><path d="M239.2,156.86l-29.94-56.19-30.19-.5-.37,56.47-28.22.04.07-153.8c23.99-.03,47.45-.58,70.75.7,26.6,1.46,43.77,21.81,43.93,47.15.12,19.58-8.86,36.14-27.51,44.39l32.79,61.05-31.32.7ZM236.07,49.9c-1.05-14.44-10.62-23.39-23.99-23.48l-32.97-.22-.09,50.16,34.54-.36c14.14-.15,23.57-11.5,22.51-26.11Z"/><path d="M491.33,116.86c-9.88,23.55-32.76,38.9-57.83,39.2l-64.88.77-.25-154,63.46.36c25.55.15,48.18,14.35,58.46,37.73s11.62,50.71,1.04,75.93ZM467.31,100.44c3.65-15.88,3.51-32.12-1.93-47.05-11.55-31.69-41.58-27.27-68.52-26.66l.08,105.92c29.57,1.45,62.55,1.9,70.38-32.22Z"/><path d="M640.24,98.7l-35.55-.46-.26-22.35,64.02-.04c2.59,42.01-10.87,75.08-53.9,82.14-33.88,5.56-66.67-9.76-79.58-42.61-8.19-20.85-8.72-44.16-2.15-65.51,11.27-36.59,47.05-55.89,84.07-48.19,25.78,5.36,46.42,23.94,49.71,50.78l-28.67-.1c-5.22-16.12-17.13-26.63-33.83-27.35-18.09-.78-33.39,8.43-40.8,25.21-8.16,18.49-8.4,40.8.2,59.15,7.98,17.02,24.02,26.5,42.32,24.66,18.39-1.85,32.83-13.66,34.42-35.34Z"/><path d="M1781.03,158.89c-32.32.28-58.09-18.41-67.49-47.92-6.16-19.32-6.55-40.02-1.1-59.65,9.78-35.24,43.57-55.88,79.5-50.37,24.04,3.68,43.83,17.83,53.36,40.73,11.42,27.44,10.54,59.65-4.42,85.66-12.08,21.01-34.82,31.35-59.85,31.56ZM1819.93,105.95c6.44-17.88,6.14-37.67-.75-54.37-6.91-16.74-21.44-26.64-38.16-26.52-16.25.11-30.76,8.74-37.74,24.96-7.82,18.17-7.89,39.67-.6,58.03,6.94,17.48,22.43,26.44,40.19,26.11,16.18-.3,30.68-10.49,37.06-28.2Z"/><path d="M1148.68,158.58c-37.71,3.96-70.06-18.78-77.71-55.1-3.53-16.76-3.49-33.99.69-50.68,8.16-32.55,36.88-53.44,70.39-52.71,28.69.62,53.1,16.85,63.73,43.5,9.14,22.92,8.97,48.19.59,71.44-9,24.99-30.57,40.7-57.69,43.55ZM1179.15,106.66c6.73-17.58,6.55-37.54-.2-54.39-6.7-16.74-21.16-27.15-37.88-27.25-16.71-.1-31.84,9.09-38.58,25.83-7.4,18.4-7.64,39.57-.01,57.8,7.04,16.84,21.9,25.66,38.59,25.57,16.82-.1,31.31-9.87,38.08-27.56Z"/><path d="M800.59,90.79l-68.48.11.2,42.59h74.17c.42,7.75.42,15.21-.06,23.28h-102.72s-.23-153.7-.23-153.7l102.62-.42.5,23.25-74.43.36v41s68.22.18,68.22.18l.22,23.36Z"/><path d="M934.75,107.11c6.61,18.09,21.51,27.2,39.28,27.16,18.01-.04,32.13-10.64,36.47-28.88l28.61.1c-4.14,32.39-29.48,50.87-59.18,53.23-35.71,2.84-66.79-17.66-75.51-52.96-4.71-19.06-4.06-39.12,2.02-58.06,11.35-35.34,46.57-53.32,82.51-46.12,26.79,5.36,47.78,25.01,49.75,53.28l-28.29-.09c-3.41-17.47-15.57-27.89-32.38-29.58-18.52-1.86-35.04,7.36-42.31,25.16s-7.72,38.29-.97,56.77Z"/><path d="M1484.75,155.61c-9.08,1.25-18.4,1.22-28.71.94l-.09-130.17-47.23-.4-.22-23.17,123.48-.03.22,23.18-47.62.41.16,129.24Z"/><path d="M1986.28,133.4c.84,7.29.87,15.55.13,23.42l-98.35-.02-.07-153.75,28.65-.04.19,130.26,69.44.14Z"/><rect x="237.82" y="65.46" width="153.97" height="28.69" transform="translate(234.87 394.58) rotate(-89.98)"/></svg>';
 
   var lRows=(o.linhas||[]).map(function(l,i){
-    var ptot=(+l.qtd||0)*(+l.pu||0);
+    var ptot=_pn(l.qtd)*_pn(l.pu);
     var _imgSrc=imgMap[l.img]||l.img||null;var imgC=_imgSrc?('<img src="'+_imgSrc+'" style="width:100%;max-width:110px;height:90px;object-fit:cover;border-radius:4px;display:block;margin:0 auto">'):'';
     var bg=i%2===0?'#ffffff':'#faf9f7';
     var td='padding:8px 6px;border-bottom:1px solid #f0ede8;border-right:1px solid #f0ede8;vertical-align:middle;';
@@ -1461,7 +1462,7 @@ function _gerarPDFInner(id,imgMap){
     '<td style="'+tdC+'font-size:10.5px;color:#555;font-variant-numeric:tabular-nums">'+(l.dimD||'')+'</td>'+
     '<td style="'+tdC+'font-size:10.5px;color:#555;font-variant-numeric:tabular-nums">'+(l.dimH||'')+'</td>'+
     '<td style="'+tdC+'font-size:10.5px;font-weight:500">'+(l.qtd||'')+'</td>'+
-    '<td style="'+tdR+'font-size:11px;color:#555">'+(l.pu?fmt(+l.pu)+' €':'')+'</td>'+
+    '<td style="'+tdR+'font-size:11px;color:#555">'+(_pn(l.pu)?fmt(_pn(l.pu))+' €':'')+'</td>'+
     '<td style="'+tdR+'font-size:12px;font-weight:700;color:#2a2a2a;border-right:none">'+(ptot?fmt(ptot)+' €':'')+'</td>'+
     '</tr>';
   }).join('');
@@ -1603,7 +1604,7 @@ function exportarExcel(){
   var od=[['ID','Nº Projeto','Cliente','País','Estado','Total €','Data']].concat(db.orcamentos.map(function(o){return[o.id,o.numProjeto,getCliNome(o.clienteId),o.pais,o.estado,getGrandTotal(o),o.data];}));
   XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(od),'Orçamentos');
   var id2=[['Projeto','Cliente','Ref','Artigo','Área','Descrição','C','L','A','M³','Qtd','P.Unit','P.Total']];
-  db.orcamentos.forEach(function(o){(o.linhas||[]).forEach(function(l){var m3=(l.dimW&&l.dimD&&l.dimH)?(+l.dimW*+l.dimD*+l.dimH/1e9):0;id2.push([o.numProjeto,getCliNome(o.clienteId),l.ref,l.artigo,l.area,l.descricao,l.dimW,l.dimD,l.dimH,m3||'',l.qtd,l.pu,(+l.qtd||0)*(+l.pu||0)]);});});
+  db.orcamentos.forEach(function(o){(o.linhas||[]).forEach(function(l){var m3=(l.dimW&&l.dimD&&l.dimH)?(_pn(l.dimW)*_pn(l.dimD)*_pn(l.dimH)/1e9):0;id2.push([o.numProjeto,getCliNome(o.clienteId),l.ref,l.artigo,l.area,l.descricao,l.dimW,l.dimD,l.dimH,m3||'',l.qtd,l.pu,(_pn(l.qtd)*_pn(l.pu))]);});});
   XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(id2),'Itens');
   XLSX.writeFile(wb,'BridgeControl_Export_'+today()+'.xlsx');
 }
