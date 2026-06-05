@@ -1511,9 +1511,10 @@ function _gerarPDFInner(id,imgMap){
   '</tr></thead><tbody>'+lRows+'</tbody></table></div>'+
   '<div style="padding:0 36px 24px"><div style="background:#3A3A3A;border-radius:8px;padding:20px 28px;display:flex;justify-content:flex-end">'+
   '<table style="min-width:360px">'+
-  (mob&&(o.sumRet||o.sumMontVal)?'<tr><td style="padding:5px 12px;color:rgba(255,255,255,0.55);font-size:11px;text-transform:uppercase;letter-spacing:0.8px;font-weight:500;text-align:right">Mobili\xe1rio</td><td style="padding:5px 12px;color:#c9a96e;font-size:14px;text-align:right;font-weight:600">'+fmt(mob)+' €</td></tr>':'')+
+  (mob&&(o.sumRet||o.sumMontVal||o.transpVal)?'<tr><td style="padding:5px 12px;color:rgba(255,255,255,0.55);font-size:11px;text-transform:uppercase;letter-spacing:0.8px;font-weight:500;text-align:right">Mobili\xe1rio</td><td style="padding:5px 12px;color:#c9a96e;font-size:14px;text-align:right;font-weight:600">'+fmt(mob)+' €</td></tr>':'')+
   (o.sumRet?'<tr><td style="padding:5px 12px;color:rgba(255,255,255,0.55);font-size:11px;text-transform:uppercase;letter-spacing:0.8px;font-weight:500;text-align:right">Retifica\xe7\xe3o de Medidas</td><td style="padding:5px 12px;color:#c9a96e;font-size:14px;text-align:right;font-weight:600">'+fmt(o.sumRet)+' €</td></tr>':'')+
   (o.sumMontVal?'<tr><td style="padding:5px 12px;color:rgba(255,255,255,0.55);font-size:11px;text-transform:uppercase;letter-spacing:0.8px;font-weight:500;text-align:right">'+(o.sumMontagemDesc||'Montagem')+'</td><td style="padding:5px 12px;color:#c9a96e;font-size:14px;text-align:right;font-weight:600">'+fmt(o.sumMontVal)+' €</td></tr>':'')+
+  (o.transpVal?'<tr><td style="padding:5px 12px;color:rgba(255,255,255,0.55);font-size:11px;text-transform:uppercase;letter-spacing:0.8px;font-weight:500;text-align:right">Transporte</td><td style="padding:5px 12px;color:#c9a96e;font-size:14px;text-align:right;font-weight:600">'+fmt(o.transpVal)+' €</td></tr>':'')+
   (function(){var _iva=+(o.ivaTaxa||0);var _ivaV=grand*(_iva/100);var _tot=grand+_ivaV;
     return '<tr style="border-top:1px solid rgba(255,255,255,0.15)"><td style="padding:8px 12px;color:rgba(255,255,255,0.65);font-size:11px;text-transform:uppercase;letter-spacing:0.8px;font-weight:600;text-align:right">Total s/ IVA</td><td style="padding:8px 12px;color:#c9a96e;font-size:18px;text-align:right;font-weight:700;letter-spacing:-0.3px">'+fmt(grand)+' €</td></tr>'+
     (_iva?'<tr><td style="padding:5px 12px;color:rgba(255,255,255,0.45);font-size:11px;text-transform:uppercase;letter-spacing:0.8px;font-weight:500;text-align:right">IVA '+_iva+'%</td><td style="padding:5px 12px;color:rgba(255,255,255,0.55);font-size:14px;text-align:right;font-weight:500">'+fmt(_ivaV)+' €</td></tr><tr style="border-top:1px solid rgba(201,169,110,0.3)"><td style="padding:10px 12px;color:#fff;font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:700;text-align:right">Total com IVA</td><td style="padding:10px 12px;color:#c9a96e;font-size:22px;text-align:right;font-weight:700;letter-spacing:-0.4px">'+fmt(_tot)+' €</td></tr>':'');})() +
@@ -2600,10 +2601,9 @@ function fcCalcTotais(){
     /* ── linhas de custo ── */
     (filtProd.length?filtProd.map(function(r){return _row(r,'#c9a96e');}).join(''):'<div style="font-size:11px;color:rgba(255,255,255,0.25);padding:8px 0;text-align:center">— sem custos —</div>')+
 
-    /* ── separador + linhas subcontratado (SC) ── */
+    /* ── linhas subcontratado (SC) — sem separador ── */
     (subContrat>0?
-      '<div style="font-size:9px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:#7ab87a;margin:14px 0 4px">Subcontratado</div>'+
-      rowsSub.filter(function(r){return r[1]>0;}).map(function(r){return _row(r,'#7ab87a');}).join('')
+      rowsSub.filter(function(r){return r[1]>0;}).map(function(r){return _row(r,'#c9a96e');}).join('')
     : '')+
 
     /* ── total sem margem ── */
