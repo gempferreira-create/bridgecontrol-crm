@@ -250,8 +250,7 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
     <div class="toolbar" style="gap:8px">
       <input type="text" id="search-orc" placeholder="Nº orçamento..." oninput="renderOrcamentos()" style="flex:0 0 160px;min-width:140px">
       <select id="filtro-orc-cli" onchange="renderOrcamentos()" style="flex:1;min-width:160px;padding:8px 13px;border:1.5px solid #E0D8CE;border-radius:6px;font-size:13px;font-family:Inter,sans-serif;background:#fff;outline:none;box-shadow:0 1px 3px rgba(0,0,0,0.04)"><option value="">Todos os clientes</option></select>
-      <input type="date" id="filtro-orc-de" onchange="renderOrcamentos()" title="De" style="flex:0 0 150px;padding:7px 10px;border:1.5px solid #E0D8CE;border-radius:6px;font-size:13px;font-family:Inter,sans-serif;background:#fff;outline:none">
-      <input type="date" id="filtro-orc-ate" onchange="renderOrcamentos()" title="Até" style="flex:0 0 150px;padding:7px 10px;border:1.5px solid #E0D8CE;border-radius:6px;font-size:13px;font-family:Inter,sans-serif;background:#fff;outline:none">
+      <input type="date" id="filtro-orc-data" onchange="renderOrcamentos()" title="Data de envio" style="flex:0 0 160px;padding:7px 10px;border:1.5px solid #E0D8CE;border-radius:6px;font-size:13px;font-family:Inter,sans-serif;background:#fff;outline:none">
       <button class="btn btn-outline btn-sm" onclick="limparFiltrosOrc()" title="Limpar filtros">✕</button>
       <button class="btn btn-bronze" onclick="openModalOrcamento()">+ Novo Orçamento</button>
       <button class="btn btn-outline btn-sm" onclick="seedDemo()">🌱 Demo</button>
@@ -742,8 +741,7 @@ function delCli(id){
 function renderOrcamentos(){
   var q=((document.getElementById('search-orc')||{}).value||'').toLowerCase();
   var cliF=(document.getElementById('filtro-orc-cli')||{}).value||'';
-  var de=(document.getElementById('filtro-orc-de')||{}).value||'';
-  var ate=(document.getElementById('filtro-orc-ate')||{}).value||'';
+  var dt=(document.getElementById('filtro-orc-data')||{}).value||'';
   // popular dropdown clientes (preservar valor)
   var cliSel=document.getElementById('filtro-orc-cli');
   if(cliSel){
@@ -753,8 +751,7 @@ function renderOrcamentos(){
   var list=db.orcamentos.filter(function(o){
     if(q&&!((o.numProjeto||'').toLowerCase().includes(q)))return false;
     if(cliF&&o.clienteId!=cliF)return false;
-    if(de&&(!o.data||o.data<de))return false;
-    if(ate&&(!o.data||o.data>ate))return false;
+    if(dt&&o.data!==dt)return false;
     return true;
   });
   document.getElementById('orc-tbody').innerHTML=list.slice().reverse().map(function(o){
@@ -763,7 +760,7 @@ function renderOrcamentos(){
   }).join('')||'<tr><td colspan="7" style="text-align:center;color:#ccc;padding:24px">Sem orçamentos. Clique em + Novo Orçamento.</td></tr>';
 }
 function limparFiltrosOrc(){
-  ['search-orc','filtro-orc-cli','filtro-orc-de','filtro-orc-ate'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+  ['search-orc','filtro-orc-cli','filtro-orc-data'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
   renderOrcamentos();
 }
 function delOrc(id){
