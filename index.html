@@ -477,7 +477,7 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
           </div>
           <div style="flex:1;display:flex;flex-direction:column;min-width:0">
             <div style="font-size:8px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px;text-align:center">Ajuste</div>
-            <input type="number" id="orc-margem-ajuste" value="0" step="0.5" oninput="calcAllTotals()"
+            <input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" id="orc-margem-ajuste" value="0" step="0.5" oninput="calcAllTotals()"
               style="flex:1;width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(201,169,110,0.25);border-radius:6px;color:#7ec87e;font-weight:700;font-size:14px;padding:0 6px;outline:none;box-sizing:border-box;font-family:Inter,sans-serif;text-align:center">
           </div>
           <div style="flex:1;background:rgba(201,169,110,0.08);border:1px solid rgba(201,169,110,0.2);border-radius:6px;padding:6px 10px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-width:0">
@@ -501,7 +501,7 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;background:#fff;border-radius:8px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,0.08);margin-bottom:0;border-bottom-left-radius:0;border-bottom-right-radius:0">
         <div class="form-group" style="margin:0">
           <label>Retificação de Medidas €</label>
-          <input type="number" id="orc-sumRet" placeholder="0" oninput="calcAllTotals()" style="width:100%">
+          <input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" id="orc-sumRet" placeholder="0" oninput="calcAllTotals()" style="width:100%">
         </div>
         <div class="form-group" style="margin:0">
           <label>Montagem</label>
@@ -524,11 +524,11 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px">
           <div class="form-group" style="margin:0">
             <label style="font-size:11px">Custo €</label>
-            <input type="number" id="orc-transp-custo" min="0" step="0.5" placeholder="0" oninput="calcTransporte()" style="width:100%">
+            <input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" id="orc-transp-custo" min="0" step="0.5" placeholder="0" oninput="calcTransporte()" style="width:100%">
           </div>
           <div class="form-group" style="margin:0">
             <label style="font-size:11px">Margem %</label>
-            <input type="number" id="orc-transp-margem" min="0" step="0.5" placeholder="0" oninput="calcTransporte()" style="width:100%">
+            <input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" id="orc-transp-margem" min="0" step="0.5" placeholder="0" oninput="calcTransporte()" style="width:100%">
           </div>
           <div style="display:flex;align-items:flex-end">
             <div style="width:100%;background:#3A3A3A;border-radius:6px;padding:8px 14px;display:flex;justify-content:space-between;align-items:center">
@@ -545,19 +545,19 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
         <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:12px">
           <div class="form-group" style="margin:0">
             <label style="font-size:11px">Dias <span style="color:#aaa;font-weight:400">(8h)</span></label>
-            <input type="number" id="orc-mont-dias" min="0" step="1" placeholder="0" oninput="calcMontagem()" style="width:100%">
+            <input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" id="orc-mont-dias" min="0" step="1" placeholder="0" oninput="calcMontagem()" style="width:100%">
           </div>
           <div class="form-group" style="margin:0">
             <label style="font-size:11px">Pessoas</label>
-            <input type="number" id="orc-mont-pessoas" min="0" step="1" placeholder="0" oninput="calcMontagem()" style="width:100%">
+            <input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" id="orc-mont-pessoas" min="0" step="1" placeholder="0" oninput="calcMontagem()" style="width:100%">
           </div>
           <div class="form-group" style="margin:0">
             <label style="font-size:11px">Custo/h €</label>
-            <input type="number" id="orc-mont-custoH" min="0" step="0.5" placeholder="0" oninput="calcMontagem()" style="width:100%">
+            <input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" id="orc-mont-custoH" min="0" step="0.5" placeholder="0" oninput="calcMontagem()" style="width:100%">
           </div>
           <div class="form-group" style="margin:0">
             <label style="font-size:11px">Margem %</label>
-            <input type="number" id="orc-mont-margem" min="0" step="0.5" placeholder="0" oninput="calcMontagem()" style="width:100%">
+            <input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" id="orc-mont-margem" min="0" step="0.5" placeholder="0" oninput="calcMontagem()" style="width:100%">
           </div>
         </div>
         <div style="display:flex;gap:20px;align-items:center;background:#3A3A3A;border-radius:6px;padding:10px 16px">
@@ -572,7 +572,7 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
         <div style="background:#2A2A2A;border-radius:8px 8px 0 0;padding:14px 24px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;gap:24px;align-items:flex-end">
           <div style="flex:1">
             <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px">Comissão Comercial %</div>
-            <input type="number" id="orc-comissao" placeholder="0" step="0.5" min="0" oninput="calcAllTotals()"
+            <input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" id="orc-comissao" placeholder="0" step="0.5" min="0" oninput="calcAllTotals()"
               style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(126,200,126,0.3);border-radius:6px;color:#7ec87e;font-weight:700;font-size:18px;padding:8px 12px;outline:none;box-sizing:border-box;font-family:Inter,sans-serif">
           </div>
           <div style="flex:1">
@@ -616,7 +616,7 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
                 <div style="font-size:10px;color:#999;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:7px">Gerar prazo</div>
                 <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
                   <div style="display:flex;align-items:center;gap:6px">
-                    <input type="number" id="prazo-semanas" value="10" min="1" max="20" style="width:52px;padding:5px 8px;border:1px solid #ddd;border-radius:5px;font-size:13px;font-weight:700;color:#3A3A3A;font-family:Inter,sans-serif;text-align:center">
+                    <input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" id="prazo-semanas" value="10" min="1" max="20" style="width:52px;padding:5px 8px;border:1px solid #ddd;border-radius:5px;font-size:13px;font-weight:700;color:#3A3A3A;font-family:Inter,sans-serif;text-align:center">
                     <span style="font-size:12px;color:#888">semanas</span>
                   </div>
                   <button type="button" onclick="gerarPrazo('aprovacao')" style="padding:6px 10px;background:#f0ebe3;border:1px solid #d4c9b8;border-radius:5px;font-size:11px;font-weight:600;color:#8B7355;cursor:pointer;font-family:Inter,sans-serif">Da aprovação</button>
@@ -671,6 +671,9 @@ var _lc=0,_editOrcId=null;
 function save(){try{localStorage.setItem('bc_crm',JSON.stringify(db));}catch(e){}sbSync();}
 function load(){try{var d=localStorage.getItem('bc_crm');if(d)db=JSON.parse(d);}catch(e){}}
 function fmt(n){var x=Number(n||0).toFixed(2);var p=x.split('.');p[0]=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,' ');return p.join('.');}
+function _pn(v){if(v==null)return 0;var n=_pn(String(v).replace(/\s/g,''));return isNaN(n)?0:n;}
+function _fb(el){if(!el)return;var v=el.value;if(v===''||v==null){return;}el.value=fmt(_pn(v));}
+function _ff(el){if(!el)return;var v=el.value;if(v===''||v==null){return;}var n=_pn(v);el.value=n===0&&v.replace(/\s/g,'')!=='0'?'':String(n);}
 function today(){return new Date().toISOString().slice(0,10);}
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
 function getCliNome(id){var c=db.clientes.find(function(x){return x.id==id;});return c?c.nome:(id||'—');}
@@ -867,13 +870,13 @@ function addLinha(l){
     '<td class="td-artigo"><textarea data-f="area" oninput="this.style.height=\'26px\';this.style.height=Math.max(26,this.scrollHeight)+\'px\'" style="min-width:70px;max-width:130px;border-color:#ddd">'+(l.area||'')+'</textarea></td>'+
     '<td class="img-cell">'+imgH+'<input type="file" id="ifile-'+idx+'" accept="image/*" onchange="handleImg('+idx+',this)"><input type="hidden" id="ival-'+idx+'" value="'+(l.img||'')+'"></td>'+
     '<td style="vertical-align:middle;text-align:left;min-width:340px"><textarea data-f="descricao" data-hk="orc" id="idesc-'+idx+'" placeholder="Descrição do artigo..." data-hk="marc" onfocus="openDescModal(this)" oninput="this.style.height=\'26px\';this.style.height=Math.max(26,this.scrollHeight)+\'px\'" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4">'+(l.descricao||'')+'</textarea></td>'+
-    '<td><input type="number" data-f="dimW" value="'+(l.dimW||'')+'" oninput="calcLinha('+idx+')" style="width:62px"></td>'+
-    '<td><input type="number" data-f="dimD" value="'+(l.dimD||'')+'" oninput="calcLinha('+idx+')" style="width:62px"></td>'+
-    '<td><input type="number" data-f="dimH" value="'+(l.dimH||'')+'" oninput="calcLinha('+idx+')" style="width:62px"></td>'+
-    '<td><input type="number" data-f="qtd" value="'+(l.qtd||1)+'" oninput="calcLinha('+idx+')" style="width:80px" min="0"></td>'+
-    '<td><input type="number" data-f="pu" value="'+(l.pu||'')+'" oninput="calcLinha('+idx+')" style="width:90px" step="0.01"></td>'+
+    '<td><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" data-f="dimW" value="'+(l.dimW||'')+'" oninput="calcLinha('+idx+')" style="width:62px"></td>'+
+    '<td><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" data-f="dimD" value="'+(l.dimD||'')+'" oninput="calcLinha('+idx+')" style="width:62px"></td>'+
+    '<td><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" data-f="dimH" value="'+(l.dimH||'')+'" oninput="calcLinha('+idx+')" style="width:62px"></td>'+
+    '<td><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" data-f="qtd" value="'+(l.qtd||1)+'" oninput="calcLinha('+idx+')" style="width:80px" min="0"></td>'+
+    '<td><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" data-f="pu" value="'+(l.pu||'')+'" oninput="calcLinha('+idx+')" style="width:90px" step="0.01"></td>'+
     '<td class="td-tot" id="ptot-'+idx+'"><input readonly id="ptot-inp-'+idx+'" value="" style="width:90px;padding:4px 6px;border:1.5px solid #ddd;border-radius:4px;font-size:12px;font-family:Inter,sans-serif;background:#f7f5f2;text-align:right;font-weight:600;color:#2E2E2E"></td>'+
-    '<td style="padding:6px 5px;border-bottom:1px solid #f0ede8"><input type="number" data-f="pCusto" value="'+(l.pCusto||'')+'" oninput="calcLinha('+idx+')" style="width:88px;padding:4px 6px;border:1.5px solid #ddd;border-radius:4px;font-size:12px;font-family:Inter,sans-serif;background:#fff;text-align:right" step="0.01" placeholder="—"></td>'+
+    '<td style="padding:6px 5px;border-bottom:1px solid #f0ede8"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" data-f="pCusto" value="'+(l.pCusto||'')+'" oninput="calcLinha('+idx+')" style="width:88px;padding:4px 6px;border:1.5px solid #ddd;border-radius:4px;font-size:12px;font-family:Inter,sans-serif;background:#fff;text-align:right" step="0.01" placeholder="—"></td>'+
     '<td class="td-tot" id="marg-'+idx+'"><input readonly id="marg-inp-'+idx+'" value="" style="width:70px;padding:4px 6px;border:1.5px solid #ddd;border-radius:4px;font-size:11px;font-family:Inter,sans-serif;background:#f7f5f2;text-align:right;font-weight:600;color:#2e7d32"></td>'+
     '<td class="td-del"><button onclick="duplicarLinha(this)" title="Duplicar linha" style="background:transparent;border:none;cursor:pointer;color:#8B7355;font-size:14px;padding:0 3px;line-height:1;vertical-align:middle">⧉</button><button onclick="removeLinha(this)" title="Remover">✕</button></td>';
   document.getElementById('linhas-tbody').appendChild(row);
@@ -895,10 +898,10 @@ function calcLinha(idx){
 }
 
 function calcMontagem(){
-  var dias=+(document.getElementById('orc-mont-dias')||{}).value||0;
-  var pessoas=+(document.getElementById('orc-mont-pessoas')||{}).value||0;
-  var custoH=+(document.getElementById('orc-mont-custoH')||{}).value||0;
-  var margem=+(document.getElementById('orc-mont-margem')||{}).value||0;
+  var dias=_pn((document.getElementById('orc-mont-dias')||{}).value)||0;
+  var pessoas=_pn((document.getElementById('orc-mont-pessoas')||{}).value)||0;
+  var custoH=_pn((document.getElementById('orc-mont-custoH')||{}).value)||0;
+  var margem=_pn((document.getElementById('orc-mont-margem')||{}).value)||0;
   var totalH=dias*pessoas*8;
   var custoBase=totalH*custoH;
   var valor=custoBase*(1+margem/100);
@@ -914,8 +917,8 @@ function calcMontagem(){
   calcAllTotals();
 }
 function calcTransporte(){
-  var custo=+(document.getElementById('orc-transp-custo')||{}).value||0;
-  var margem=+(document.getElementById('orc-transp-margem')||{}).value||0;
+  var custo=_pn((document.getElementById('orc-transp-custo')||{}).value)||0;
+  var margem=_pn((document.getElementById('orc-transp-margem')||{}).value)||0;
   var valor=custo*(1+margem/100);
   var vEl=document.getElementById('orc-transp-valor');
   if(vEl)vEl.textContent=fmt(valor)+' €';
@@ -971,17 +974,17 @@ function calcAllTotals(){
     var pc=+(row.querySelector('[data-f="pCusto"]')||{}).value||0;
     mob+=qtd*pu; custo+=qtd*pc;
   });
-  var ret=+(document.getElementById('orc-sumRet')||{}).value||0;
-  var mont=+(document.getElementById('orc-sumMontVal')||{}).value||0;
-  var montMargem=+(document.getElementById('orc-mont-margem')||{}).value||0;
-  var transp=+(document.getElementById('orc-transpVal')||{}).value||0;
-  var transpMargem=+(document.getElementById('orc-transp-margem')||{}).value||0;
-  var comissaoP=+(document.getElementById('orc-comissao')||{}).value||0;
+  var ret=_pn((document.getElementById('orc-sumRet')||{}).value)||0;
+  var mont=_pn((document.getElementById('orc-sumMontVal')||{}).value)||0;
+  var montMargem=_pn((document.getElementById('orc-mont-margem')||{}).value)||0;
+  var transp=_pn((document.getElementById('orc-transpVal')||{}).value)||0;
+  var transpMargem=_pn((document.getElementById('orc-transp-margem')||{}).value)||0;
+  var comissaoP=_pn((document.getElementById('orc-comissao')||{}).value)||0;
   var sm=document.getElementById('orc-sumMob');if(sm)sm.value=mob.toFixed(2);
 
   /* margem — média das linhas + ajuste do utilizador */
   var avgMargem=custo>0?((mob-custo)/custo*100):0;
-  var ajuste=+(document.getElementById('orc-margem-ajuste')||{}).value||0;
+  var ajuste=_pn((document.getElementById('orc-margem-ajuste')||{}).value)||0;
   var effectiveMargem=avgMargem+ajuste;
   /* actualiza displays */
   var avgDisp=document.getElementById('orc-margem-avg-display');
@@ -1000,13 +1003,13 @@ function calcAllTotals(){
   var grand=adjustedMob+ret+mont+transp;
   var comissaoV=grand*(comissaoP/100);
   var totalLiq=grand+comissaoV;
-  var ivaP=+(document.getElementById('orc-iva')||{}).value||0;
+  var ivaP=_pn((document.getElementById('orc-iva')||{}).value)||0;
   var ivaV=totalLiq*(ivaP/100);
   /* margem total ponderada (mob+mont+transp) */
-  var _mDias=+(document.getElementById('orc-mont-dias')||{}).value||0;
-  var _mPess=+(document.getElementById('orc-mont-pessoas')||{}).value||0;
-  var _mCH=+(document.getElementById('orc-mont-custoH')||{}).value||0;
-  var _tCusto=+(document.getElementById('orc-transp-custo')||{}).value||0;
+  var _mDias=_pn((document.getElementById('orc-mont-dias')||{}).value)||0;
+  var _mPess=_pn((document.getElementById('orc-mont-pessoas')||{}).value)||0;
+  var _mCH=_pn((document.getElementById('orc-mont-custoH')||{}).value)||0;
+  var _tCusto=_pn((document.getElementById('orc-transp-custo')||{}).value)||0;
   var totalCusto=custo+(_mDias*_mPess*8*_mCH)+_tCusto;
   var totalVenda=adjustedMob+mont+transp;
   var totalMargemEuro=totalVenda-totalCusto;
@@ -1036,9 +1039,9 @@ function calcAllTotals(){
   /* Montagem — valor já inclui margem propria */
   if(mont>0){
     var montSub=montMargem>0?'margem '+montMargem.toFixed(1)+'%':'';
-    var montDias2=+(document.getElementById('orc-mont-dias')||{}).value||0;
-    var montPess2=+(document.getElementById('orc-mont-pessoas')||{}).value||0;
-    var montCH=+(document.getElementById('orc-mont-custoH')||{}).value||0;
+    var montDias2=_pn((document.getElementById('orc-mont-dias')||{}).value)||0;
+    var montPess2=_pn((document.getElementById('orc-mont-pessoas')||{}).value)||0;
+    var montCH=_pn((document.getElementById('orc-mont-custoH')||{}).value)||0;
     var montCustoBase=montDias2*montPess2*8*montCH;
     var montMargemEuro=mont-montCustoBase;
     rows.push({label:'Montagem',sub:montSub,val:mont,custo:(montMargem>0&&montMargemEuro>0)?montMargemEuro:0});
@@ -1046,7 +1049,7 @@ function calcAllTotals(){
   /* Transporte — valor já inclui margem propria */
   if(transp>0){
     var transpSub=transpMargem>0?'margem '+transpMargem.toFixed(1)+'%':'';
-    var transpCustoBase=+(document.getElementById('orc-transp-custo')||{}).value||0;
+    var transpCustoBase=_pn((document.getElementById('orc-transp-custo')||{}).value)||0;
     var transpMargemEuro=transp-transpCustoBase;
     rows.push({label:'Transporte',sub:transpSub,val:transp,custo:(transpMargem>0&&transpMargemEuro>0)?transpMargemEuro:0});
   }
@@ -1120,7 +1123,7 @@ var _pagOpts=[
 ];
 
 function gerarPrazo(tipo){
-  var sem=+(document.getElementById('prazo-semanas')||{}).value||10;
+  var sem=_pn((document.getElementById('prazo-semanas')||{}).value)||10;
   var txt=sem+' semanas a partir da '+(tipo==='aprovacao'?'aprovação da proposta.':'aprovação dos desenhos.');
   document.getElementById('orc-tcPrazo').value=txt;
   var trig=document.getElementById('prazo-trigger');
@@ -1405,7 +1408,7 @@ function salvarOrcamento(){
   if(!clienteId){alert('Selecione um cliente.');return null;}
   var linhas=getLinhas();
   var mob=linhas.reduce(function(s,l){return s+((+l.qtd||0)*(+l.pu||0));},0);
-  var obj={id:id,numProjeto:document.getElementById('orc-numProjeto').value,numRef:document.getElementById('orc-ref').value,clienteId:clienteId,pais:document.getElementById('orc-pais').value,villa:document.getElementById('orc-villa').value,data:document.getElementById('orc-data').value,validade:document.getElementById('orc-validade').value,estado:document.getElementById('orc-estado').value,notas:document.getElementById('orc-notas').value,sumMob:mob,sumRet:+(document.getElementById('orc-sumRet').value)||0,montIncluida:document.getElementById('orc-montIncluida').value,sumMontVal:+(document.getElementById('orc-sumMontVal').value)||0,montDias:+(document.getElementById('orc-mont-dias')||{}).value||0,montPessoas:+(document.getElementById('orc-mont-pessoas')||{}).value||0,montCustoH:+(document.getElementById('orc-mont-custoH')||{}).value||0,montMargem:+(document.getElementById('orc-mont-margem')||{}).value||0,transpVal:+(document.getElementById('orc-transpVal')||{}).value||0,transpCusto:+(document.getElementById('orc-transp-custo')||{}).value||0,transpMargem:+(document.getElementById('orc-transp-margem')||{}).value||0,comissao:+(document.getElementById('orc-comissao')||{}).value||0,margemAjuste:+(document.getElementById('orc-margem-ajuste')||{}).value||0,ivaTaxa:+(document.getElementById('orc-iva')||{}).value||23,margemExtra:+(document.getElementById('orc-margem')||{}).value||0,transpIncluido:document.getElementById('orc-transpIncluido').value,tcPagamento:document.getElementById('orc-tcPagamento').value,tcPrazo:document.getElementById('orc-tcPrazo').value,tcTransporte:document.getElementById('orc-tcTransporte').value,tcTecidos:document.getElementById('orc-tcTecidos').value,tcGarantia:document.getElementById('orc-tcGarantia').value,tcTexto:document.getElementById('orc-tcTexto').value,linhas:linhas,criadoEm:Date.now()};
+  var obj={id:id,numProjeto:document.getElementById('orc-numProjeto').value,numRef:document.getElementById('orc-ref').value,clienteId:clienteId,pais:document.getElementById('orc-pais').value,villa:document.getElementById('orc-villa').value,data:document.getElementById('orc-data').value,validade:document.getElementById('orc-validade').value,estado:document.getElementById('orc-estado').value,notas:document.getElementById('orc-notas').value,sumMob:mob,sumRet:+(document.getElementById('orc-sumRet').value)||0,montIncluida:document.getElementById('orc-montIncluida').value,sumMontVal:+(document.getElementById('orc-sumMontVal').value)||0,montDias:_pn((document.getElementById('orc-mont-dias')||{}).value)||0,montPessoas:_pn((document.getElementById('orc-mont-pessoas')||{}).value)||0,montCustoH:_pn((document.getElementById('orc-mont-custoH')||{}).value)||0,montMargem:_pn((document.getElementById('orc-mont-margem')||{}).value)||0,transpVal:_pn((document.getElementById('orc-transpVal')||{}).value)||0,transpCusto:_pn((document.getElementById('orc-transp-custo')||{}).value)||0,transpMargem:_pn((document.getElementById('orc-transp-margem')||{}).value)||0,comissao:_pn((document.getElementById('orc-comissao')||{}).value)||0,margemAjuste:_pn((document.getElementById('orc-margem-ajuste')||{}).value)||0,ivaTaxa:_pn((document.getElementById('orc-iva')||{}).value)||23,margemExtra:_pn((document.getElementById('orc-margem')||{}).value)||0,transpIncluido:document.getElementById('orc-transpIncluido').value,tcPagamento:document.getElementById('orc-tcPagamento').value,tcPrazo:document.getElementById('orc-tcPrazo').value,tcTransporte:document.getElementById('orc-tcTransporte').value,tcTecidos:document.getElementById('orc-tcTecidos').value,tcGarantia:document.getElementById('orc-tcGarantia').value,tcTexto:document.getElementById('orc-tcTexto').value,linhas:linhas,criadoEm:Date.now()};
   var idx=db.orcamentos.findIndex(function(x){return x.id==id;});
   if(idx>=0)db.orcamentos[idx]=obj;else{db.orcamentos.push(obj);db._no=(db._no||1)+1;}
   save();closeModalOrc();renderOrcamentos();updateSB();
@@ -1860,7 +1863,7 @@ var _CI=0; // calc row counter
 
 function _selOpts(arr,val){return arr.map(function(x){return '<option value="'+x.p+'"'+(x.d===(val||'')||+x.p===+val?' selected':'')+'>'+x.d+'</option>';}).join('');}
 function _sel(id,arr,val,fn){return '<select onchange="'+fn+'" style="width:100%;padding:3px 4px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif"><option value="">— escolher —</option>'+_selOpts(arr,val)+'</select>';}
-function _inp(df,val,fn,w){return '<input type="number" step="0.01" value="'+(val||'')+'" oninput="'+fn+'" style="width:'+(w||55)+'px;padding:3px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;font-family:Inter,sans-serif">';}
+function _inp(df,val,fn,w){return '<input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" step="0.01" value="'+(val||'')+'" oninput="'+fn+'" style="width:'+(w||55)+'px;padding:3px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;font-family:Inter,sans-serif">';}
 function _calcTH(cols,_unused,bg){var c=bg||'#3A3A3A';return '<thead><tr>'+cols.map(function(h){var a=(!h)?'center':'left';return '<th style="background:'+c+';color:#fff;padding:6px 7px;font-size:9px;letter-spacing:0.4px;text-transform:uppercase;font-weight:500;white-space:nowrap;text-align:'+a+'">'+h+'</th>';}).join('')+'</tr></thead>';}
 
 function renderCalcPage(){_CP='fc';_renderFCPageInto('page-calc');}
@@ -1916,15 +1919,15 @@ function _renderFCPageInto(pageId){
           '<div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0;padding-top:22px">'+
             '<div style="display:flex;align-items:center;gap:6px">'+
               '<label style="font-size:10px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.5px;width:10px;text-align:center">C</label>'+
-              '<input type="number" step="0.01" id="fc-dim-c" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
+              '<input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" step="0.01" id="fc-dim-c" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
             '</div>'+
             '<div style="display:flex;align-items:center;gap:6px">'+
               '<label style="font-size:10px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.5px;width:10px;text-align:center">L</label>'+
-              '<input type="number" step="0.01" id="fc-dim-l" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
+              '<input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" step="0.01" id="fc-dim-l" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
             '</div>'+
             '<div style="display:flex;align-items:center;gap:6px">'+
               '<label style="font-size:10px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.5px;width:10px;text-align:center">A</label>'+
-              '<input type="number" step="0.01" id="fc-dim-a" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
+              '<input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" step="0.01" id="fc-dim-a" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
             '</div>'+
           '</div>'+
         '</div>'+
@@ -2003,9 +2006,9 @@ function _renderFCPageInto(pageId){
     /* ── Outros Custos ── */
     '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8B7355;margin:16px 0 10px;padding-top:16px;border-top:1px solid #eee">Outros Custos</div>'+
     '<div class="form-grid" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr));margin-bottom:16px">'+
-      '<div class="form-group"><label style="color:#8B7355;letter-spacing:1px;font-weight:700">Embalagem €</label><input type="number" id="fc-emb" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
-      '<div class="form-group"><label style="color:#8B7355;letter-spacing:1px;font-weight:700">Gab. Técnico €</label><input type="number" id="fc-gab" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
-      '<div class="form-group"><label style="color:#8B7355;letter-spacing:1px;font-weight:700">Custos Fixos €</label><input type="number" id="fc-fixos" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
+      '<div class="form-group"><label style="color:#8B7355;letter-spacing:1px;font-weight:700">Embalagem €</label><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" id="fc-emb" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
+      '<div class="form-group"><label style="color:#8B7355;letter-spacing:1px;font-weight:700">Gab. Técnico €</label><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" id="fc-gab" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
+      '<div class="form-group"><label style="color:#8B7355;letter-spacing:1px;font-weight:700">Custos Fixos €</label><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" id="fc-fixos" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
     '</div>'+
     '<div class="card" style="background:#3A3A3A;color:#fff" id="fc-resumo"></div>';
 
@@ -2021,11 +2024,11 @@ function fcAddFCRow(sec){
   if(sec==='mdf'){
     // 0=qtd 1=placa(sel) 2=C 3=L 4=acab(sel) 5=m² 6=total 7=del
     tr.innerHTML=
-      '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição..." data-hk="est" data-hk="mdf" onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
       '<td style="'+td+'">'+_sel('',_PR.mdf,null,'fcCalcTotais()')+'</td>'+
-      '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;box-sizing:border-box"></td>'+
-      '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;box-sizing:border-box"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" placeholder="0" oninput="fcCalcTotais()" style="width:100%;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;box-sizing:border-box"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" placeholder="0" oninput="fcCalcTotais()" style="width:100%;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;box-sizing:border-box"></td>'+
       '<td style="'+td+'">'+_sel('',_PR.acab,null,'fcCalcTotais()')+'</td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-m2v" value="0.00"></td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
@@ -2034,12 +2037,12 @@ function fcAddFCRow(sec){
   } else if(sec==='mad'){
     // 0=qtd 1=desc 2=mad(sel €/m³) 3=C 4=L 5=Esp 6=acab(sel €/m²) 7=m³ 8=total 9=del
     tr.innerHTML=
-      '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição..." data-hk="est" onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
       '<td style="'+td+'">'+_sel('',_PR.madeira,null,'fcCalcTotais()')+'</td>'+
-      '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;box-sizing:border-box"></td>'+
-      '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;box-sizing:border-box"></td>'+
-      '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;box-sizing:border-box"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" placeholder="0" oninput="fcCalcTotais()" style="width:100%;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;box-sizing:border-box"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" placeholder="0" oninput="fcCalcTotais()" style="width:100%;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;box-sizing:border-box"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" placeholder="0" oninput="fcCalcTotais()" style="width:100%;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;box-sizing:border-box"></td>'+
       '<td style="'+td+'">'+_sel('',_PR.acab,null,'fcCalcTotais()')+'</td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-m2v" value="0.00"></td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
@@ -2048,16 +2051,16 @@ function fcAddFCRow(sec){
   } else if(sec==='op'){
     // 0=qtd 1=operador(sel €/h) 2=total-horas 3=total 4=del
     tr.innerHTML=
-      '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'">'+_sel('',_PR.op,null,'fcCalcTotais()')+'</td>'+
-      '<td style="'+td+'"><input type="number" placeholder="0" step="1" oninput="fcCalcTotais()" class="fc-m2v" style="width:100%;box-sizing:border-box;padding:4px 6px;border-radius:3px;font-size:12px;font-family:Inter,sans-serif;cursor:text;font-weight:700"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" placeholder="0" step="1" oninput="fcCalcTotais()" class="fc-m2v" style="width:100%;box-sizing:border-box;padding:4px 6px;border-radius:3px;font-size:12px;font-family:Inter,sans-serif;cursor:text;font-weight:700"></td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById('fc-op-body').appendChild(tr);
   } else if(sec==='fer'){
     // 0=qtd 1=ferragem(sel) 2=€/uni(display) 3=total 4=del
     tr.innerHTML=
-      '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'"><select onchange="fcFerChange(this)" style="width:100%;padding:3px 4px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif"><option value="">— escolher —</option>'+_selOpts(_PR.ferragem,null)+'</select></td>'+
       '<td style="padding:4px 6px;border-bottom:1px solid #f0ede8;vertical-align:top"><input type="text" readonly class="fc-eur" value="0.00"></td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
@@ -2069,9 +2072,9 @@ function fcAddFCRow(sec){
     var tr3=document.createElement('tr');
     var prList=sec==='cer'?_PR.ceramica:_PR.espelhos;
     tr3.innerHTML=
-      '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
-      '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;font-family:Inter,sans-serif"></td>'+
-      '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;font-family:Inter,sans-serif"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" placeholder="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;font-family:Inter,sans-serif"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" placeholder="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'">'+_sel('',prList,null,'fcCalcTotais()')+'</td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-m2v" value="0.00"></td>'+
       '<td style="padding:4px 6px;border-bottom:1px solid #f0ede8;vertical-align:top"><input type="text" readonly class="fc-pv" value="0.00"></td>'+
@@ -2080,9 +2083,9 @@ function fcAddFCRow(sec){
     document.getElementById('fc-'+sec+'-body').appendChild(tr3);
   } else if(sec==='est'||sec==='met'||sec==='tec'){
     tr.innerHTML=
-      '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição..." data-hk="est" onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
-      '<td style="'+td+'"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById('fc-'+sec+'-body').appendChild(tr);
@@ -2090,9 +2093,9 @@ function fcAddFCRow(sec){
     return;
   } else if(sec==='ocomp'){
     tr.innerHTML=
-      '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição..." data-hk="est" onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
-      '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
+      '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById(_CP+'-ocomp-body').appendChild(tr);
@@ -2103,9 +2106,9 @@ function fcAddFCRow(sec){
     var i2=_CI++;
     var trv=document.createElement('tr');
     trv.innerHTML=
-      '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
-      '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;font-family:Inter,sans-serif"></td>'+
-      '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;font-family:Inter,sans-serif"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" placeholder="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;font-family:Inter,sans-serif"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" placeholder="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'">'+_sel('',_PR.vidros,null,'fcCalcTotais()')+'</td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-m2v" value="0.00"></td>'+
       '<td style="padding:4px 6px;border-bottom:1px solid #f0ede8;vertical-align:top"><input type="text" readonly class="fc-pv" value="0.00"></td>'+
@@ -2118,7 +2121,7 @@ function fcAddFCRow(sec){
 
 function fcFerChange(sel){
   var tr=sel.closest('tr');
-  var pu=sel.value?+sel.value:0;
+  var pu=sel.value?_pn(sel.value):0;
   if(tr&&tr.cells[2]){var inp=tr.cells[2].querySelector('input');if(inp)inp.value=pu?fmt(pu):'0.00';else tr.cells[2].textContent=pu?fmt(pu):'0.00';}
   fcCalcTotais();
 }
@@ -2170,15 +2173,15 @@ function _renderCalcInto(pageId,title){
           '<div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0;padding-top:22px">'+
             '<div style="display:flex;align-items:center;gap:6px">'+
               '<label style="font-size:10px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.5px;width:10px;text-align:center">C</label>'+
-              '<input type="number" step="0.01" id="'+px+'-dim-c" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
+              '<input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" step="0.01" id="'+px+'-dim-c" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
             '</div>'+
             '<div style="display:flex;align-items:center;gap:6px">'+
               '<label style="font-size:10px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.5px;width:10px;text-align:center">L</label>'+
-              '<input type="number" step="0.01" id="'+px+'-dim-l" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
+              '<input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" step="0.01" id="'+px+'-dim-l" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
             '</div>'+
             '<div style="display:flex;align-items:center;gap:6px">'+
               '<label style="font-size:10px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.5px;width:10px;text-align:center">A</label>'+
-              '<input type="number" step="0.01" id="'+px+'-dim-a" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
+              '<input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" step="0.01" id="'+px+'-dim-a" placeholder="mm" style="width:80px;padding:5px 8px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:center" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
             '</div>'+
           '</div>'+
         '</div>'+
@@ -2256,9 +2259,9 @@ function _renderCalcInto(pageId,title){
     '<button class="btn btn-outline btn-sm" onclick="fcAddRow(\'ocomp\')" style="margin-bottom:16px">+ Linha Componente</button>'+
     '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8B7355;margin:16px 0 10px;padding-top:16px;border-top:1px solid #eee">Outros Custos</div>'+
     '<div class="form-grid" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr));margin-bottom:16px">'+
-      '<div class="form-group"><label style="color:#8B7355;letter-spacing:1px;font-weight:700">Embalagem €</label><input type="number" id="'+px+'-emb" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
-      '<div class="form-group"><label style="color:#8B7355;letter-spacing:1px;font-weight:700">Gab. Técnico €</label><input type="number" id="'+px+'-gab" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
-      '<div class="form-group"><label style="color:#8B7355;letter-spacing:1px;font-weight:700">Custos Fixos €</label><input type="number" id="'+px+'-fixos" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
+      '<div class="form-group"><label style="color:#8B7355;letter-spacing:1px;font-weight:700">Embalagem €</label><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" id="'+px+'-emb" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
+      '<div class="form-group"><label style="color:#8B7355;letter-spacing:1px;font-weight:700">Gab. Técnico €</label><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" id="'+px+'-gab" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
+      '<div class="form-group"><label style="color:#8B7355;letter-spacing:1px;font-weight:700">Custos Fixos €</label><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" id="'+px+'-fixos" value="0" oninput="fcCalcTotais()" step="0.01"></div>'+
     '</div>'+
     '<div class="card" style="background:#3A3A3A;color:#fff" id="'+px+'-resumo"></div>';
 
@@ -2276,45 +2279,45 @@ function fcAddRow(sec){
   if(sec==='mdf'){
     // SC MDF: 0=qtd 1=desc 2=acab(sel) 3=€/uni 4=total 5=del
     tr.innerHTML=
-      '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição do artigo..." onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
       '<td style="'+td+'">'+_sel('',_PR.acab,null,'fcCalcTotais()')+'</td>'+
-      '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
+      '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById(_CP+'-mdf-body').appendChild(tr);
   } else if(sec==='mad'){
     // Acabamento row: 0=Qtd, 1=Acab select, 2=€/uni input, 3=Total, 4=del
     tr.innerHTML=
-      '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'">'+_sel('',_PR.acab,null,'fcMadAcabChange(this)')+'</td>'+
-      '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
+      '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById(_CP+'-mad-body').appendChild(tr);
   } else if(sec==='op'){
     // Iluminação row: 0=Qtd, 1=Descrição textarea, 2=€/uni, 3=Total, 4=del
     tr.innerHTML=
-      '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição da iluminação..." data-hk="op" onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
-      '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
+      '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById(_CP+'-op-body').appendChild(tr);
   } else if(sec==='fer'){
     // Tecido row: 0=Qtd ml, 1=Descrição, 2=€/ml, 3=Total, 4=del
     tr.innerHTML=
-      '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição do tecido..." data-hk="tec" onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
-      '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
+      '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById(_CP+'-fer-body').appendChild(tr);
   } else if(sec==='vid'){
     tr.innerHTML=
-      '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
-      '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;font-family:Inter,sans-serif"></td>'+
-      '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;font-family:Inter,sans-serif"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" placeholder="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;font-family:Inter,sans-serif"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" placeholder="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'">'+_sel('',_PR.vidros,null,'fcCalcTotais()')+'</td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-m2v" value="0.00"></td>'+
       '<td style="padding:4px 6px;border-bottom:1px solid #f0ede8;vertical-align:top"><input type="text" readonly class="fc-pv" value="0.00"></td>'+
@@ -2324,9 +2327,9 @@ function fcAddRow(sec){
   } else if(sec==='cer'||sec==='esp'){
     var prList2=sec==='cer'?_PR.ceramica:_PR.espelhos;
     tr.innerHTML=
-      '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
-      '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;font-family:Inter,sans-serif"></td>'+
-      '<td style="'+td+'"><input type="number" placeholder="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;font-family:Inter,sans-serif"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" placeholder="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;font-family:Inter,sans-serif"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" placeholder="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'">'+_sel('',prList2,null,'fcCalcTotais()')+'</td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-m2v" value="0.00"></td>'+
       '<td style="padding:4px 6px;border-bottom:1px solid #f0ede8;vertical-align:top"><input type="text" readonly class="fc-pv" value="0.00"></td>'+
@@ -2336,17 +2339,17 @@ function fcAddRow(sec){
   } else if(sec==='tec'){
     // 0=qtd(ml) 1=desc 2=€/ml 3=total 4=del
     tr.innerHTML=
-      '<td style="'+td+'"><input type="number" value="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" value="0" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição do tecido..." data-hk="tec" onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
-      '<td style="'+td+'"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById('fc-tec-body').appendChild(tr);
   } else if(sec==='est'||sec==='met'||sec==='ocomp'){
     tr.innerHTML=
-      '<td style="'+td+'"><input type="number" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
+      '<td style="'+td+'"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" value="1" oninput="fcCalcTotais()" style="width:100%;box-sizing:border-box;padding:4px 5px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;text-align:right"></td>'+
       '<td style="'+td+'vertical-align:top"><textarea placeholder="Descrição" onfocus="openDescModal(this)" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:11px;font-family:Inter,sans-serif;cursor:pointer;resize:none;overflow:hidden;line-height:1.4;min-height:26px"></textarea></td>'+
-      '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="number" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
+      '<td style="padding:4px 5px;border-bottom:1px solid #f0ede8"><input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" placeholder="0.00" step="0.01" oninput="fcCalcTotais()" class="fc-eur" style="width:100%;box-sizing:border-box;padding:4px 6px;border:1.5px solid #ddd;border-radius:3px;font-size:12px;text-align:right;font-family:Inter,sans-serif"></td>'+
       '<td style="'+td+'"><input type="text" readonly class="fc-tot1" value="0.00"></td>'+
       _fcBtn(i);
     document.getElementById(_CP+'-'+sec+'-body').appendChild(tr);
@@ -2357,9 +2360,9 @@ function fcAddRow(sec){
 function fcCalcMont(){
   var cp=_CP;
   var g=function(k){return document.getElementById(cp+'-'+k);};
-  var pess=+(g('mont-pess')&&g('mont-pess').value)||1;
-  var dias=+(g('mont-dias')&&g('mont-dias').value)||0;
-  var eur=+(g('mont-eur')&&g('mont-eur').value)||0;
+  var pess=_pn(g('mont-pess')&&g('mont-pess').value)||1;
+  var dias=_pn(g('mont-dias')&&g('mont-dias').value)||0;
+  var eur=_pn(g('mont-eur')&&g('mont-eur').value)||0;
   var tot=pess*dias*eur;
   var el=g('mont');if(el)el.value=tot.toFixed(2);
   fcCalcTotais();
@@ -2368,13 +2371,13 @@ function fcCalcMdfRow(inp){fcCalcTotais();}
 function fcScMdfAcabChange(sel){
   var tr=sel.closest('tr');
   var inp=tr&&tr.cells[3]?tr.cells[3].querySelector('input'):null;
-  if(inp&&sel.value)inp.value=parseFloat(sel.value).toFixed(2);
+  if(inp&&sel.value)inp.value=_pn(sel.value).toFixed(2);
   fcCalcTotais();
 }
 function fcMadAcabChange(sel){
   var tr=sel.closest('tr');
   var inp=tr&&tr.cells[2]?tr.cells[2].querySelector('input'):null;
-  if(inp&&sel.value)inp.value=parseFloat(sel.value).toFixed(2);
+  if(inp&&sel.value)inp.value=_pn(sel.value).toFixed(2);
   fcCalcTotais();
 }
 
@@ -2399,11 +2402,11 @@ function fcCalcTotais(){
     // FC MDF: 0=qtd 1=desc 2=placa(sel) 3=C 4=L 5=acab(sel) 6=m² 7=total
     document.querySelectorAll('#fc-mdf-body tr').forEach(function(tr){
       var cells=tr.cells;if(!cells.length)return;
-      var qtd=+cells[0].querySelector('input').value||0;
-      var placa=cells[2]?(+cells[2].querySelector('select').value||0):0;
-      var c=cells[3]?(+cells[3].querySelector('input').value||0):0;
-      var l=cells[4]?(+cells[4].querySelector('input').value||0):0;
-      var acab=cells[5]?(+cells[5].querySelector('select').value||0):0;
+      var qtd=_pn(cells[0].querySelector('input').value)||0;
+      var placa=cells[2]?(_pn(cells[2].querySelector('select').value)||0):0;
+      var c=cells[3]?(_pn(cells[3].querySelector('input').value)||0):0;
+      var l=cells[4]?(_pn(cells[4].querySelector('input').value)||0):0;
+      var acab=cells[5]?(_pn(cells[5].querySelector('select').value)||0):0;
       var m2=qtd*(c/1000)*(l/1000);
       var tot=m2*(placa+acab);
       _setVal(cells[6],fmt(m2));
@@ -2413,12 +2416,12 @@ function fcCalcTotais(){
     // FC MAD: 0=qtd 1=desc 2=mad(sel €/m³) 3=C 4=L 5=Esp 6=acab(sel €/m²) 7=m³ 8=total
     document.querySelectorAll('#fc-mad-body tr').forEach(function(tr){
       var cells=tr.cells;if(!cells.length)return;
-      var qtd=+cells[0].querySelector('input').value||0;
-      var mad=cells[2]?(+cells[2].querySelector('select').value||0):0;
-      var c=cells[3]?(+cells[3].querySelector('input').value||0):0;
-      var l=cells[4]?(+cells[4].querySelector('input').value||0):0;
-      var esp=cells[5]?(+cells[5].querySelector('input').value||0):0;
-      var acab=cells[6]?(+cells[6].querySelector('select').value||0):0;
+      var qtd=_pn(cells[0].querySelector('input').value)||0;
+      var mad=cells[2]?(_pn(cells[2].querySelector('select').value)||0):0;
+      var c=cells[3]?(_pn(cells[3].querySelector('input').value)||0):0;
+      var l=cells[4]?(_pn(cells[4].querySelector('input').value)||0):0;
+      var esp=cells[5]?(_pn(cells[5].querySelector('input').value)||0):0;
+      var acab=cells[6]?(_pn(cells[6].querySelector('select').value)||0):0;
       var m3=qtd*(c/1000)*(l/1000)*(esp/1000);
       var m2=qtd*(c/1000)*(l/1000);
       var tot=m3*mad+m2*acab;
@@ -2429,9 +2432,9 @@ function fcCalcTotais(){
     // FC OP: 0=qtd 1=op(sel €/h) 2=total-horas 3=total
     document.querySelectorAll('#fc-op-body tr').forEach(function(tr){
       var cells=tr.cells;if(!cells.length)return;
-      var qtd=+cells[0].querySelector('input').value||0;
-      var opRate=cells[1]?(+cells[1].querySelector('select').value||0):0;
-      var h=cells[2]?(+cells[2].querySelector('input').value||0):0;
+      var qtd=_pn(cells[0].querySelector('input').value)||0;
+      var opRate=cells[1]?(_pn(cells[1].querySelector('select').value)||0):0;
+      var h=cells[2]?(_pn(cells[2].querySelector('input').value)||0):0;
       var tot=qtd*h*opRate;
       _setVal(cells[3],fmt(tot));
       subOp+=tot;
@@ -2439,8 +2442,8 @@ function fcCalcTotais(){
     // FC FER: 0=qtd 1=fer(sel) 2=€/uni(display) 3=total
     document.querySelectorAll('#fc-fer-body tr').forEach(function(tr){
       var cells=tr.cells;if(!cells.length)return;
-      var qtd=+cells[0].querySelector('input').value||0;
-      var ferPrice=cells[1]?(+cells[1].querySelector('select').value||0):0;
+      var qtd=_pn(cells[0].querySelector('input').value)||0;
+      var ferPrice=cells[1]?(_pn(cells[1].querySelector('select').value)||0):0;
       if(cells[2]){var fi=cells[2].querySelector('input');if(fi)fi.value=ferPrice?fmt(ferPrice):'0.00';else cells[2].textContent=ferPrice?fmt(ferPrice):'0.00';}
       var tot=qtd*ferPrice;
       _setVal(cells[3],fmt(tot));
@@ -2450,7 +2453,7 @@ function fcCalcTotais(){
     // SC MDF: 0=Qtd 1=Desc 2=Acab(sel) 3=€/uni 4=Total 5=del
     document.querySelectorAll('#'+cp+'-mdf-body tr').forEach(function(tr){
       var cells=tr.cells;if(!cells.length)return;
-      var qtd=+cells[0].querySelector('input').value||0;
+      var qtd=_pn(cells[0].querySelector('input').value)||0;
       var pu=cells[3]?(+(cells[3].querySelector('input')||{}).value||0):0;
       var tot=qtd*pu;
       _setVal(cells[4],fmt(tot));
@@ -2459,8 +2462,8 @@ function fcCalcTotais(){
     // SC MAD: 0=Qtd 1=Acab select 2=€/uni 3=Total 4=del
     document.querySelectorAll('#'+cp+'-mad-body tr').forEach(function(tr){
       var cells=tr.cells;if(!cells.length)return;
-      var qtd=+cells[0].querySelector('input').value||0;
-      var pu=cells[2]?(+cells[2].querySelector('input').value||0):0;
+      var qtd=_pn(cells[0].querySelector('input').value)||0;
+      var pu=cells[2]?(_pn(cells[2].querySelector('input').value)||0):0;
       var tot=qtd*pu;
       _setVal(cells[3],fmt(tot));
       subMad+=tot;
@@ -2468,8 +2471,8 @@ function fcCalcTotais(){
     // SC OP: 0=Qtd 1=Descrição textarea 2=€/uni 3=Total 4=del
     document.querySelectorAll('#'+cp+'-op-body tr').forEach(function(tr){
       var cells=tr.cells;if(!cells.length)return;
-      var qtd=+cells[0].querySelector('input').value||0;
-      var pu=cells[2]?(+cells[2].querySelector('input').value||0):0;
+      var qtd=_pn(cells[0].querySelector('input').value)||0;
+      var pu=cells[2]?(_pn(cells[2].querySelector('input').value)||0):0;
       var tot=qtd*pu;
       _setVal(cells[3],fmt(tot));
       subOp+=tot;
@@ -2477,8 +2480,8 @@ function fcCalcTotais(){
     // SC FER: 0=Qtd ml 1=Descrição 2=€/ml 3=Total 4=del
     document.querySelectorAll('#'+cp+'-fer-body tr').forEach(function(tr){
       var cells=tr.cells;if(!cells.length)return;
-      var qtd=+cells[0].querySelector('input').value||0;
-      var pu=cells[2]?(+cells[2].querySelector('input').value||0):0;
+      var qtd=_pn(cells[0].querySelector('input').value)||0;
+      var pu=cells[2]?(_pn(cells[2].querySelector('input').value)||0):0;
       var tot=qtd*pu;
       _setVal(cells[3],fmt(tot));
       subFer+=tot;
@@ -2489,11 +2492,11 @@ function fcCalcTotais(){
   // Vidros rows
   document.querySelectorAll('#'+cp+'-vid-body tr').forEach(function(tr){
     var cells=tr.cells;if(!cells.length)return;
-    var qtd=+cells[0].querySelector('input').value||0;
-    var c=+cells[1].querySelector('input').value||0;
-    var l=+cells[2].querySelector('input').value||0;
+    var qtd=_pn(cells[0].querySelector('input').value)||0;
+    var c=_pn(cells[1].querySelector('input').value)||0;
+    var l=_pn(cells[2].querySelector('input').value)||0;
     var sel=cells[3].querySelector('select');
-    var pv=sel?+sel.value||0:0;
+    var pv=sel?_pn(sel.value)||0:0;
     var m2=qtd*(c/1000)*(l/1000);
     var tot=m2*pv;
     _setVal(cells[4],fmt(m2));
@@ -2508,9 +2511,9 @@ function fcCalcTotais(){
     var sub=0;
     document.querySelectorAll('#'+cp+'-'+sec+'-body tr').forEach(function(tr){
       var cells=tr.cells;if(!cells.length)return;
-      var qtd=+cells[0].querySelector('input').value||0;
-      var c=+cells[1].querySelector('input').value||0;
-      var l=+cells[2].querySelector('input').value||0;
+      var qtd=_pn(cells[0].querySelector('input').value)||0;
+      var c=_pn(cells[1].querySelector('input').value)||0;
+      var l=_pn(cells[2].querySelector('input').value)||0;
       var sel3=cells[3]?cells[3].querySelector('select'):null;
       var pv=sel3?+sel3.value||0:0;
       var pvInp5=cells[5]?cells[5].querySelector('input'):null;
@@ -2531,7 +2534,7 @@ function fcCalcTotais(){
     var sub=0;
     document.querySelectorAll('#'+cp+'-'+sec+'-body tr').forEach(function(tr){
       var cells=tr.cells;if(!cells.length)return;
-      var qtd=+cells[0].querySelector('input').value||0;
+      var qtd=_pn(cells[0].querySelector('input').value)||0;
       var pu=cells[2]?(+(cells[2].querySelector('input')||{}).value||0):0;
       var tot=qtd*pu;
       _setVal(cells[3],fmt(tot));
@@ -2616,7 +2619,7 @@ function fcCalcTotais(){
     '<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:rgba(255,255,255,0.05);border-radius:6px;margin-bottom:14px;gap:16px">'+
       '<div style="display:flex;align-items:center;gap:10px">'+
         '<span style="font-size:11px;color:rgba(255,255,255,0.45);white-space:nowrap;letter-spacing:0.3px">Margem</span>'+
-        '<input type="number" id="'+cp+'-lucro" value="'+lucroP+'" step="0.5" min="0" oninput="fcCalcTotais()" style="width:58px;padding:4px 8px;border:1.5px solid rgba(255,255,255,0.18);border-radius:4px;font-size:13px;font-weight:700;background:rgba(255,255,255,0.08);color:#fff;text-align:center;font-family:Inter,sans-serif;outline:none">'+
+        '<input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" id="'+cp+'-lucro" value="'+lucroP+'" step="0.5" min="0" oninput="fcCalcTotais()" style="width:58px;padding:4px 8px;border:1.5px solid rgba(255,255,255,0.18);border-radius:4px;font-size:13px;font-weight:700;background:rgba(255,255,255,0.08);color:#fff;text-align:center;font-family:Inter,sans-serif;outline:none">'+
         '<span style="font-size:11px;color:rgba(255,255,255,0.45)">%</span>'+
       '</div>'+
       '<span style="font-size:13px;color:#c9a96e;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap">+ '+fmt(lucroV)+' €</span>'+
@@ -3007,15 +3010,15 @@ function exportFichaCalc(){
   var gv=function(id){var el=document.getElementById('fc-'+id);return el?el.value:'';};
   var selTxt=function(sel){if(!sel||!sel.options||sel.selectedIndex<0)return '';return sel.options[sel.selectedIndex].text||'';};
   var fmtN=function(n){if(isNaN(n))return '0.00';var x=n.toFixed(2);var p=x.split('.');p[0]=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,' ');return p.join('.');};
-  var parseFmt=function(s){return parseFloat((s||'').replace(/\./g,'').replace(',','.'))||0;};
+  var parseFmt=function(s){return _pn((s||'').replace(/\./g,'').replace(',','.'))||0;};
 
   // Header fields
   var nprojeto=gv('nprojeto'),ref=gv('ref'),artigo=gv('artigo'),areacab=gv('area-cab');
   var dataRaw=gv('data'),notas=gv('notas'),desc=gv('desc');
   var dimc=gv('dim-c'),diml=gv('dim-l'),dima=gv('dim-a');
-  var lucroP=parseFloat(gv('lucro'))||0;
-  var emb=parseFloat(gv('emb'))||0,transp=parseFloat(gv('transp'))||0;
-  var gab=parseFloat(gv('gab'))||0,fixos=parseFloat(gv('fixos'))||0,mont=parseFloat(gv('mont'))||0;
+  var lucroP=_pn(gv('lucro'))||0;
+  var emb=_pn(gv('emb'))||0,transp=_pn(gv('transp'))||0;
+  var gab=_pn(gv('gab'))||0,fixos=_pn(gv('fixos'))||0,mont=_pn(gv('mont'))||0;
   var montPess=gv('mont-pess'),montDias=gv('mont-dias'),montEur=gv('mont-eur');
   var dataFmt=dataRaw?dataRaw.split('-').reverse().join('/'):'—';
   var nome=ref||(nprojeto?nprojeto+''+(artigo?' — '+artigo:''):artigo)||'Ficha de Custo';
@@ -3081,7 +3084,7 @@ function exportFichaCalc(){
   var unitR=function(bid){return R(bid,function(c){
     if(!c||!c.length)return null;
     var qtd=inp(c,0),d=ta(c,1),pu=inp(c,2),tot=totV(c,3);
-    if(!d&&!parseFloat(pu))return null;
+    if(!d&&!_pn(pu))return null;
     return [qtd,d,pu,tot];
   });};
   var estR=unitR('fc-est-body'),metR=unitR('fc-met-body'),ocompR=unitR('fc-ocomp-body'),tecR=unitR('fc-tec-body');
@@ -3255,15 +3258,15 @@ function exportFichaCalc(){
 
   // Desc + dims block
   var descHtml='';
-  if(desc||(dimc&&parseFloat(dimc))||(diml&&parseFloat(diml))||(dima&&parseFloat(dima))){
+  if(desc||(dimc&&_pn(dimc))||(diml&&_pn(diml))||(dima&&_pn(dima))){
     descHtml='<div class="desc-box">';
     if(desc)descHtml+='<div class="desc-label">Descrição</div><div class="desc-text">'+desc.replace(/\n/g,'<br>')+'</div>';
-    var hasDim=(dimc&&parseFloat(dimc))||(diml&&parseFloat(diml))||(dima&&parseFloat(dima));
+    var hasDim=(dimc&&_pn(dimc))||(diml&&_pn(diml))||(dima&&_pn(dima));
     if(hasDim){
       descHtml+='<div class="dims">';
-      if(dimc&&parseFloat(dimc))descHtml+='<div class="dim-item"><span class="dim-l">C</span><span class="dim-v">'+dimc+'</span><span class="dim-u">mm</span></div>';
-      if(diml&&parseFloat(diml))descHtml+='<div class="dim-item"><span class="dim-l">L</span><span class="dim-v">'+diml+'</span><span class="dim-u">mm</span></div>';
-      if(dima&&parseFloat(dima))descHtml+='<div class="dim-item"><span class="dim-l">A</span><span class="dim-v">'+dima+'</span><span class="dim-u">mm</span></div>';
+      if(dimc&&_pn(dimc))descHtml+='<div class="dim-item"><span class="dim-l">C</span><span class="dim-v">'+dimc+'</span><span class="dim-u">mm</span></div>';
+      if(diml&&_pn(diml))descHtml+='<div class="dim-item"><span class="dim-l">L</span><span class="dim-v">'+diml+'</span><span class="dim-u">mm</span></div>';
+      if(dima&&_pn(dima))descHtml+='<div class="dim-item"><span class="dim-l">A</span><span class="dim-v">'+dima+'</span><span class="dim-u">mm</span></div>';
       descHtml+='</div>';
     }
     descHtml+='</div>';
@@ -3319,14 +3322,14 @@ function exportSubcPDF(){
   var gv=function(id){var el=document.getElementById('sc-'+id);return el?el.value:'';};
   var selTxt=function(sel){if(!sel||!sel.options||sel.selectedIndex<0)return '';return sel.options[sel.selectedIndex].text||'';};
   var fmtN=function(n){if(isNaN(n))return '0.00';var x=n.toFixed(2);var p=x.split('.');p[0]=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,' ');return p.join('.');};
-  var parseFmt=function(s){return parseFloat((s||'').replace(/\./g,'').replace(',','.'))||0;};
+  var parseFmt=function(s){return _pn((s||'').replace(/\./g,'').replace(',','.'))||0;};
 
   var nprojeto=gv('nprojeto'),ref=gv('ref'),artigo=gv('artigo'),areacab=gv('area-cab');
   var dataRaw=gv('data'),notas=gv('notas'),desc=gv('desc');
   var dimc=gv('dim-c'),diml=gv('dim-l'),dima=gv('dim-a');
-  var lucroP=parseFloat(gv('lucro'))||0;
-  var emb=parseFloat(gv('emb'))||0,transp=parseFloat(gv('transp'))||0;
-  var gab=parseFloat(gv('gab'))||0,fixos=parseFloat(gv('fixos'))||0,mont=parseFloat(gv('mont'))||0;
+  var lucroP=_pn(gv('lucro'))||0;
+  var emb=_pn(gv('emb'))||0,transp=_pn(gv('transp'))||0;
+  var gab=_pn(gv('gab'))||0,fixos=_pn(gv('fixos'))||0,mont=_pn(gv('mont'))||0;
   var montPess=gv('mont-pess'),montDias=gv('mont-dias'),montEur=gv('mont-eur');
   var dataFmt=dataRaw?dataRaw.split('-').reverse().join('/'):'—';
   var nome=ref||(nprojeto?nprojeto+(artigo?' — '+artigo:''):artigo)||'Ficha Subcontratado';
@@ -3344,7 +3347,7 @@ function exportSubcPDF(){
   var unitR=function(bid){return R(bid,function(c){
     if(!c||!c.length)return null;
     var qtd=inp(c,0),d=ta(c,1),pu=inp(c,2),tot=totV(c,3);
-    if(!d&&!parseFloat(pu))return null;
+    if(!d&&!_pn(pu))return null;
     return [qtd,d,pu,tot];
   });};
 
@@ -3370,7 +3373,7 @@ function exportSubcPDF(){
   var madR=R('sc-mad-body',function(c){
     if(!c||!c.length)return null;
     var qtd=inp(c,0),acab=sel(c,1),pu=inp(c,2),tot=totV(c,3);
-    if(!acab&&!parseFloat(pu))return null;
+    if(!acab&&!_pn(pu))return null;
     if(acab==='— escolher —'||!acab)acab='—';
     return [qtd,acab,pu,tot];
   });
@@ -3521,15 +3524,15 @@ function exportSubcPDF(){
   }
 
   var descHtml='';
-  if(desc||(dimc&&parseFloat(dimc))||(diml&&parseFloat(diml))||(dima&&parseFloat(dima))){
+  if(desc||(dimc&&_pn(dimc))||(diml&&_pn(diml))||(dima&&_pn(dima))){
     descHtml='<div class="desc-box">';
     if(desc)descHtml+='<div class="desc-label">Descrição</div><div class="desc-text">'+desc.replace(/\n/g,'<br>')+'</div>';
-    var hasDim=(dimc&&parseFloat(dimc))||(diml&&parseFloat(diml))||(dima&&parseFloat(dima));
+    var hasDim=(dimc&&_pn(dimc))||(diml&&_pn(diml))||(dima&&_pn(dima));
     if(hasDim){
       descHtml+='<div class="dims">';
-      if(dimc&&parseFloat(dimc))descHtml+='<div class="dim-item"><span class="dim-l">C</span><span class="dim-v">'+dimc+'</span><span class="dim-u">mm</span></div>';
-      if(diml&&parseFloat(diml))descHtml+='<div class="dim-item"><span class="dim-l">L</span><span class="dim-v">'+diml+'</span><span class="dim-u">mm</span></div>';
-      if(dima&&parseFloat(dima))descHtml+='<div class="dim-item"><span class="dim-l">A</span><span class="dim-v">'+dima+'</span><span class="dim-u">mm</span></div>';
+      if(dimc&&_pn(dimc))descHtml+='<div class="dim-item"><span class="dim-l">C</span><span class="dim-v">'+dimc+'</span><span class="dim-u">mm</span></div>';
+      if(diml&&_pn(diml))descHtml+='<div class="dim-item"><span class="dim-l">L</span><span class="dim-v">'+diml+'</span><span class="dim-u">mm</span></div>';
+      if(dima&&_pn(dima))descHtml+='<div class="dim-item"><span class="dim-l">A</span><span class="dim-v">'+dima+'</span><span class="dim-u">mm</span></div>';
       descHtml+='</div>';
     }
     descHtml+='</div>';
@@ -3651,7 +3654,7 @@ function prRenderPanel(){
         '<input type="text" value="'+item.d.replace(/"/g,'&quot;')+'" onchange="prUpdateItem('+i+',\'d\',this.value)" onfocus="this.style.borderColor=\'#8B7355\';this.style.background=\'#fffdf9\'" onblur="this.style.borderColor=\'transparent\';this.style.background=\'transparent\'" style="width:100%;padding:4px 6px;border:1.5px solid transparent;border-radius:3px;font-size:12px;font-family:Inter,sans-serif;background:transparent;outline:none;cursor:text">'+
       '</td>'+
       '<td style="padding:6px 10px;border-bottom:1px solid #f0ede8;text-align:right;width:120px">'+
-        '<input type="number" value="'+item.p+'" step="0.01" onchange="prUpdateItem('+i+',\'p\',+this.value)" onfocus="this.style.borderColor=\'#8B7355\';this.style.background=\'#fffdf9\'" onblur="this.style.borderColor=\'transparent\';this.style.background=\'transparent\'" style="width:90px;padding:4px 6px;border:1.5px solid transparent;border-radius:3px;font-size:12px;font-family:Inter,sans-serif;background:transparent;outline:none;text-align:right;cursor:text">'+
+        '<input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" value="'+item.p+'" step="0.01" onchange="prUpdateItem('+i+',\'p\',+this.value)" onfocus="this.style.borderColor=\'#8B7355\';this.style.background=\'#fffdf9\'" onblur="this.style.borderColor=\'transparent\';this.style.background=\'transparent\'" style="width:90px;padding:4px 6px;border:1.5px solid transparent;border-radius:3px;font-size:12px;font-family:Inter,sans-serif;background:transparent;outline:none;text-align:right;cursor:text">'+
       '</td>'+
       '<td style="padding:6px 10px;border-bottom:1px solid #f0ede8;text-align:center;width:50px">'+
         '<button onclick="prDeleteItem('+i+')" style="background:none;border:none;cursor:pointer;color:#ddd;font-size:14px" onmouseover="this.style.color=\'#c0392b\'" onmouseout="this.style.color=\'#ddd\'">✕</button>'+
@@ -3673,7 +3676,7 @@ function prRenderPanel(){
     '</div>'+
     '<div style="display:flex;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid #eee;align-items:center">'+
       '<input type="text" id="pr-new-d" placeholder="Descrição do novo artigo..." style="flex:1;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
-      '<input type="number" id="pr-new-p" placeholder="Preço" step="0.01" style="width:100px;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:right" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
+      '<input type="text" inputmode="decimal" onblur="_fb(this)" onfocus="_ff(this)" id="pr-new-p" placeholder="Preço" step="0.01" style="width:100px;padding:8px 10px;border:1.5px solid #ddd;border-radius:5px;font-size:12px;font-family:Inter,sans-serif;outline:none;text-align:right" onfocus="this.style.borderColor=\'#8B7355\'" onblur="this.style.borderColor=\'#ddd\'">'+
       '<span style="font-size:11px;color:#999">'+cat.unit+'</span>'+
       '<button onclick="prAddItem()" class="btn btn-bronze btn-sm">+ Adicionar</button>'+
     '</div>';
