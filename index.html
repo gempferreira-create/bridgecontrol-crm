@@ -218,7 +218,7 @@ input.fc-eur{background:#edf5ee !important;border-color:#88bc88 !important;color
     <span id="sb-sync-ind" title="Sincronizado" style="font-size:11px;color:#7ec87e;opacity:0;transition:opacity 0.5s">✓</span>
   </div>
   <span id="sb-website">bridgecontrol.eu</span><br><span id="sb-stats">0 clientes · 0 orçamentos</span>
-  <div style="display:flex;gap:4px;margin-top:8px"><button onclick="sbNowSync()" title="Forçar sincronização" style="flex:1;padding:5px;background:rgba(201,169,110,0.1);border:1px solid rgba(201,169,110,0.2);border-radius:4px;color:rgba(201,169,110,0.6);font-size:10px;cursor:pointer;font-family:Inter,sans-serif">↑ Sincronizar</button><button onclick="sbLogout()" style="flex:1;padding:5px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:4px;color:rgba(255,255,255,0.35);font-size:10px;cursor:pointer;font-family:Inter,sans-serif">Sair</button></div>
+  <div style="display:flex;gap:4px;margin-top:8px"><button onclick="sbNowSync()" title="Forçar sincronização" style="flex:1;padding:5px;background:rgba(201,169,110,0.1);border:1px solid rgba(201,169,110,0.2);border-radius:4px;color:rgba(201,169,110,0.6);font-size:10px;cursor:pointer;font-family:Inter,sans-serif">↑ Sincronizar</button><button onclick="sbDiagnostico()" title="Diagnóstico Supabase" style="flex:1;padding:5px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:4px;color:rgba(255,255,255,0.4);font-size:10px;cursor:pointer;font-family:Inter,sans-serif">🔍 Diagnóstico</button><button onclick="sbLogout()" style="flex:1;padding:5px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:4px;color:rgba(255,255,255,0.35);font-size:10px;cursor:pointer;font-family:Inter,sans-serif">Sair</button></div>
 </div>
 </div>
 
@@ -4360,14 +4360,16 @@ async function _sbDoSync(){
     {user_id:uid,chave:'desc_hist',valor:(typeof _dHist!=='undefined'?_dHist:[])},
     {user_id:uid,chave:'desc_lib',valor:(typeof _DESC_LIB!=='undefined'?_DESC_LIB:[])}
   ];
+  var errs=[];
   for(var r of rows){
     try{
-      await window._sb.from('config').delete().eq('user_id',uid).eq('chave',r.chave);
-      await window._sb.from('config').insert(r);
-    }catch(e){console.error('sbSync',r.chave,e);}
+      var up=await window._sb.from('config').upsert(r,{onConflict:'user_id,chave'});
+      if(up&&up.error){errs.push(r.chave+': '+up.error.message);console.error('sbSync upsert',r.chave,up.error);}
+    }catch(e){errs.push(r.chave+': '+(e&&e.message||e));console.error('sbSync',r.chave,e);}
   }
   // Sync images — upload to Supabase
-  await _sbSyncImages(uid);
+  try{await _sbSyncImages(uid);}catch(e){errs.push('imagens: '+(e&&e.message||e));console.error('sbSyncImages',e);}
+  window._sbLastErrs=errs;
   var ind=document.getElementById('sb-sync-ind');
   if(ind){ind.style.opacity='1';setTimeout(function(){ind.style.opacity='0';},1500);}
 }
@@ -4476,8 +4478,9 @@ async function _sbSyncImages(uid){
       _idbGet(key,async function(url){
         if(!url){resolve();return;}
         try{
-          await window._sb.from('config').insert({user_id:uid,chave:'img_'+key,valor:{data:url,ts:Date.now()}});
-        }catch(e){}
+          var ins=await window._sb.from('config').upsert({user_id:uid,chave:'img_'+key,valor:{data:url,ts:Date.now()}},{onConflict:'user_id,chave'});
+          if(ins&&ins.error){console.error('sbSyncImages',key,ins.error);}
+        }catch(e){console.error('sbSyncImages',key,e);}
         resolve();
       });
     });
@@ -4521,10 +4524,95 @@ async function sbNowSync(){
   var ind=document.getElementById('sb-sync-ind');
   if(ind){ind.style.opacity='1';ind.textContent='↑';}
   await _sbDoSync();
-  if(ind){ind.textContent='✓';setTimeout(function(){ind.style.opacity='0';ind.textContent='✓';},2000);}
-  alert('Dados sincronizados com o servidor!');
+  var errs=window._sbLastErrs||[];
+  if(ind){ind.textContent=errs.length?'⚠':'✓';setTimeout(function(){ind.style.opacity='0';ind.textContent='✓';},2500);}
+  if(errs.length){
+    alert('Sincronização com avisos:\n\n'+errs.join('\n')+'\n\n(Verifica a consola para detalhe.)');
+  } else {
+    alert('Dados sincronizados com o servidor!');
+  }
 }
 
+// Diagnóstico: verifica tudo o que pode estar a falhar no Supabase
+async function sbDiagnostico(){
+  var log=[];
+  function L(s){log.push(s);console.log('[SB-DIAG]',s);}
+
+  L('═══ Diagnóstico Supabase ═══');
+  L('URL: '+(window._sb?'OK (cliente criado)':'FALHA (cliente não criado)'));
+  if(!window._sb){alert(log.join('\n')+'\n\nO cliente Supabase não foi criado. Provavelmente a CDN do supabase-js falhou. Verifica a internet.');return;}
+
+  // 1) Sessão
+  try{
+    var ses=await window._sb.auth.getSession();
+    if(ses.data&&ses.data.session&&ses.data.session.user){
+      L('✓ Sessão ativa: '+ses.data.session.user.email);
+      L('  user_id: '+ses.data.session.user.id);
+      window._sbUser=ses.data.session.user;
+    } else {
+      L('✗ Sem sessão. Tens de fazer login.');
+      alert(log.join('\n'));return;
+    }
+  }catch(e){L('✗ getSession erro: '+(e&&e.message||e));alert(log.join('\n'));return;}
+
+  var uid=window._sbUser.id;
+
+  // 2) Tabela config existe e tem permissão SELECT
+  try{
+    var sel=await window._sb.from('config').select('chave',{count:'exact'}).eq('user_id',uid);
+    if(sel.error){L('✗ SELECT em config falhou: '+sel.error.message);}
+    else{L('✓ Tabela config acessível. Linhas para este utilizador: '+(sel.count!=null?sel.count:(sel.data||[]).length));}
+  }catch(e){L('✗ SELECT erro: '+(e&&e.message||e));}
+
+  // 3) Lista chaves existentes
+  try{
+    var keys=await window._sb.from('config').select('chave').eq('user_id',uid);
+    if(keys.data){
+      var dataKeys=keys.data.map(function(r){return r.chave;}).filter(function(k){return !k.startsWith('img_');});
+      var imgKeys=keys.data.map(function(r){return r.chave;}).filter(function(k){return k.startsWith('img_');});
+      L('  Chaves dados ('+dataKeys.length+'): '+(dataKeys.join(', ')||'NENHUMA'));
+      L('  Imagens guardadas: '+imgKeys.length);
+    }
+  }catch(e){L('  list keys erro: '+(e&&e.message||e));}
+
+  // 4) Teste de escrita real
+  L('--- Teste de escrita ---');
+  var testKey='__diag_test_'+Date.now();
+  try{
+    var ins=await window._sb.from('config').upsert({user_id:uid,chave:testKey,valor:{teste:true,ts:Date.now()}},{onConflict:'user_id,chave'});
+    if(ins.error){L('✗ INSERT/UPSERT falhou: '+ins.error.message+(ins.error.hint?' — '+ins.error.hint:''));}
+    else{L('✓ Escrita OK (chave '+testKey+')');}
+  }catch(e){L('✗ INSERT erro: '+(e&&e.message||e));}
+
+  // 5) Limpa o teste
+  try{await window._sb.from('config').delete().eq('user_id',uid).eq('chave',testKey);}catch(e){}
+
+  // 6) Status local
+  L('--- Estado local ---');
+  L('  db.clientes: '+(db.clientes||[]).length);
+  L('  db.orcamentos: '+(db.orcamentos||[]).length);
+  var totalImgs=0;
+  (db.orcamentos||[]).forEach(function(o){(o.linhas||[]).forEach(function(l){if(l.img&&l.img.indexOf('idb_')===0)totalImgs++;});});
+  L('  Imagens referenciadas: '+totalImgs);
+
+  // 7) Última sincronização
+  L('--- Último sync ---');
+  var errs=window._sbLastErrs||[];
+  if(errs.length){L('⚠ Erros do último sync:');errs.forEach(function(e){L('  - '+e);});}
+  else{L('  Sem erros registados.');}
+
+  alert(log.join('\n'));
+}
+
+// Force flush pending sync antes de fechar
+window.addEventListener('beforeunload', function(e){
+  if(window._sbSyncTimer){
+    clearTimeout(window._sbSyncTimer);
+    // Tenta enviar sincronamente via navigator.sendBeacon não dá com REST do Supabase JS,
+    // mas podemos pelo menos disparar o sync imediato e correr durante o unload
+    try{_sbDoSync();}catch(e){}
+  }
+});
 async function sbLogout(){
   if(!confirm('Terminar sessão?'))return;
   if(window._sb)await window._sb.auth.signOut();
