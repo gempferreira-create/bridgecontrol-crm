@@ -4348,6 +4348,91 @@ function sbSync(){
   window._sbSyncTimer=setTimeout(function(){_sbDoSync();},1200);
 }
 
+// ── Sync para TABELAS PRÓPRIAS (clientes, orcamentos, fichas_calc, fichas_subcont, empresa) ──
+async function _syncToProperTables(uid){
+  var errs=[];
+  // CLIENTES
+  try{
+    await window._sb.from('clientes').delete().eq('user_id',uid);
+    var rows=(db.clientes||[]).map(function(c){return {
+      id:String(c.id||''),user_id:uid,nome:c.nome||null,empresa:c.empresa||null,
+      email:c.email||null,telefone:c.telefone||null,pais:c.pais||null,
+      morada:c.morada||null,notas:c.notas||null
+    };}).filter(function(r){return r.id;});
+    if(rows.length){var r=await window._sb.from('clientes').insert(rows);if(r&&r.error)errs.push('clientes: '+r.error.message);}
+  }catch(e){errs.push('clientes: '+(e&&e.message||e));console.error('syncClientes',e);}
+  // ORCAMENTOS
+  try{
+    await window._sb.from('orcamentos').delete().eq('user_id',uid);
+    var rows=(db.orcamentos||[]).map(function(o){return {id:String(o.id||''),user_id:uid,data:o};}).filter(function(r){return r.id;});
+    if(rows.length){var r=await window._sb.from('orcamentos').insert(rows);if(r&&r.error)errs.push('orcamentos: '+r.error.message);}
+  }catch(e){errs.push('orcamentos: '+(e&&e.message||e));console.error('syncOrcamentos',e);}
+  // FICHAS_CALC
+  try{
+    await window._sb.from('fichas_calc').delete().eq('user_id',uid);
+    var arr=JSON.parse(localStorage.getItem('bc-fichas-calc')||'[]');
+    var rows=arr.map(function(f){return {id:String(f.id||f.ref||('fc_'+Math.random().toString(36).slice(2))),user_id:uid,data:f};}).filter(function(r){return r.id;});
+    if(rows.length){var r=await window._sb.from('fichas_calc').insert(rows);if(r&&r.error)errs.push('fichas_calc: '+r.error.message);}
+  }catch(e){errs.push('fichas_calc: '+(e&&e.message||e));console.error('syncFichasCalc',e);}
+  // FICHAS_SUBCONT
+  try{
+    await window._sb.from('fichas_subcont').delete().eq('user_id',uid);
+    var arr=JSON.parse(localStorage.getItem('bc-fichas-subcont')||'[]');
+    var rows=arr.map(function(f){return {id:String(f.id||f.ref||('sc_'+Math.random().toString(36).slice(2))),user_id:uid,data:f};}).filter(function(r){return r.id;});
+    if(rows.length){var r=await window._sb.from('fichas_subcont').insert(rows);if(r&&r.error)errs.push('fichas_subcont: '+r.error.message);}
+  }catch(e){errs.push('fichas_subcont: '+(e&&e.message||e));console.error('syncFichasSubcont',e);}
+  // EMPRESA (1 linha por user)
+  try{
+    await window._sb.from('empresa').delete().eq('user_id',uid);
+    var r=await window._sb.from('empresa').insert({user_id:uid,data:_EMP});
+    if(r&&r.error)errs.push('empresa: '+r.error.message);
+  }catch(e){errs.push('empresa: '+(e&&e.message||e));console.error('syncEmpresa',e);}
+  return errs;
+}
+
+async function _loadFromProperTables(uid){
+  var loaded={cli:false,orc:false,fc:false,sc:false,em:false};
+  try{
+    var cli=await window._sb.from('clientes').select('*').eq('user_id',uid);
+    if(cli.data&&cli.data.length){
+      db.clientes=cli.data.map(function(r){return {id:r.id,nome:r.nome,empresa:r.empresa,email:r.email,telefone:r.telefone,pais:r.pais,morada:r.morada,notas:r.notas};});
+      loaded.cli=true;
+    }
+  }catch(e){console.error('loadClientes',e);}
+  try{
+    var orc=await window._sb.from('orcamentos').select('*').eq('user_id',uid);
+    if(orc.data&&orc.data.length){
+      db.orcamentos=orc.data.map(function(r){var o=Object.assign({},r.data||{});o.id=r.id;return o;});
+      loaded.orc=true;
+    }
+  }catch(e){console.error('loadOrcamentos',e);}
+  try{
+    var fc=await window._sb.from('fichas_calc').select('*').eq('user_id',uid);
+    if(fc.data&&fc.data.length){
+      var arr=fc.data.map(function(r){var f=Object.assign({},r.data||{});f.id=r.id;return f;});
+      try{localStorage.setItem('bc-fichas-calc',JSON.stringify(arr));}catch(e){}
+      loaded.fc=true;
+    }
+  }catch(e){console.error('loadFichasCalc',e);}
+  try{
+    var sc=await window._sb.from('fichas_subcont').select('*').eq('user_id',uid);
+    if(sc.data&&sc.data.length){
+      var arr=sc.data.map(function(r){var f=Object.assign({},r.data||{});f.id=r.id;return f;});
+      try{localStorage.setItem('bc-fichas-subcont',JSON.stringify(arr));}catch(e){}
+      loaded.sc=true;
+    }
+  }catch(e){console.error('loadFichasSubcont',e);}
+  try{
+    var em=await window._sb.from('empresa').select('*').eq('user_id',uid);
+    if(em.data&&em.data.length&&em.data[0].data){
+      Object.assign(_EMP,em.data[0].data);
+      try{localStorage.setItem('bc-empresa',JSON.stringify(_EMP));}catch(e){}
+      loaded.em=true;
+    }
+  }catch(e){console.error('loadEmpresa',e);}
+  return loaded;
+}
+
 async function _sbDoSync(){
   if(!window._sb||!window._sbUser)return;
   var uid=window._sbUser.id;
@@ -4362,11 +4447,28 @@ async function _sbDoSync(){
   ];
   var errs=[];
   for(var r of rows){
+    var saved=false;
     try{
       var up=await window._sb.from('config').upsert(r,{onConflict:'user_id,chave'});
-      if(up&&up.error){errs.push(r.chave+': '+up.error.message);console.error('sbSync upsert',r.chave,up.error);}
+      if(up&&!up.error)saved=true;
+      else if(up&&up.error){
+        // Fallback: se faltar constraint, usa delete+insert (não-atómico mas funciona)
+        var msg=(up.error.message||'').toLowerCase();
+        if(msg.indexOf('on conflict')>=0||msg.indexOf('exclusion constraint')>=0||msg.indexOf('unique')>=0){
+          try{
+            await window._sb.from('config').delete().eq('user_id',uid).eq('chave',r.chave);
+            var ins=await window._sb.from('config').insert(r);
+            if(ins&&!ins.error)saved=true;
+            else if(ins&&ins.error){errs.push(r.chave+' (fallback): '+ins.error.message);console.error('sbSync fallback',r.chave,ins.error);}
+          }catch(e2){errs.push(r.chave+' (fallback): '+(e2&&e2.message||e2));console.error('sbSync fallback',r.chave,e2);}
+        } else {
+          errs.push(r.chave+': '+up.error.message);console.error('sbSync upsert',r.chave,up.error);
+        }
+      }
     }catch(e){errs.push(r.chave+': '+(e&&e.message||e));console.error('sbSync',r.chave,e);}
   }
+  // Sync para tabelas próprias (clientes, orcamentos, fichas, empresa)
+  try{var pErrs=await _syncToProperTables(uid);errs=errs.concat(pErrs);}catch(e){errs.push('tabelas: '+(e&&e.message||e));console.error('syncProperTables',e);}
   // Sync images — upload to Supabase
   try{await _sbSyncImages(uid);}catch(e){errs.push('imagens: '+(e&&e.message||e));console.error('sbSyncImages',e);}
   window._sbLastErrs=errs;
@@ -4418,17 +4520,26 @@ async function sbInit(){
 }
 
 async function sbLoadAndMerge(){
-  // Verifica se Supabase tem dados
-  var res=await window._sb.from('config').select('chave,valor').eq('user_id',window._sbUser.id).eq('chave','db_main');
-  var sbHasData=res.data&&res.data.length>0&&res.data[0].valor&&(res.data[0].valor.clientes||[]).length>0;
-  if(sbHasData){
-    // Supabase tem dados — carrega deles (fonte de verdade)
-    await sbLoadAll();
-    await _sbLoadImages(); // Carrega imagens da cloud para IndexedDB local
-  } else {
-    // Supabase vazio — envia dados locais para Supabase
-    await _sbDoSync();
+  var uid=window._sbUser.id;
+  // 1) Tenta carregar primeiro das TABELAS PRÓPRIAS
+  var loaded=await _loadFromProperTables(uid);
+  var anyLoaded=loaded.cli||loaded.orc||loaded.fc||loaded.sc||loaded.em;
+  // 2) Sempre lê precos/desc_hist/desc_lib do config (sem tabela própria)
+  await sbLoadAll();
+  if(!anyLoaded){
+    // 3) Tabelas próprias vazias — vê se há db_main no config como fallback (legado)
+    var res=await window._sb.from('config').select('chave,valor').eq('user_id',uid).eq('chave','db_main');
+    var sbHasLegacy=res.data&&res.data.length>0&&res.data[0].valor&&(res.data[0].valor.clientes||[]).length>0;
+    if(sbHasLegacy){
+      // Já foi carregado por sbLoadAll() — apenas faz primeira sincronia para popular tabelas próprias
+      console.log('Legado: dados em config, migrando para tabelas próprias...');
+      await _sbDoSync();
+    } else {
+      // Supabase totalmente vazio — envia o local
+      await _sbDoSync();
+    }
   }
+  await _sbLoadImages();
 }
 
 async function sbLogin(){
@@ -4478,8 +4589,18 @@ async function _sbSyncImages(uid){
       _idbGet(key,async function(url){
         if(!url){resolve();return;}
         try{
-          var ins=await window._sb.from('config').upsert({user_id:uid,chave:'img_'+key,valor:{data:url,ts:Date.now()}},{onConflict:'user_id,chave'});
-          if(ins&&ins.error){console.error('sbSyncImages',key,ins.error);}
+          var rec={user_id:uid,chave:'img_'+key,valor:{data:url,ts:Date.now()}};
+          var ins=await window._sb.from('config').upsert(rec,{onConflict:'user_id,chave'});
+          if(ins&&ins.error){
+            var msg=(ins.error.message||'').toLowerCase();
+            if(msg.indexOf('on conflict')>=0||msg.indexOf('exclusion constraint')>=0||msg.indexOf('unique')>=0){
+              try{
+                await window._sb.from('config').delete().eq('user_id',uid).eq('chave','img_'+key);
+                var ins2=await window._sb.from('config').insert(rec);
+                if(ins2&&ins2.error)console.error('sbSyncImages fallback',key,ins2.error);
+              }catch(e2){console.error('sbSyncImages fallback',key,e2);}
+            } else {console.error('sbSyncImages',key,ins.error);}
+          }
         }catch(e){console.error('sbSyncImages',key,e);}
         resolve();
       });
