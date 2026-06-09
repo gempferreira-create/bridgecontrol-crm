@@ -677,6 +677,14 @@ function fmt(n){var x=Number(n||0).toFixed(2);var p=x.split('.');p[0]=p[0].repla
 function _pn(v){if(v==null)return 0;var s=String(v).replace(/\s/g,'');var ld=s.lastIndexOf('.'),lc=s.lastIndexOf(',');if(ld>=0&&lc>=0){s=lc>ld?s.replace(/\./g,'').replace(',','.'):s.replace(/,/g,'');}else if(lc>=0){var p=s.split(',');s=(p.length===2&&p[1].length<=2)?s.replace(',','.'):s.replace(/,/g,'');}var n=parseFloat(s);return isNaN(n)?0:n;}
 function _fb(el){if(!el)return;var v=el.value;el.type='text';if(v===''||v==null)return;el.value=fmt(_pn(v));}
 function _ff(el){if(!el)return;var v=el.value;el.type='number';if(v==='')return;el.value=String(_pn(v));}
+function _sn(el,v){if(!el)return;if(v==null||v==='')return;if(el.type==='number'||el.tagName==='INPUT'&&!el.type){el.value=String(_pn(v)||'');}else{el.value=v;}}
+function _fbAll(scope){
+  var root=scope||document;
+  // Inputs editáveis com handlers: já tinham type=number, podem agora ser text se já blured
+  root.querySelectorAll('input[onblur*="_fb"]').forEach(function(el){
+    if(el.value!==''&&el.value!=null)_fb(el);
+  });
+}
 function today(){return new Date().toISOString().slice(0,10);}
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
 function getCliNome(id){var c=db.clientes.find(function(x){return x.id==id;});return c?c.nome:(id||'—');}
@@ -874,6 +882,7 @@ function openModalOrcamento(id){
       ta.style.height='26px';
       ta.style.height=Math.max(26,ta.scrollHeight)+'px';
     });
+    _fbAll(document.getElementById('modal-orc'));
   },30);
 }
 function closeModalOrc(){document.getElementById('modal-orc').classList.remove('open');}
@@ -2701,9 +2710,9 @@ function guardarFichaCalc(){
   s.areacab=(g('area-cab')||{}).value||'';
   s.notas=(g('notas')||{}).value||'';
   s.desc=(g('desc')||{}).value||'';
-  s.dimc=(g('dim-c')||{}).value||'';
-  s.diml=(g('dim-l')||{}).value||'';
-  s.dima=(g('dim-a')||{}).value||'';
+  s.dimc=_pn((g('dim-c')||{}).value);
+  s.diml=_pn((g('dim-l')||{}).value);
+  s.dima=_pn((g('dim-a')||{}).value);
   ['emb','transp','gab','fixos','mont','mont-pess','mont-dias','mont-eur'].forEach(function(k){
     s[k]=(g(k)||{}).value||'0';
   });
@@ -2711,44 +2720,44 @@ function guardarFichaCalc(){
     s.mdf=[];
     document.querySelectorAll('#fc-mdf-body tr').forEach(function(tr){
       if(!tr.cells.length)return;
-      s.mdf.push({qtd:tr.cells[0].querySelector('input').value,
+      s.mdf.push({qtd:_pn(tr.cells[0].querySelector('input').value),
         desc:(tr.cells[1]&&tr.cells[1].querySelector('textarea'))?tr.cells[1].querySelector('textarea').value:'',
-        placa:tr.cells[2].querySelector('select').value,c:tr.cells[3].querySelector('input').value,
-        l:tr.cells[4].querySelector('input').value,acab:tr.cells[5].querySelector('select').value});
+        placa:tr.cells[2].querySelector('select').value,c:_pn(tr.cells[3].querySelector('input').value),
+        l:_pn(tr.cells[4].querySelector('input').value),acab:tr.cells[5].querySelector('select').value});
     });
     s.mad=[];
     document.querySelectorAll('#fc-mad-body tr').forEach(function(tr){
       if(!tr.cells.length)return;
-      s.mad.push({qtd:tr.cells[0].querySelector('input').value,
+      s.mad.push({qtd:_pn(tr.cells[0].querySelector('input').value),
         desc:(tr.cells[1]&&tr.cells[1].querySelector('textarea'))?tr.cells[1].querySelector('textarea').value:'',
-        mad:tr.cells[2].querySelector('select').value,c:tr.cells[3].querySelector('input').value,
-        l:tr.cells[4].querySelector('input').value,esp:tr.cells[5].querySelector('input').value,
+        mad:tr.cells[2].querySelector('select').value,c:_pn(tr.cells[3].querySelector('input').value),
+        l:_pn(tr.cells[4].querySelector('input').value),esp:_pn(tr.cells[5].querySelector('input').value),
         acab:tr.cells[6].querySelector('select').value});
     });
     s.op=[];
     document.querySelectorAll('#fc-op-body tr').forEach(function(tr){
       if(!tr.cells.length)return;
-      s.op.push({qtd:tr.cells[0].querySelector('input').value,
-        op:tr.cells[1].querySelector('select').value,h:tr.cells[2].querySelector('input').value});
+      s.op.push({qtd:_pn(tr.cells[0].querySelector('input').value),
+        op:tr.cells[1].querySelector('select').value,h:_pn(tr.cells[2].querySelector('input').value)});
     });
     s.fer=[];
     document.querySelectorAll('#fc-fer-body tr').forEach(function(tr){
       if(!tr.cells.length)return;
-      s.fer.push({qtd:tr.cells[0].querySelector('input').value,fer:tr.cells[1].querySelector('select').value});
+      s.fer.push({qtd:_pn(tr.cells[0].querySelector('input').value),fer:tr.cells[1].querySelector('select').value});
     });
     s.vid=[];
     document.querySelectorAll('#fc-vid-body tr').forEach(function(tr){
       if(!tr.cells.length)return;
-      s.vid.push({qtd:tr.cells[0].querySelector('input').value,c:tr.cells[1].querySelector('input').value,
-        l:tr.cells[2].querySelector('input').value,tipo:tr.cells[3].querySelector('select').value});
+      s.vid.push({qtd:_pn(tr.cells[0].querySelector('input').value),c:_pn(tr.cells[1].querySelector('input').value),
+        l:_pn(tr.cells[2].querySelector('input').value),tipo:tr.cells[3].querySelector('select').value});
     });
     ['cer','esp'].forEach(function(sec){
       s[sec]=[];
       document.querySelectorAll('#fc-'+sec+'-body tr').forEach(function(tr){
         if(!tr.cells.length)return;
         var sel3=tr.cells[3]?tr.cells[3].querySelector('select'):null;
-        s[sec].push({qtd:tr.cells[0].querySelector('input').value,c:tr.cells[1].querySelector('input').value,
-          l:tr.cells[2].querySelector('input').value,tipo:sel3?sel3.value:''});
+        s[sec].push({qtd:_pn(tr.cells[0].querySelector('input').value),c:_pn(tr.cells[1].querySelector('input').value),
+          l:_pn(tr.cells[2].querySelector('input').value),tipo:sel3?sel3.value:''});
       });
     });
     ['est','met'].forEach(function(sec){
@@ -2917,9 +2926,7 @@ function carregarFichaCalc(idx){
   set('area-cab',s.areacab||'');
   set('notas',s.notas||'');
   set('desc',s.desc||'');
-  set('dim-c',s.dimc||'');
-  set('dim-l',s.diml||'');
-  set('dim-a',s.dima||'');
+  var el_c=document.getElementById(cp+'-dim-c');if(el_c)_sn(el_c,s.dimc);var el_l=document.getElementById(cp+'-dim-l');if(el_l)_sn(el_l,s.diml);var el_a=document.getElementById(cp+'-dim-a');if(el_a)_sn(el_a,s.dima);
   ['emb','transp','gab','fixos','mont-pess','mont-dias','mont-eur'].forEach(function(k){set(k,s[k]||'0');});
   fcCalcMont();
   if(cp==='fc'){
@@ -2935,44 +2942,44 @@ function carregarFichaCalc(idx){
       });
     }
     fcRestFC(s.mdf,'mdf',function(tr,r){
-      tr.cells[0].querySelector('input').value=r.qtd||'1';
+      _sn(tr.cells[0].querySelector('input'),r.qtd||'1');
       if(tr.cells[1]&&tr.cells[1].querySelector('textarea'))tr.cells[1].querySelector('textarea').value=r.desc||'';
       tr.cells[2].querySelector('select').value=r.placa||'';
-      tr.cells[3].querySelector('input').value=r.c||'';
-      tr.cells[4].querySelector('input').value=r.l||'';
+      _sn(tr.cells[3].querySelector('input'),r.c||'');
+      _sn(tr.cells[4].querySelector('input'),r.l||'');
       tr.cells[5].querySelector('select').value=r.acab||'';
     });
     fcRestFC(s.mad,'mad',function(tr,r){
-      tr.cells[0].querySelector('input').value=r.qtd||'1';
+      _sn(tr.cells[0].querySelector('input'),r.qtd||'1');
       if(tr.cells[1]&&tr.cells[1].querySelector('textarea'))tr.cells[1].querySelector('textarea').value=r.desc||'';
       tr.cells[2].querySelector('select').value=r.mad||'';
-      tr.cells[3].querySelector('input').value=r.c||'';
-      tr.cells[4].querySelector('input').value=r.l||'';
-      tr.cells[5].querySelector('input').value=r.esp||'';
+      _sn(tr.cells[3].querySelector('input'),r.c||'');
+      _sn(tr.cells[4].querySelector('input'),r.l||'');
+      _sn(tr.cells[5].querySelector('input'),r.esp||'');
       if(tr.cells[6])tr.cells[6].querySelector('select').value=r.acab||'';
     });
     fcRestFC(s.op,'op',function(tr,r){
-      tr.cells[0].querySelector('input').value=r.qtd||'1';
+      _sn(tr.cells[0].querySelector('input'),r.qtd||'1');
       tr.cells[1].querySelector('select').value=r.op||'';
-      tr.cells[2].querySelector('input').value=r.h||'';
+      _sn(tr.cells[2].querySelector('input'),r.h||'');
     });
     fcRestFC(s.fer,'fer',function(tr,r){
-      tr.cells[0].querySelector('input').value=r.qtd||'1';
+      _sn(tr.cells[0].querySelector('input'),r.qtd||'1');
       tr.cells[1].querySelector('select').value=r.fer||'';
       var _fi=tr.cells[2]?tr.cells[2].querySelector('input'):null;if(_fi)_fi.value=r.fer?fmt(+r.fer):'0.00';
     });
     fcRestFC(s.vid,'vid',function(tr,r){
-      tr.cells[0].querySelector('input').value=r.qtd||'1';
-      tr.cells[1].querySelector('input').value=r.c||'';
-      tr.cells[2].querySelector('input').value=r.l||'';
+      _sn(tr.cells[0].querySelector('input'),r.qtd||'1');
+      _sn(tr.cells[1].querySelector('input'),r.c||'');
+      _sn(tr.cells[2].querySelector('input'),r.l||'');
       tr.cells[3].querySelector('select').value=r.tipo||'';
     });
     ['cer','esp'].forEach(function(sec){
       var bd=document.getElementById('fc-'+sec+'-body');if(bd)bd.innerHTML='';
       fcRestFC(s[sec],sec,function(tr,r){
-        tr.cells[0].querySelector('input').value=r.qtd||'1';
-        tr.cells[1].querySelector('input').value=r.c||'';
-        tr.cells[2].querySelector('input').value=r.l||'';
+        _sn(tr.cells[0].querySelector('input'),r.qtd||'1');
+        _sn(tr.cells[1].querySelector('input'),r.c||'');
+        _sn(tr.cells[2].querySelector('input'),r.l||'');
         var sel3=tr.cells[3]?tr.cells[3].querySelector('select'):null;
         if(sel3)sel3.value=r.tipo||r.pv||'';
       });
@@ -2980,16 +2987,16 @@ function carregarFichaCalc(idx){
     ['est','met'].forEach(function(sec){
       var bd=document.getElementById('fc-'+sec+'-body');if(bd)bd.innerHTML='';
       fcRestFC(s[sec],sec,function(tr,r){
-        tr.cells[0].querySelector('input').value=r.qtd||'1';
+        _sn(tr.cells[0].querySelector('input'),r.qtd||'1');
         if(tr.cells[1])tr.cells[1].querySelector('input').value=r.desc||'';
-        if(tr.cells[2])tr.cells[2].querySelector('input').value=r.pu||'';
+        if(tr.cells[2])_sn(tr.cells[2].querySelector('input'),r.pu||'');
       });
     });
     var bdOcomp=document.getElementById('fc-ocomp-body');if(bdOcomp)bdOcomp.innerHTML='';
     fcRestFC(s.ocomp,'ocomp',function(tr,r){
-      tr.cells[0].querySelector('input').value=r.qtd||'1';
+      _sn(tr.cells[0].querySelector('input'),r.qtd||'1');
       if(tr.cells[1]){var ta=tr.cells[1].querySelector('textarea');if(ta)ta.value=r.desc||'';}
-      if(tr.cells[2])tr.cells[2].querySelector('input').value=r.pu||'';
+      if(tr.cells[2])_sn(tr.cells[2].querySelector('input'),r.pu||'');
     });
   } else {
     [cp+'-mdf-body',cp+'-mad-body',cp+'-op-body',cp+'-fer-body',cp+'-vid-body'].forEach(function(id){
@@ -3904,9 +3911,9 @@ function fichaParaOrcamento(idxStr){
     artigo:s.artigo||s.nome||'',
     area:s.areacab||'',
     descricao:s.desc||(s.notas||'').substring(0,120),
-    dimW:s.dimc||'',
-    dimD:s.diml||'',
-    dimH:s.dima||'',
+    dimW:_pn(s.dimc)||'',
+    dimD:_pn(s.diml)||'',
+    dimH:_pn(s.dima)||'',
     qtd:'1',
     pu:result.total>0?result.total.toFixed(2):'',
     pCusto:result.base>0?result.base.toFixed(2):''
@@ -3928,6 +3935,7 @@ function fichaParaOrcamento(idxStr){
   }
   addLinha(linha);
   calcAllTotals();
+  setTimeout(function(){_fbAll(document.getElementById('modal-orc'));},30);
   if(infoEl){
     infoEl.innerHTML=
       '<span style="color:#8B7355;font-weight:600">Custo base: '+fmt(result.base)+' €</span>'+
@@ -3950,7 +3958,7 @@ function scFichaParaOrcamento(idxStr){
   var linha={
     ref:s.ref||'',artigo:s.artigo||s.nome||'',area:s.areacab||'',
     descricao:s.desc||(s.notas||'').substring(0,120),
-    dimW:s.dimc||'',dimD:s.diml||'',dimH:s.dima||'',
+    dimW:_pn(s.dimc)||'',dimD:_pn(s.diml)||'',dimH:_pn(s.dima)||'',
     qtd:'1',
     pu:result.total>0?result.total.toFixed(2):'',
     pCusto:result.base>0?result.base.toFixed(2):''
@@ -3967,6 +3975,7 @@ function scFichaParaOrcamento(idxStr){
   }
   addLinha(linha);
   calcAllTotals();
+  setTimeout(function(){_fbAll(document.getElementById('modal-orc'));},30);
   if(infoEl){
     infoEl.innerHTML=
       '<span style="color:#1e5f96;font-weight:600">Custo base: '+fmt(result.base)+' €</span>'+
@@ -4942,6 +4951,8 @@ window.addEventListener('load', function(){
     }
   },8000);
   document.head.appendChild(s);
+  setTimeout(function(){_fbAll(document.getElementById('page-'+cp));},50);
+  fcCalcTotais();
 });
 </script>
 
